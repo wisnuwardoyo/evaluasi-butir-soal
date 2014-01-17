@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<item id="0">
+<kompetensi>Integeral</kompetensi>
+<siswa>10</siswa>
+<jmlSoal>10</jmlSoal>
+<tipe>4</tipe>
+<kkm>75</kkm>
+<kunci>B</kunci>
+<kunci>D</kunci>
+<kunci>C</kunci>
+<kunci>A</kunci>
+<kunci>A</kunci>
+<kunci>B</kunci>
+<kunci>D</kunci>
+<kunci>A</kunci>
+<kunci>C</kunci>
+<kunci>B</kunci>
+<soal>SISWA 1</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>SISWA 2</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>SISWA 3</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>SISWA 4</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>SISWA 5</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>SISWA 6</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>SISWA 7</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>SISWA 8</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>SISWA 9</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>SISWA 10</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>B</soal>
+</item>
+<item id="1">
+<kompetensi>Diferensial</kompetensi>
+<siswa>10</siswa>
+<jmlSoal>10</jmlSoal>
+<tipe>4</tipe>
+<kkm>80</kkm>
+<kunci>B</kunci>
+<kunci>D</kunci>
+<kunci>C</kunci>
+<kunci>A</kunci>
+<kunci>A</kunci>
+<kunci>B</kunci>
+<kunci>D</kunci>
+<kunci>A</kunci>
+<kunci>C</kunci>
+<kunci>B</kunci>
+<soal>SISWA 1</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>SISWA 2</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>SISWA 3</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>SISWA 4</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>SISWA 5</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>SISWA 6</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>B</soal>
+<soal>SISWA 7</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>A</soal>
+<soal>SISWA 8</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>SISWA 9</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>B</soal>
+<soal>SISWA 10</soal>
+<soal>B</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>B</soal>
+<soal>C</soal>
+<soal>D</soal>
+<soal>D</soal>
+<soal>A</soal>
+<soal>C</soal>
+<soal>B</soal>
+</item>
+<config>
+<mapel>Matematika</mapel>
+<guru>Wisnu Wardoyo</guru>
+<berkas>2</berkas>
+<kelas>XI TKJ 2</kelas>
+</config>
+</root>
