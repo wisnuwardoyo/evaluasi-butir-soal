@@ -83,6 +83,12 @@ public class MainModel {
         }
     }
     
+    public void fireErrorMessage(int i){
+        if(mainListener != null){
+            mainListener.fireErrorMessage(i);
+        }
+    }
+    
     //LIST OF GETTER
     public int getJumlahBerkas() {
         return jumlahBerkas;

@@ -4,6 +4,7 @@
  */
 package com.wisnu.ebs.view;
 
+import com.wisnu.ebs.add.ErrorMassage;
 import com.wisnu.ebs.add.ImageBackgroundPanel;
 import java.awt.Color;
 import java.io.File;
@@ -31,6 +32,7 @@ public class MainFrame extends javax.swing.JFrame implements MainListener {
     private ResPanel resultPanel;
     private ConfPanel configPanel;
     private NewDocumentPanel newDocumentPanel;
+    private final ErrorMassage errorMassage;
     private final WriteXMLFile saveFile = new WriteXMLFile();
     private final MainController controller = new MainController();
     private final MainModel model = new MainModel();
@@ -42,8 +44,10 @@ public class MainFrame extends javax.swing.JFrame implements MainListener {
     
     public MainFrame() {
         System.out.println("Program Started");
+        errorMassage = new ErrorMassage();
         controller.setModel(model);
         model.setMainListener(this);
+        
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         itemCheck();
@@ -206,7 +210,12 @@ public class MainFrame extends javax.swing.JFrame implements MainListener {
         keyPanel = null;
         this.repaint();
     }
-
+    
+    @Override
+    public void fireErrorMessage(int i){
+        JOptionPane.showConfirmDialog(this, errorMassage.massage[i]);
+    }
+    
     public void itemCheck() {
         if (isOpen) {
             menu_item_save.setEnabled(true);

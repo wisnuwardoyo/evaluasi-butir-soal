@@ -27,4 +27,6 @@ public interface MainListener {
     public void openResult();
     
     public void openConfiguration();
+    
+    public void fireErrorMessage(int i);
 }

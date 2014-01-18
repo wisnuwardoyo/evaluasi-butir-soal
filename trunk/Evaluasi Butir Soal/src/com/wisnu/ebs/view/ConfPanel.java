@@ -157,7 +157,7 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
         jLabel1.setText("CONFIGURATION PANEL");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setText("APALAH");
+        jLabel2.setText("Configure your document");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
