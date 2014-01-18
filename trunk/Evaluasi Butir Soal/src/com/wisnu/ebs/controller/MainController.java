@@ -21,10 +21,6 @@ public class MainController {
 
     }
 
-    public MainModel getModel() {
-        return model;
-    }
-
     public void newDocument(NewDocumentPanel panel) {
         this.inputPanel = panel;
 
@@ -106,6 +102,8 @@ public class MainController {
             }
 
             model.fireNewDocument();
+        } else {
+            model.fireErrorMessage(0);
         }
     }
 

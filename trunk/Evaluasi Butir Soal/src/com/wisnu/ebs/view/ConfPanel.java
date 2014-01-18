@@ -30,6 +30,7 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
     private Object[][] dataTable;
     private NewFilePanel filePanel;
     private JFrame frame;
+    private boolean isEdit = false;
 
     public ConfPanel() {
 
@@ -145,6 +146,7 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new Color(255,255,255,30));
 
@@ -274,6 +276,10 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setText("Edit Data");
+        jButton2.setPreferredSize(new java.awt.Dimension(103, 23));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -303,7 +309,10 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
                                 .addComponent(labMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jButton1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -330,7 +339,9 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
                     .addComponent(jLabel6)
                     .addComponent(labBerkas))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -394,15 +405,20 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
         int selected = table.getSelectedRow();
         int rowCount = table.getRowCount();
 
-        table.getValueAt(selected, 6);
-        for (int i = 0; i < rowCount; i++) {
-            if (i != selected) {
-                table.setValueAt(false, i, 6);
-            }else{
-                table.setValueAt(true, i, 6);
+        if (!isEdit) {
+            table.getValueAt(selected, 6);
+
+            for (int i = 0; i < rowCount; i++) {
+                if (i != selected) {
+                    table.setValueAt(false, i, 6);
+                } else {
+                    table.setValueAt(true, i, 6);
+                }
             }
+        }else{
+            
         }
-        controller.setBerkasAktif(selected);
+
     }//GEN-LAST:event_tableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -410,7 +426,7 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
-         if (!labGuru.isEnabled()) {
+        if (!labGuru.isEnabled()) {
             jLabel9.setIcon(new ImageIcon("./src/Resources/editHover.png"));
             frame.repaint();
         } else {
@@ -440,7 +456,7 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
     }//GEN-LAST:event_jLabel10MouseEntered
 
     private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
-       if (!labKelas.isEnabled()) {
+        if (!labKelas.isEnabled()) {
             jLabel10.setIcon(new ImageIcon("./src/Resources/edit.png"));
             frame.repaint();
         } else {
@@ -459,8 +475,13 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
             jLabel8.setIcon(new ImageIcon("./src/Resources/edit.png"));
             jLabel8.setToolTipText("Edit Nama Mata Pelajaran");
             labMataPelajaran.setEnabled(false);
+            if (!labMataPelajaran.getText().isEmpty()) {
+                controller.changeProperty(1, labMataPelajaran.getText());
+            } else {
+                labMataPelajaran.setText(model.getMaPel());
+                model.fireErrorMessage(3);
+            }
             frame.repaint();
-            controller.changeProperty(1, labMataPelajaran.getText());
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -474,8 +495,14 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
             jLabel9.setIcon(new ImageIcon("./src/Resources/edit.png"));
             jLabel9.setToolTipText("Edit Nama Guru");
             labGuru.setEnabled(false);
+            if (!labGuru.getText().isEmpty()) {
+                controller.changeProperty(2, labGuru.getText());
+            } else {
+                labGuru.setText(model.getNamaGuru());
+                model.fireErrorMessage(3);
+            }
             frame.repaint();
-            controller.changeProperty(2, labGuru.getText());
+
         }
     }//GEN-LAST:event_jLabel9MouseClicked
 
@@ -489,13 +516,20 @@ public class ConfPanel extends javax.swing.JPanel implements ConfListener {
             jLabel10.setIcon(new ImageIcon("./src/Resources/edit.png"));
             jLabel10.setToolTipText("Edit Nama Mata Pelajaran");
             labKelas.setEnabled(false);
+            if (!labKelas.getText().isEmpty()) {
+                controller.changeProperty(3, labKelas.getText());
+            } else {
+                labKelas.setText(model.getNamaKelas());
+                model.fireErrorMessage(3);
+            }
             frame.repaint();
-            controller.changeProperty(3, labKelas.getText());
+
         }
     }//GEN-LAST:event_jLabel10MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

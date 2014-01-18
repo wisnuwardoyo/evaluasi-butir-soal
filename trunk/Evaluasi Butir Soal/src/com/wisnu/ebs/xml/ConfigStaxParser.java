@@ -70,7 +70,7 @@ public class ConfigStaxParser {
                     }
 
                 }
-                // If we reach the end of an item element, we add it to the list
+                
                 if (event.isEndElement()) {
                     EndElement endElement = event.asEndElement();
                     if (endElement.getName().getLocalPart() == (CONFIG)) {
@@ -80,9 +80,9 @@ public class ConfigStaxParser {
 
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            model.fireErrorMessage(0);
         } catch (XMLStreamException e) {
-            e.printStackTrace();
+            model.fireErrorMessage(0);
         }
 
     }

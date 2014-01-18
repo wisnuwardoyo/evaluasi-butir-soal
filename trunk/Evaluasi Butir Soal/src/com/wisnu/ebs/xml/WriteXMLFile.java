@@ -107,7 +107,7 @@ public class WriteXMLFile {
 
             //return read.read();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            model.fireErrorMessage(1);
         }
 
     }
