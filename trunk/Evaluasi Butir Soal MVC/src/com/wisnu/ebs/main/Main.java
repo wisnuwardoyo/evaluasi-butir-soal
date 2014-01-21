@@ -6,17 +6,17 @@
 
 package com.wisnu.ebs.main;
 
-import com.wisnu.ebs.controller.ControllerUtama;
+import com.wisnu.ebs.controller.MainController;
 
 /**
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class Main {
-    private ControllerUtama controllerUtama;
+    private MainController controllerUtama;
     
     public Main(){
-        controllerUtama = new ControllerUtama();
+        controllerUtama = new MainController();
     }
    
     public static void main(String[] args) {

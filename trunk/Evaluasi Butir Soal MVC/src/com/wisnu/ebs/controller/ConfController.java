@@ -13,9 +13,9 @@ public class ConfController {
 
     private Database database;
     private ConfPanel confPanel;
-    private ControllerUtama controllerUtama;
+    private MainController controllerUtama;
 
-    public void setControllerUtama(ControllerUtama controllerUtama) {
+    public void setControllerUtama(MainController controllerUtama) {
         this.controllerUtama = controllerUtama;
     }
 
@@ -99,7 +99,7 @@ public class ConfController {
             }
         }
         database.setBerkasAktif(jumlahBerkas - 1);
-        controllerUtama.newDocumentImplement();
+        controllerUtama.openingConfigurationPanel();
     }
 
     public void changeFile(int number) {
