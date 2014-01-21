@@ -88,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void newDocumentAction() {
-        controllerUtama.creatingNewDocument();
+        controllerUtama.createNewDocument();
     }
 
     public void itemCheck(boolean cek) {
@@ -571,14 +571,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void button_sc_keyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_keyActionPerformed
         // TODO add your handling code here:
-        controllerUtama.keyPressedAction();
+        controllerUtama.openingKeyPanel();
 
 
     }//GEN-LAST:event_button_sc_keyActionPerformed
 
     private void button_sc_ansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_ansActionPerformed
         // TODO add your handling code here:
-        controllerUtama.ansPressedAction();
+        controllerUtama.openingAnswerPanel();
 
     }//GEN-LAST:event_button_sc_ansActionPerformed
 
@@ -639,7 +639,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_item_openActionPerformed
 
     private void button_sc_resActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_resActionPerformed
-        controllerUtama.resPressedAction();
+        controllerUtama.openingResultPanel();
     }//GEN-LAST:event_button_sc_resActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

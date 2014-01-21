@@ -388,7 +388,7 @@ public class ConfPanel extends javax.swing.JPanel {
         int result = JOptionPane.showConfirmDialog(null, filePanel, "New File", JOptionPane.YES_NO_OPTION);
         if (result == 0) {
             if (filePanel.itemCheck()) {
-                controller.tambahBerkas(filePanel);
+                controller.addFile(filePanel);
 
             }
         }
