@@ -5,7 +5,7 @@
 package com.wisnu.ebs.view;
 
 import com.wisnu.ebs.add.ImageBackgroundPanel;
-import com.wisnu.ebs.controller.ControllerUtama;
+import com.wisnu.ebs.controller.MainController;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     private boolean isOpen = false;
     private boolean isFromFile = false;
     private final Image image = new ImageIcon("./Resources/background2.jpg").getImage();
-    ControllerUtama controllerUtama;
+    MainController controllerUtama;
 
     public MainFrame() {
         try {
@@ -88,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void newDocumentAction() {
-        controllerUtama.newDocumentAction();
+        controllerUtama.creatingNewDocument();
     }
 
     public void itemCheck(boolean cek) {
@@ -662,7 +662,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_item_closeActionPerformed
 
     private void menu_item_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_configActionPerformed
-        controllerUtama.newDocumentImplement();
+        controllerUtama.openingConfigurationPanel();
     }//GEN-LAST:event_menu_item_configActionPerformed
 
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
@@ -740,7 +740,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JFileChooser saveDialog;
     // End of variables declaration//GEN-END:variables
 
-    public void setController(ControllerUtama controller) {
+    public void setController(MainController controller) {
         this.controllerUtama = controller;
     }
 

@@ -1,5 +1,6 @@
 package com.wisnu.ebs.controller;
 
+import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
 import com.wisnu.ebs.model.FindingResult;
 import com.wisnu.ebs.view.AnsPanel;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
-public class ControllerUtama {
+public class MainController implements MainListener{
 
     private final Database database = new Database();
     private final MainFrame mainFrame = new MainFrame();
@@ -36,7 +37,7 @@ public class ControllerUtama {
 
     private NewDocumentPanel newDocumentPanel;
 
-    public ControllerUtama() {
+    public MainController() {
         mainFrame.setVisible(true);
         mainFrame.setController(this);
         confController.setDatabase(database);
@@ -44,14 +45,14 @@ public class ControllerUtama {
     }
 
     //New Document 
-    public void newDocumentAction() {
+    public void creatingNewDocument() {
         newDocumentPanel = new NewDocumentPanel();
         int result = JOptionPane.showConfirmDialog(null, newDocumentPanel, "New Document", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == 0) {
             if (newDocumentPanel.itemCheck()) {
                 database.newDocument(newDocumentPanel);
-                newDocumentImplement();
+                openingConfigurationPanel();
             } else {
                 JOptionPane.showConfirmDialog(null, "Input yang anda masukan salah", "Warning", JOptionPane.CLOSED_OPTION);
             }
@@ -60,7 +61,7 @@ public class ControllerUtama {
         }
     }
 
-    public void newDocumentImplement() {
+    public void openingConfigurationPanel() {
         configPanel = new ConfPanel();
         confController.setConfPanel(configPanel);
         configPanel.setFrame(mainFrame);
@@ -81,7 +82,7 @@ public class ControllerUtama {
     public void openDocumentAction(String path) {
         openingFile(path);
         database.setBerkasAktif(0);
-        newDocumentImplement();
+        openingConfigurationPanel();
     }
 
     public void openingFile(String path) {
@@ -361,6 +362,11 @@ public class ControllerUtama {
             dataTable[i][6] = i == aktif ? true : false;
         }
         return dataTable;
+    }
+
+    @Override
+    public void fireErrorMessage(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
