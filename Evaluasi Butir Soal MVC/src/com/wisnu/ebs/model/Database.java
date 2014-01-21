@@ -1,5 +1,6 @@
 package com.wisnu.ebs.model;
 
+import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.view.AnsPanel;
 import com.wisnu.ebs.view.KeyPanel;
 import com.wisnu.ebs.view.NewDocumentPanel;
@@ -24,6 +25,8 @@ public class Database {
     private String namaKelas;
     private int jumlahBerkas;
     private int berkasAktif;
+
+    private MainListener mainListener;
 
     public Database() {
 
@@ -67,8 +70,7 @@ public class Database {
         setBerkasAktif(0);
 
     }
-    
-    
+
     public void setKunci(KeyPanel panel) {
         if (panel != null) {
             JTable table = panel.getTable();
@@ -77,6 +79,7 @@ public class Database {
             }
         }
     }
+
     public void setSoal(AnsPanel panel) {
         if (panel != null) {
             JTable table = panel.getTable();
@@ -88,7 +91,18 @@ public class Database {
         }
     }
     
+    public void fireErrorMessage(int i){
+        if(mainListener != null){
+            mainListener.fireErrorMessage(i);
+        }
+    }
+    
     //Border
+    
+    public void setMainListener(MainListener mainListener) {
+        this.mainListener = mainListener;
+    }
+    
     public String[][] getKunci() {
         return kunci;
     }

@@ -43,7 +43,7 @@ public class ConfController {
         this.database = database;
     }
 
-    public void tambahBerkas(NewFilePanel panel) {
+    public void addFile(NewFilePanel panel) {
         String[][] kunci = database.getKunci().clone();
         String[][][] soal = database.getSoal().clone();
         String[] kompetensi = database.getKompetensi().clone();

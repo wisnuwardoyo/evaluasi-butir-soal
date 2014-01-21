@@ -1,5 +1,6 @@
 package com.wisnu.ebs.controller;
 
+import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
 import com.wisnu.ebs.model.FindingResult;
@@ -34,6 +35,7 @@ public class MainController implements MainListener{
     private final ItemStaXParser itemReader = new ItemStaXParser();
     private final WriteXMLFile saveFile = new WriteXMLFile();
     private final ConfController confController = new ConfController();
+    private final ErrorMessage errorMessage = new ErrorMessage();
 
     private NewDocumentPanel newDocumentPanel;
 
@@ -42,10 +44,11 @@ public class MainController implements MainListener{
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
+        fireErrorMessage(1);
     }
 
     //New Document 
-    public void creatingNewDocument() {
+    public void createNewDocument() {
         newDocumentPanel = new NewDocumentPanel();
         int result = JOptionPane.showConfirmDialog(null, newDocumentPanel, "New Document", JOptionPane.OK_CANCEL_OPTION);
 
@@ -126,13 +129,13 @@ public class MainController implements MainListener{
     }
     
     //Key Pressed
-    public void keyPressedAction() {
+    public void openingKeyPanel() {
         keyPanel = new KeyPanel();
-        keyPressedImplement();
+        settingKeyPanelDataTable();
         mainFrame.setViewPort(keyPanel);
     }
 
-    public void keyPressedImplement() {
+    public void settingKeyPanelDataTable() {
         int row = Integer.parseInt(database.getJmlSoal()[database.getBerkasAktif()]);
         String[] rowHeader = new String[row];
         String[][] dataTable = new String[row][1];
@@ -149,13 +152,13 @@ public class MainController implements MainListener{
     }
 
     //Ans Pressed
-    public void ansPressedAction() {
+    public void openingAnswerPanel() {
         ansPanel = new AnsPanel();
-        ansPressedImplement();
+        settingAnswerPanelDataTable();
         mainFrame.setViewPort(ansPanel);
     }
 
-    public void ansPressedImplement() {
+    public void settingAnswerPanelDataTable() {
         int row = Integer.parseInt(database.getJmlSiswa()[database.getBerkasAktif()]);
         int col = Integer.parseInt(database.getJmlSoal()[database.getBerkasAktif()]);
 
@@ -182,13 +185,13 @@ public class MainController implements MainListener{
     }
 
     //Result Pressed
-    public void resPressedAction() {
+    public void openingResultPanel() {
         database.setKunci(keyPanel);
         database.setSoal(ansPanel);
         resultPanel = new ResPanel();
         resultPanel.setFrame(mainFrame);
         findingResult();
-        resPressedImplement();
+        settingResultPanelDataTable();
         mainFrame.setViewPort(resultPanel);
 
     }
@@ -207,7 +210,7 @@ public class MainController implements MainListener{
 
     }
 
-    public void resPressedImplement() {
+    public void settingResultPanelDataTable() {
         int aktif = database.getBerkasAktif();
         int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
         int row = Integer.parseInt(database.getJmlSoal()[aktif]);
@@ -366,7 +369,8 @@ public class MainController implements MainListener{
 
     @Override
     public void fireErrorMessage(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showConfirmDialog(mainFrame, errorMessage.message[i], "ERROR..!", 
+                JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
     }
     
     
