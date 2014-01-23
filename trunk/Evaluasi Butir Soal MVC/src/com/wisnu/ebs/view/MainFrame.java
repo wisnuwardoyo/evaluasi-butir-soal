@@ -16,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -44,7 +45,12 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         itemCheck(false);
-
+//        //System.out.println(this.getSize());
+//        //panel_home.setBounds(panel_home.getX(),panel_home.getY(),(int)this.getSize().getWidth(),(int)this.getSize().getHeight());
+//        panel_home.setPreferredSize(this.getSize());
+//        jScrollPane1.updateUI();
+//        pack();
+//        repaint();
     }
 
     public void openDocumentAction() {
@@ -124,11 +130,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        openDialog = new javax.swing.JFileChooser();
-        saveDialog = new javax.swing.JFileChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panel_home = new ImageBackgroundPanel(image);
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         button_sc_key = new javax.swing.JButton();
@@ -140,7 +141,12 @@ public class MainFrame extends javax.swing.JFrame {
         button_sc_print = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        openDialog = new javax.swing.JFileChooser();
+        saveDialog = new javax.swing.JFileChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panel_home = new ImageBackgroundPanel(image);
+        scrollPane = new javax.swing.JScrollPane();
         jPanel10 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -163,27 +169,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         menu_item_config = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
-        );
-
-        saveDialog.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Evaluasi Butir Soal");
-
-        panel_home.setBackground(new java.awt.Color(0, 51, 51));
-        panel_home.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel3.setBackground(new Color (225,225,225,30));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 255, 102)));
@@ -322,7 +307,33 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 255, 102)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 494, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        saveDialog.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Evaluasi Butir Soal");
+
+        panel_home.setBackground(new java.awt.Color(0, 51, 51));
+        panel_home.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        scrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 255, 102)));
+        scrollPane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                scrollPaneMouseMoved(evt);
+            }
+        });
 
         jPanel10.setBackground(new Color(225,225,225,30)
         );
@@ -400,7 +411,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,38 +454,37 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel10)
                 .addContainerGap())
         );
 
-        jScrollPane2.setViewportView(jPanel10);
+        scrollPane.setViewportView(jPanel10);
 
         javax.swing.GroupLayout panel_homeLayout = new javax.swing.GroupLayout(panel_home);
         panel_home.setLayout(panel_homeLayout);
         panel_homeLayout.setHorizontalGroup(
             panel_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_homeLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2))
+                .addGap(100, 100, 100)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+                .addGap(100, 100, 100))
         );
         panel_homeLayout.setVerticalGroup(
             panel_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+            .addGroup(panel_homeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane)
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(panel_home);
 
-        jMenuBar1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(0, 35));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(0, 20));
 
         jMenu1.setText("File");
-        jMenu1.setFont(new java.awt.Font("Cooper Std Black", 1, 24)); // NOI18N
-        jMenu1.setPreferredSize(new java.awt.Dimension(100, 10));
 
         menu_item_new.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_new.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -529,8 +539,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Edit");
-        jMenu3.setFont(new java.awt.Font("Cooper Std Black", 1, 24)); // NOI18N
-        jMenu3.setPreferredSize(new java.awt.Dimension(100, 10));
 
         menu_item_config.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_config.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -545,8 +553,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Help");
-        jMenu2.setFont(new java.awt.Font("Cooper Std Black", 1, 24)); // NOI18N
-        jMenu2.setPreferredSize(new java.awt.Dimension(100, 10));
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -555,11 +561,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         pack();
@@ -657,7 +663,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         itemCheck(false);
         setFrameTitle("Evaluasi Butir Soal");
-        jScrollPane2.setViewportView(jPanel10);
+        scrollPane.setViewportView(jPanel10);
 
     }//GEN-LAST:event_menu_item_closeActionPerformed
 
@@ -694,6 +700,10 @@ public class MainFrame extends javax.swing.JFrame {
         openDocumentAction();
     }//GEN-LAST:event_jLabel6MouseClicked
 
+    private void scrollPaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrollPaneMouseMoved
+        System.out.println(evt.getY());
+    }//GEN-LAST:event_scrollPaneMouseMoved
+
     /**
      * @param args the command line arguments
      */
@@ -727,7 +737,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem menu_item_close;
     private javax.swing.JMenuItem menu_item_config;
@@ -738,6 +747,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JFileChooser openDialog;
     private javax.swing.JPanel panel_home;
     private javax.swing.JFileChooser saveDialog;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 
     public void setController(MainController controller) {
@@ -745,7 +755,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void setViewPort(Component component) {
-        jScrollPane2.setViewportView(component);
+        scrollPane.setViewportView(component);
         repaint();
     }
 }

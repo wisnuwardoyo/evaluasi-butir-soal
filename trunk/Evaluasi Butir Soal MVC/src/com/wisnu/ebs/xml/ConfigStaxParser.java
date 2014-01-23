@@ -20,7 +20,7 @@ public class ConfigStaxParser {
     static final String BERKAS = "berkas";
     static final String KELAS = "kelas";
 
-    Database model;
+    Database database;
 
     @SuppressWarnings({"unchecked", "null"})
     public void readConfig(String configFile) {
@@ -45,27 +45,27 @@ public class ConfigStaxParser {
                         if (event.asStartElement().getName().getLocalPart()
                                 .equals(MAPEL)) {
                             event = eventReader.nextEvent();
-                            model.setMaPel(event.asCharacters().getData());
+                            database.setMaPel(event.asCharacters().getData());
                             continue;
                         }
                     }
                     if (event.asStartElement().getName().getLocalPart()
                             .equals(GURU)) {
                         event = eventReader.nextEvent();
-                        model.setNamaGuru(event.asCharacters().getData());
+                        database.setNamaGuru(event.asCharacters().getData());
                         continue;
                     }
                     if (event.asStartElement().getName().getLocalPart()
                             .equals(BERKAS)) {
                         event = eventReader.nextEvent();
-                        model.setJumlahBerkas(Integer.parseInt(event.asCharacters().getData()));
+                        database.setJumlahBerkas(Integer.parseInt(event.asCharacters().getData()));
                         continue;
                     }
 
                     if (event.asStartElement().getName().getLocalPart()
                             .equals(KELAS)) {
                         event = eventReader.nextEvent();
-                        model.setNamaKelas(event.asCharacters().getData());
+                        database.setNamaKelas(event.asCharacters().getData());
                         continue;
                     }
 
@@ -88,7 +88,7 @@ public class ConfigStaxParser {
     }
 
     public void setModel(Database model) {
-        this.model = model;
+        this.database = model;
     }
     
     

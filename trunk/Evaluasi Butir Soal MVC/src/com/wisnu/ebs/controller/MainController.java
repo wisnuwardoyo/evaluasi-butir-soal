@@ -44,7 +44,7 @@ public class MainController implements MainListener{
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        fireErrorMessage(1);
+        
     }
 
     //New Document 
