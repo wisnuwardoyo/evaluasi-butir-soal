@@ -35,6 +35,7 @@ public class ColoredTable extends JTable {
                 cell.setBackground(new Color(255, 102, 102));
             }
         }
+       
         return cell;
     }
 }

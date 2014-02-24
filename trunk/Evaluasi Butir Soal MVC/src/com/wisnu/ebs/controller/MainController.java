@@ -1,28 +1,43 @@
 package com.wisnu.ebs.controller;
 
+import com.wisnu.ebs.add.CorrelationTableValue;
 import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
 import com.wisnu.ebs.model.FindingResult;
+import com.wisnu.ebs.model.PrintData;
 import com.wisnu.ebs.view.AnsPanel;
 import com.wisnu.ebs.view.ConfPanel;
+import com.wisnu.ebs.view.HelpPanel;
 import com.wisnu.ebs.view.KeyPanel;
 import com.wisnu.ebs.view.MainFrame;
 import com.wisnu.ebs.view.NewDocumentPanel;
 import com.wisnu.ebs.view.ResPanel;
 import com.wisnu.ebs.xml.ConfigStaxParser;
+import com.wisnu.ebs.xml.Help;
+import com.wisnu.ebs.xml.HelpStaxParser;
 import com.wisnu.ebs.xml.Item;
 import com.wisnu.ebs.xml.ItemStaXParser;
 import com.wisnu.ebs.xml.WriteXMLFile;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
-public class MainController implements MainListener{
+public class MainController implements MainListener {
 
     private final Database database = new Database();
     private final MainFrame mainFrame = new MainFrame();
@@ -31,8 +46,10 @@ public class MainController implements MainListener{
     private ResPanel resultPanel;
     private ConfPanel configPanel;
     private FindingResult findingResult;
+    private HelpPanel helpPanel;
     private final ConfigStaxParser configReader = new ConfigStaxParser();
     private final ItemStaXParser itemReader = new ItemStaXParser();
+    private final HelpStaxParser helpReader = new HelpStaxParser();
     private final WriteXMLFile saveFile = new WriteXMLFile();
     private final ConfController confController = new ConfController();
     private final ErrorMessage errorMessage = new ErrorMessage();
@@ -44,7 +61,7 @@ public class MainController implements MainListener{
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        
+        openDocumentAction("COBA2.XML");
     }
 
     //New Document 
@@ -119,15 +136,15 @@ public class MainController implements MainListener{
             //database.fireErrorMessage(0);
         }
     }
-    
+
     //Save Document
-    public void saveDocumentAction(String Path){
+    public void saveDocumentAction(String Path) {
         database.setKunci(keyPanel);
         database.setSoal(ansPanel);
         saveFile.setDatabase(database);
         saveFile.write(Path);
     }
-    
+
     //Key Pressed
     public void openingKeyPanel() {
         keyPanel = new KeyPanel();
@@ -215,31 +232,62 @@ public class MainController implements MainListener{
         int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
         int row = Integer.parseInt(database.getJmlSoal()[aktif]);
         int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+        double[] value = new CorrelationTableValue().CorrelationTableValue(row);
         String[][][] dataTable = new String[4][][];
         String[][] rowHeader = new String[4][];
         String[] colHeader2 = new String[tipe + 2];
-        dataTable[0] = new String[row][3];
+        dataTable[0] = new String[row][6];
         dataTable[1] = new String[row][tipe + 2];
-        dataTable[2] = new String[col][3];
-        dataTable[3] = new String[row][4];
+        dataTable[2] = new String[col][4];
+        dataTable[3] = new String[row][5];
 
         rowHeader[0] = new String[row];
         rowHeader[1] = new String[row];
         rowHeader[2] = new String[col];
         rowHeader[3] = new String[row];
+
+        //Tabel Analisa Soal (4 Kolom)
         for (int i = 0; i < row; i++) {
             rowHeader[0][i] = String.valueOf("Soal " + (i + 1));
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 6; j++) {
                 if (j == 0) {
-                    dataTable[0][i][j] = String.valueOf((float) findingResult.getTk()[i] / row);
+                    dataTable[0][i][j] = new DecimalFormat("#").format(((float) findingResult.getTk()[i] / row) * 100) + " %";
                 }
                 if (j == 1) {
-                    dataTable[0][i][j] = String.valueOf(new DecimalFormat("#.##").format(findingResult.getDb()[i] * 100)) + "%";
+                    if ((float) findingResult.getTk()[i] / row <= 0.30) {
+                        dataTable[0][i][j] = "Sukar";
+                    } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
+                        dataTable[0][i][j] = "Sedang";
+                    } else {
+                        dataTable[0][i][j] = "Mudah";
+                    }
                 }
                 if (j == 2) {
+                    dataTable[0][i][j] = String.valueOf(new DecimalFormat("#.##").format(findingResult.getDb()[i] * 100)) + "%";
+                }
+                if (j == 3) {
+                    if (findingResult.getDb()[i] <= 0.20) {
+                        dataTable[0][i][j] = "Buruk";
+                    } else if (findingResult.getDb()[i] > 0.20 && findingResult.getDb()[i] <= 0.40) {
+                        dataTable[0][i][j] = "Cukup";
+                    } else if (findingResult.getDb()[i] > 0.40 && findingResult.getDb()[i] <= 0.70) {
+                        dataTable[0][i][j] = "Baik";
+                    } else {
+                        dataTable[0][i][j] = "Baik Sekali";
+                    }
+                }
+                if (j == 4) {
                     dataTable[0][i][j] = findingResult.getCorrelation()[i];
                 }
-
+                if (j == 5) {
+                    if (findingResult.getCorrelationNumber()[i] >= value[0] && findingResult.getCorrelationNumber()[i] < value[1]) {
+                        dataTable[0][i][j] = "Signifikan";
+                    } else if (findingResult.getCorrelationNumber()[i] >= value[1]) {
+                        dataTable[0][i][j] = "Sangat Signifikan";
+                    } else {
+                        dataTable[0][i][j] = "-";
+                    }
+                }
             }
         }
         for (int i = 0; i < row; i++) {
@@ -275,7 +323,7 @@ public class MainController implements MainListener{
 
         for (int i = 0; i < col; i++) {
             rowHeader[2][i] = findingResult.getSortedNumber()[i][0];
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 4; j++) {
                 if (j == 0) {
                     dataTable[2][i][0] = String.valueOf(findingResult.getNRaW()[i][0]);
                 }
@@ -285,13 +333,26 @@ public class MainController implements MainListener{
                 if (j == 2) {
                     dataTable[2][i][2] = String.valueOf(new DecimalFormat("#.##").format(((float) findingResult.getNRaW()[i][0] / row) * 100));
                 }
+                if (j == 3) {
+                    dataTable[2][i][3] = ((float) findingResult.getNRaW()[i][0] / row) * 100
+                            >= Float.parseFloat(database.getKKM()[aktif]) ? "Lulus" : "Tidak Lulus";
+                }
             }
 
         }
         for (int i = 0; i < row; i++) {
             rowHeader[3][i] = String.valueOf("Soal " + (i + 1));
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 5; j++) {
                 if (j == 0) {
+                    if ((float) findingResult.getTk()[i] / row <= 0.30) {
+                        dataTable[3][i][1] = "Sukar";
+                    } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
+                        dataTable[3][i][1] = "Sedang";
+                    } else {
+                        dataTable[3][i][1] = "Mudah";
+                    }
+                }
+                if (j == 1) {
                     if (findingResult.getDb()[i] <= 0.20) {
                         dataTable[3][i][0] = "Buruk";
                     } else if (findingResult.getDb()[i] > 0.20 && findingResult.getDb()[i] <= 0.40) {
@@ -302,28 +363,21 @@ public class MainController implements MainListener{
                         dataTable[3][i][0] = "Baik Sekali";
                     }
                 }
-                if (j == 1) {
-                    if ((float) findingResult.getTk()[i] / row <= 0.30) {
-                        dataTable[3][i][1] = "Sukar";
-                    } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
-                        dataTable[3][i][1] = "Sedang";
-                    } else {
-                        dataTable[3][i][1] = "Mudah";
-                    }
-                }
+
                 if (j == 2) {
-                    dataTable[3][i][j] = findingResult.getCorrelation()[i];
+                    dataTable[3][i][j] = findingResult.getEp()[i];
                 }
                 if (j == 3) {
-                    if (row <= 10) {
-                        if (findingResult.getCorrelationNumber()[i] >= 0.576 && findingResult.getCorrelationNumber()[i] < 0.708) {
-                            dataTable[3][i][j] = "Signifikan";
-                        } else if (findingResult.getCorrelationNumber()[i] >= 0.708) {
-                            dataTable[3][i][j] = "Sangat Signifikan";
-                        } else {
-                            dataTable[3][i][j] = "-";
-                        }
+                    if (findingResult.getCorrelationNumber()[i] >= value[0] && findingResult.getCorrelationNumber()[i] < value[1]) {
+                        dataTable[3][i][j] = "Signifikan";
+                    } else if (findingResult.getCorrelationNumber()[i] >= value[1]) {
+                        dataTable[3][i][j] = "Sangat Signifikan";
+                    } else {
+                        dataTable[3][i][j] = "-";
                     }
+                }
+                if (j == 4) {
+                    dataTable[3][i][j] = "-";
                 }
             }
         }
@@ -348,6 +402,7 @@ public class MainController implements MainListener{
         resultPanel.setRowHeader(rowHeader);
         resultPanel.setColHeader2(colHeader2);
         resultPanel.setDataTable(dataTable);
+        resultPanel.setKeterangan(findingResult.getTempData());
 
     }
 
@@ -369,9 +424,61 @@ public class MainController implements MainListener{
 
     @Override
     public void fireErrorMessage(int i) {
-        JOptionPane.showConfirmDialog(mainFrame, errorMessage.message[i], "ERROR..!", 
+        JOptionPane.showConfirmDialog(mainFrame, errorMessage.message[i], "ERROR..!",
                 JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
     }
+
+    public void print() {
+        try {
+
+            String reportName = "./src/com/wisnu/ebs/report/printmodel.jrxml";
+            String compiledName = "./src/com/wisnu/ebs/report/printmodel.jasper";
+            JasperDesign jasperDesign = JRXmlLoader.load(reportName);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
+                    new JRBeanCollectionDataSource(
+                            getDataTable()));
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("reports Error  " + e.toString());
+
+        }
+    }
+
+    public List<Object> getDataTable() {
+        int aktif = database.getBerkasAktif();
+        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
+        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
+        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+
+        List<Object> object = new LinkedList<Object>();
+
+        for (int i = 0; i < row; i++) {
+            PrintData data = new PrintData();
+            data.setTk(resultPanel.getTable4().getValueAt(i, 0).toString());
+            data.setDb(resultPanel.getTable4().getValueAt(i, 1).toString());
+            data.setKp(resultPanel.getTable4().getValueAt(i, 2).toString());
+            data.setHm(resultPanel.getTable4().getValueAt(i, 3).toString());
+            data.setKt(resultPanel.getTable4().getValueAt(i, 4).toString());
+
+            object.add(data);
+        }
+
+        return object;
+    }
     
-    
+    public void openingHelp(){
+        helpPanel = new HelpPanel();
+        List<Help> readHelp = helpReader.readConfig();
+        int i = 0;
+        helpPanel.setContents(new String[3][2]);
+        for (Help help : readHelp) {
+            helpPanel.getContents()[i] = help.getContent();
+            i++;
+        }
+        
+        JOptionPane.showConfirmDialog(null,helpPanel);
+    }
 }

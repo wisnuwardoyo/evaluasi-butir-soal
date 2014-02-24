@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+    <item id="0">
+        <judul>Membuat Dokumen</judul>
+        <isi>Untuk membuat dokumen baru langkah-langkahnya adalah sebagai berikut:LINE
+            1. Klik File -> New LINE2. Isikan Data-data dengan lengkap sesuai keterangan yang tertera. Kemudian Klik Yes.LINE3. Setelah klik Yes, anda akan berada pada halaman konfigurasi tempat anda mengatur dokumen anda.
+        </isi>        
+    </item>
+    <item id="1">
+        <judul>Membuka Dokumen</judul>
+        <isi>Untuk membuka dokumen yang telah tersimpan langkah-langkahnya adalah sebagai berikut:LINE
+            1. Klik File -> OpenLINE2. pilih file yang akan dibuka. Lalu pilih Open.LINE3. Setelah terbuka anda akan berada pada halaman konfigurasi, tempat anda mengatur dokumen anda.
+        </isi>        
+    </item>
+    <item id="2">
+        <judul>Konfigurasi Dokumen</judul>
+        <isi>Untuk membuat dokumen baru langkah-langkahnya adalah sebagai berikut:LINE
+            1. Klik File -> NewLINE2. Isikan Data-data dengan lengkap sesuai keterangan yang tertera. Kemudian Klik Yes.LINE3. Setelah klik Yes, anda akan berada pada halam konfigurasi tempat anda mengatur dokumen anda.
+        </isi>        
+    </item>
+</root>
