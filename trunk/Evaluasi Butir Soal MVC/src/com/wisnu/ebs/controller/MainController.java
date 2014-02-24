@@ -457,6 +457,10 @@ public class MainController implements MainListener {
 
         for (int i = 0; i < row; i++) {
             PrintData data = new PrintData();
+            data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
+            data.setSiswa(database.getJmlSiswa()[aktif]);
+            data.setSoal(database.getJmlSoal()[aktif]);
+            data.setReabilitas(String.valueOf(this.findingResult.getTempData()[3]));
             data.setTk(resultPanel.getTable4().getValueAt(i, 0).toString());
             data.setDb(resultPanel.getTable4().getValueAt(i, 1).toString());
             data.setKp(resultPanel.getTable4().getValueAt(i, 2).toString());

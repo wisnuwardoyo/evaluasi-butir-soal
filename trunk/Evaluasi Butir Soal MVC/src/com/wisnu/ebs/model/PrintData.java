@@ -12,7 +12,39 @@ package com.wisnu.ebs.model;
  */
 public class PrintData {
     String tk,db,kp,hm,kt;
+    String kompetensi, soal, siswa, reabilitas;
 
+    public String getKompetensi() {
+        return kompetensi;
+    }
+
+    public void setKompetensi(String kompetensi) {
+        this.kompetensi = kompetensi;
+    }
+
+    public String getSoal() {
+        return soal;
+    }
+
+    public void setSoal(String soal) {
+        this.soal = soal;
+    }
+
+    public String getSiswa() {
+        return siswa;
+    }
+
+    public void setSiswa(String siswa) {
+        this.siswa = siswa;
+    }
+
+    public String getReabilitas() {
+        return reabilitas;
+    }
+
+    public void setReabilitas(String reabilitas) {
+        this.reabilitas = reabilitas;
+    }
     public String getTk() {
         return tk;
     }

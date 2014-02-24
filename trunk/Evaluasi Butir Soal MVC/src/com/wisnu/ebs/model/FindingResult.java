@@ -190,7 +190,7 @@ public class FindingResult {
             pola[3] = "D";
             pola[4] = "E";
         }
-
+        //--- Begin of checking zero chooser ----//
         int[] dump = new int[Integer.parseInt(database.getTipeSoal()[aktif])];
         for (int i = 0; i < Integer.parseInt(database.getTipeSoal()[aktif]); i++) {
             dump[i] = 0;
@@ -216,7 +216,9 @@ public class FindingResult {
                 dump[l] = 0;
             }
         }
-
+        //----End Of Checking Zero Chooser---//
+        
+        //--Begin of checking score of options--//
         setIPc(new String[Integer.parseInt(database.getTipeSoal()[aktif])][row]);
         setnPc(new int[Integer.parseInt(database.getTipeSoal()[aktif])][row]);
         setnB(new int[row]);
@@ -320,7 +322,10 @@ public class FindingResult {
         temp = Double.parseDouble(a);
         return temp;
     }
-
+    /**
+     * Mencari Validitas suatu soal.
+     */
+    
     public void validity() {
         double[][] validity_cek = new double[row + 1][col];
 
@@ -341,7 +346,13 @@ public class FindingResult {
         }
 
     }
-
+    
+    /**
+     * Mencari benar dan salah siswa akan soal-soal yang diberikan.
+     * NRaW menampung jawaban benar dan salah dengan alamat 0 untuk benar, dan
+     * alamat 1 untuk salah.
+     */
+    
     public void rightAndWrong() {
         for (int i = 0; i < col; i++) {
             getNRaW()[i][0] = 0;

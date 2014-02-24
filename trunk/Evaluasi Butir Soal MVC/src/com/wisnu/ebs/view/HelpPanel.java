@@ -80,7 +80,7 @@ public class HelpPanel extends javax.swing.JPanel {
 
         textPane.setEditable(false);
         textPane.setContentType("text/html"); // NOI18N
-        textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0; text-align:justify\">\r\n      \r\n    </p>\r\n  </body>\r\n</html>\r\n");
+        textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:center\">\r\n     \n    </p>\r\n  </body>\r\n</html>\r\n");
         jScrollPane1.setViewportView(textPane);
 
         labJudul.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
