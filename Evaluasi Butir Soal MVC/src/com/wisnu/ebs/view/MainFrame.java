@@ -26,7 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private boolean isOpen = false;
     private boolean isFromFile = false;
-    private final Image image = new ImageIcon("./Resources/background2.jpg").getImage();
+    private final Image image = new ImageIcon("./src/Resources/background2.jpg").getImage();
     MainController controllerUtama;
 
     public MainFrame() {
