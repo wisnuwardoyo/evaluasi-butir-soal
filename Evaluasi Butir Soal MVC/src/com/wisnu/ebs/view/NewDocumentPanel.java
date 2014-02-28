@@ -8,7 +8,7 @@ public class NewDocumentPanel extends JPanel {
 
     public NewDocumentPanel() {
         initComponents();
-        maintenace();
+        //maintenace();
     }
 
     private void initComponents() {
@@ -313,6 +313,7 @@ public class NewDocumentPanel extends JPanel {
     private void radio2ActionPerformed(java.awt.event.ActionEvent evt) {
         radio1.setSelected(false);
     }
+    
     //Do not modify or I will kill you.
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

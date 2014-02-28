@@ -61,7 +61,7 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        openDocumentAction("COBA2.XML");
+//        openDocumentAction("example.XML");
     }
 
     //New Document 
@@ -345,22 +345,22 @@ public class MainController implements MainListener {
             for (int j = 0; j < 5; j++) {
                 if (j == 0) {
                     if ((float) findingResult.getTk()[i] / row <= 0.30) {
-                        dataTable[3][i][1] = "Sukar";
+                        dataTable[3][i][j] = "Sukar";
                     } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
-                        dataTable[3][i][1] = "Sedang";
+                        dataTable[3][i][j] = "Sedang";
                     } else {
-                        dataTable[3][i][1] = "Mudah";
+                        dataTable[3][i][j] = "Mudah";
                     }
                 }
                 if (j == 1) {
                     if (findingResult.getDb()[i] <= 0.20) {
-                        dataTable[3][i][0] = "Buruk";
+                        dataTable[3][i][j] = "Buruk";
                     } else if (findingResult.getDb()[i] > 0.20 && findingResult.getDb()[i] <= 0.40) {
-                        dataTable[3][i][0] = "Cukup";
+                        dataTable[3][i][j] = "Cukup";
                     } else if (findingResult.getDb()[i] > 0.40 && findingResult.getDb()[i] <= 0.70) {
-                        dataTable[3][i][0] = "Baik";
+                        dataTable[3][i][j] = "Baik";
                     } else {
-                        dataTable[3][i][0] = "Baik Sekali";
+                        dataTable[3][i][j] = "Baik Sekali";
                     }
                 }
 

@@ -16,9 +16,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class MainFrame extends javax.swing.JFrame {
 
     /**
@@ -167,6 +171,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
@@ -212,8 +217,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 153, 0)));
 
         button_sc_key.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        button_sc_key.setIcon(new javax.swing.ImageIcon("C:\\Users\\Wisnu Citra\\Documents\\NetBeansProjects\\Evaluasi Butir Soal\\src\\Resources\\key-icon.png")); // NOI18N
-        button_sc_key.setText("     KEY");
+        button_sc_key.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/key_icon.png"))); // NOI18N
+        button_sc_key.setText("KEY      ");
+        button_sc_key.setOpaque(false);
         button_sc_key.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_keyActionPerformed(evt);
@@ -224,7 +230,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(button_sc_key, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(button_sc_key, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,8 +241,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 153, 0)));
 
         button_sc_ans.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        button_sc_ans.setIcon(new javax.swing.ImageIcon("C:\\Users\\Wisnu Citra\\Documents\\NetBeansProjects\\Evaluasi Butir Soal\\src\\Resources\\answer-icon.png")); // NOI18N
-        button_sc_ans.setText("    ANSWER");
+        button_sc_ans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/answer_icon.png"))); // NOI18N
+        button_sc_ans.setText("ANSWER");
         button_sc_ans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_ansActionPerformed(evt);
@@ -258,8 +264,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 153, 0)));
 
         button_sc_res.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        button_sc_res.setIcon(new javax.swing.ImageIcon("C:\\Users\\Wisnu Citra\\Documents\\NetBeansProjects\\Evaluasi Butir Soal\\src\\Resources\\result-icon.png")); // NOI18N
-        button_sc_res.setText("     RESULT");
+        button_sc_res.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/result_icon.png"))); // NOI18N
+        button_sc_res.setText("RESULT ");
         button_sc_res.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_resActionPerformed(evt);
@@ -281,7 +287,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 153, 0)));
 
         button_sc_print.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        button_sc_print.setText("PRINT");
+        button_sc_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer_icon.png"))); // NOI18N
+        button_sc_print.setText(" PRINT ");
         button_sc_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_printActionPerformed(evt);
@@ -304,7 +311,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(160, 160, 160));
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jButton5.setText("EXIT");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit_icon.png"))); // NOI18N
+        jButton5.setText(" EXIT  ");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -358,21 +366,22 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Cooper Std Black", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("ANALISIS BUTIR SOAL ");
+        jLabel1.setText("PROGRAM ANALISIS BUTIR SOAL ");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Action : ");
+        jLabel3.setText("Tindakan :");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Wisnu Citra\\Documents\\NetBeansProjects\\Evaluasi Butir Soal\\src\\Resources\\elliot-condon.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/elliot-condon.png"))); // NOI18N
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Cooper Std Black", 1, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("PILIHAN GANDA");
@@ -408,10 +417,12 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel7.setText("New Document");
+        jLabel7.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel7.setText("Dokumen Baru");
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel8.setText("Open Document");
+        jLabel8.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel8.setText("Buka Dokumen");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("© Wisnu Wardoyo");
@@ -424,39 +435,35 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel9))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addGap(49, 49, 49)
-                                        .addComponent(jLabel7)
-                                        .addGap(59, 59, 59)
-                                        .addComponent(jLabel8)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
+                                    .addGap(31, 31, 31)
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(109, 109, 109)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -581,6 +588,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
         jMenu2.add(jSeparator2);
 
+        jMenuItem3.setText("Beli Produk");
+        jMenu2.add(jMenuItem3);
+
         jMenuItem2.setText("Tetang Program");
         jMenu2.add(jMenuItem2);
 
@@ -671,10 +681,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menu_item_saveActionPerformed
 
-    private void menu_item_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_openActionPerformed
-        openDocumentAction();
-    }//GEN-LAST:event_menu_item_openActionPerformed
-
     private void button_sc_resActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_resActionPerformed
         controllerUtama.openingResultPanel();
     }//GEN-LAST:event_button_sc_resActionPerformed
@@ -740,13 +746,22 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseMoved
 
     private void button_sc_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_printActionPerformed
-        controllerUtama.openingResultPanel();
-        controllerUtama.print();
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            controllerUtama.openingResultPanel();
+            controllerUtama.print();
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_button_sc_printActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         controllerUtama.openingHelp();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menu_item_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_openActionPerformed
+        openDocumentAction();
+    }//GEN-LAST:event_menu_item_openActionPerformed
 
     /**
      * @param args the command line arguments
@@ -775,6 +790,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
