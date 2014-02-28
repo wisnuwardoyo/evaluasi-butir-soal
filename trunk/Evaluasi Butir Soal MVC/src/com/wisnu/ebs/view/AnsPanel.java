@@ -7,12 +7,16 @@ package com.wisnu.ebs.view;
 import com.wisnu.ebs.add.TableCellListener;
 import com.wisnu.ebs.add.rowTable;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -43,6 +47,7 @@ public class AnsPanel extends javax.swing.JPanel  {
         for (int i = 1; i < table.getColumnCount(); i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(new TableCellListener(type));
         }
+        setAllColumnWidth();
         scroll = new JScrollPane(table);
         //scroll.setPreferredSize(new Dimension(400, 200));
     }
@@ -57,7 +62,41 @@ public class AnsPanel extends javax.swing.JPanel  {
         scroll.setRowHeaderView(listRowHeader);
         //System.out.println(table.getTableHeader().getBackground());
     }
+    
+    /**
+     * Setting for Dynamic Column Width
+     */
+    public void setAllColumnWidth() {
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            setColumnWidth(i);
+        }
+    }
+    
+    public void setColumnWidth(int columnIndex) {
+        DefaultTableColumnModel columnModel = (DefaultTableColumnModel) table.getColumnModel();
+        TableColumn tableColumn = columnModel.getColumn(columnIndex);
+        int width = 0;
+        int margin = 20;
 
+        TableCellRenderer renderer = tableColumn.getHeaderRenderer();
+        if (renderer == null) {
+            renderer = table.getTableHeader().getDefaultRenderer();
+        }
+        Component comp = renderer.getTableCellRendererComponent(
+                table, tableColumn.getHeaderValue(), false, false, 0, 0);
+        width = comp.getPreferredSize().width;
+
+        for (int i = 0; i < table.getRowCount(); i++) {
+            renderer = table.getCellRenderer(i, columnIndex);
+            comp = renderer.getTableCellRendererComponent(
+                    table, table.getValueAt(i, columnIndex), false, false, i, columnIndex);
+            int widthColumn = comp.getPreferredSize().width;
+            width = Math.max(width, widthColumn);
+        }
+
+        width += margin;
+        tableColumn.setPreferredWidth(width);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
