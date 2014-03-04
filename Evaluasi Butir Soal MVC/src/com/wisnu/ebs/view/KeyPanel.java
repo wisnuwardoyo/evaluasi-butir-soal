@@ -20,6 +20,7 @@ public class KeyPanel extends javax.swing.JPanel {
     private final String colHeader[] = {"Kunci"};
     private String[][] dataTable;
     private int type;
+    private ToolPanel toolPanel;
     
     public KeyPanel() {
      
@@ -67,6 +68,7 @@ public class KeyPanel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        toolPanel2 = this.toolPanel;
 
         setBackground(new Color(225,225,225,20));
 
@@ -82,7 +84,7 @@ public class KeyPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -152,13 +154,17 @@ public class KeyPanel extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(toolPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(toolPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -205,6 +211,7 @@ public class KeyPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTable table;
+    private com.wisnu.ebs.view.ToolPanel toolPanel2;
     // End of variables declaration//GEN-END:variables
     
     public JTable getTable(){
@@ -213,13 +220,17 @@ public class KeyPanel extends javax.swing.JPanel {
     
     public void setDataTable(String[][] dataTable){
         this.dataTable = dataTable;
-        initComponents();
     }
     public void setRowHeader(String[] rowHeader){
         this.rowHeader = rowHeader;
     }
     public void setType(int type){
         this.type = type;
+    }
+    
+    public void setToolPanel(ToolPanel panel){
+        this.toolPanel = panel;
+        initComponents();
     }
     
 }

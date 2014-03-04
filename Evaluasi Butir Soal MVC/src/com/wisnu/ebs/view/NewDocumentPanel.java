@@ -45,7 +45,7 @@ public class NewDocumentPanel extends JPanel {
         jPanel2.setBackground(new Color(225,225,225,15));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tambah Berkas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
 
-        radio2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        radio2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         radio2.setText("A, B, C, D, E");
         radio2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,12 +53,12 @@ public class NewDocumentPanel extends JPanel {
             }
         });
 
-        labSoal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labSoal.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel4.setText("Jumlah Siswa");
 
-        radio1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        radio1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         radio1.setText("A, B, C, D");
         radio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,32 +66,32 @@ public class NewDocumentPanel extends JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel5.setText("Jumlah Soal");
 
-        labJumlahSiswa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labJumlahSiswa.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel6.setText("Tipe Soal");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel8.setText("*");
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel9.setText("*");
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel11.setText("KKM");
 
-        labKKM.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labKKM.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel12.setText("*");
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel13.setText("Kompetensi Dasar");
 
-        labKompetensi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labKompetensi.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,25 +159,25 @@ public class NewDocumentPanel extends JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel1.setText("Mata Pelajaran");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel2.setText("Nama Guru");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel3.setText("Nama Kelas");
 
-        labMaPel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labMaPel.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
-        labGuru.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labGuru.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
-        labKelas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labKelas.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setText("     Isikan data di bawah ini dengan lengkap !");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel10.setText("* Hanya Numerik");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

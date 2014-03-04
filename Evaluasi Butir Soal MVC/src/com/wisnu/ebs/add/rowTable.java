@@ -13,7 +13,7 @@ import javax.swing.table.JTableHeader;
 public class rowTable extends DefaultTableCellRenderer implements ListCellRenderer {
 
     JTable table;
-    JLabel label = new JLabel();
+    public JLabel label = new JLabel();
 
     public rowTable(JTable table) {
         this.table = table;

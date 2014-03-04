@@ -7,8 +7,7 @@ package com.wisnu.ebs.view;
 import com.wisnu.ebs.add.ColoredTable;
 import com.wisnu.ebs.add.rowTable;
 import java.awt.Color;
-import java.util.LinkedList;
-import java.util.List;
+import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -30,7 +30,7 @@ public class ResPanel extends javax.swing.JPanel {
     String[][][] dataTable = new String[4][][];
     String[][] rowHeader = new String[4][];
     JList[] listRowHeader = new JList[4];
-
+    private ToolPanel toolPanelSC1, toolPanelSC2;
     private JFrame frame;
 
     public ResPanel() {
@@ -53,8 +53,9 @@ public class ResPanel extends javax.swing.JPanel {
 
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(JLabel.CENTER);
-        for(int col = 0; col < 4; col++)
-        table.getColumnModel().getColumn(col).setCellRenderer(rightRenderer);
+        for (int col = 0; col < 4; col++) {
+            table.getColumnModel().getColumn(col).setCellRenderer(rightRenderer);
+        }
 
         scroll = new JScrollPane(table);
         //scroll.setPreferredSize(new Dimension(400, 200));
@@ -103,6 +104,7 @@ public class ResPanel extends javax.swing.JPanel {
         tableModel.setDataVector(dataTable[2], colHeader3);
         //new ColoredTable(tableModel);
         table3 = new ColoredTable(tableModel);
+
         table3.setRowHeight(20);
         table3.setShowGrid(true);
         ((DefaultTableCellRenderer) table3.getTableHeader().
@@ -114,10 +116,23 @@ public class ResPanel extends javax.swing.JPanel {
     public void setRowHeader3() {
         listRowHeader[2] = new JList();
         listRowHeader[2].setListData(rowHeader[2]);
-        listRowHeader[2].setFixedCellWidth(60);
+        listRowHeader[2].setFixedCellWidth(100);
         listRowHeader[2].setFixedCellHeight(20);
         listRowHeader[2].setBackground(new java.awt.Color(214, 217, 223));
-        listRowHeader[2].setCellRenderer(new rowTable(table3));
+        listRowHeader[2].setCellRenderer(new rowTable(table3) {
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JTableHeader header = table.getTableHeader();
+                label.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 204), null, null));
+                label.setHorizontalAlignment(JLabel.LEFT);
+                label.setForeground(header.getForeground());
+                label.setBackground(header.getBackground().brighter());
+                label.setFont(header.getFont());
+                label.setText(value.toString().toUpperCase());
+                return label;
+            }
+
+        });
         scroll3.setRowHeaderView(listRowHeader[2]);
         //System.out.println(table.getTableHeader().getBackground());
     }
@@ -179,9 +194,9 @@ public class ResPanel extends javax.swing.JPanel {
         labSimpangan = new javax.swing.JLabel();
         labKorelasi = new javax.swing.JLabel();
         labReabilitas = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         scroll4 = new javax.swing.JScrollPane();
         table4 = new javax.swing.JTable();
+        toolPanel1 = this.toolPanelSC1;
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
@@ -217,9 +232,6 @@ public class ResPanel extends javax.swing.JPanel {
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
 
         setBackground(new Color(225,225,225,30));
 
@@ -306,13 +318,6 @@ public class ResPanel extends javax.swing.JPanel {
         labReabilitas.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         labReabilitas.setText("jLabel7");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -320,20 +325,17 @@ public class ResPanel extends javax.swing.JPanel {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labReabilitas)
-                            .addComponent(labKorelasi)
-                            .addComponent(labSimpangan)
-                            .addComponent(labRata)))
-                    .addComponent(jButton1))
-                .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labReabilitas)
+                    .addComponent(labKorelasi)
+                    .addComponent(labSimpangan)
+                    .addComponent(labRata))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,9 +356,7 @@ public class ResPanel extends javax.swing.JPanel {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(labReabilitas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         setTable4();  setRowHeader4();
@@ -373,8 +373,13 @@ public class ResPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(scroll4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(93, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,10 +387,12 @@ public class ResPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(scroll4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scroll4, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -394,9 +401,9 @@ public class ResPanel extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -427,11 +434,11 @@ public class ResPanel extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 248, Short.MAX_VALUE))
+                .addContainerGap(363, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+            .addComponent(scroll)
         );
 
         jPanel1.setBackground(new Color(225,225,255,20));
@@ -628,7 +635,7 @@ public class ResPanel extends javax.swing.JPanel {
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -637,7 +644,7 @@ public class ResPanel extends javax.swing.JPanel {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -645,15 +652,19 @@ public class ResPanel extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(scroll2, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(scroll2, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(scroll2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -697,11 +708,11 @@ public class ResPanel extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(scroll3, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 373, Short.MAX_VALUE))
+                .addContainerGap(488, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll3, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addComponent(scroll3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
         );
 
         jPanel9.setBackground(new Color(225,225,225,20));
@@ -759,51 +770,6 @@ public class ResPanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Pengelompokan Siswa", jPanel7);
 
-        jPanel11.setBackground(new Color(225,225,225,30));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab5", jPanel11);
-
-        jPanel12.setBackground(new Color(225,225,225,30));
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab6", jPanel12);
-
-        jPanel13.setBackground(new Color(225,225,225,30));
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab7", jPanel13);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -822,18 +788,6 @@ public class ResPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        frame.repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        // TODO add your handling code here:
-        if (frame != null) {
-            frame.repaint();
-        }
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
     private void jTabbedPane1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseMoved
         if (frame != null) {
             frame.repaint();
@@ -846,20 +800,26 @@ public class ResPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTabbedPane1MousePressed
 
-    private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
-        if (frame != null) {
-            frame.repaint();
-        }
-    }//GEN-LAST:event_jTabbedPane1MouseReleased
-
     private void jTabbedPane1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseExited
         if (frame != null) {
             frame.repaint();
         }
     }//GEN-LAST:event_jTabbedPane1MouseExited
 
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+        if (frame != null) {
+            frame.repaint();
+        }
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
+        if (frame != null) {
+            frame.repaint();
+        }
+    }//GEN-LAST:event_jTabbedPane1MouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -886,9 +846,6 @@ public class ResPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -915,6 +872,7 @@ public class ResPanel extends javax.swing.JPanel {
     private javax.swing.JTable table2;
     private javax.swing.JTable table3;
     private javax.swing.JTable table4;
+    private com.wisnu.ebs.view.ToolPanel toolPanel1;
     // End of variables declaration//GEN-END:variables
 
     public void setFrame(JFrame frame) {
@@ -927,7 +885,6 @@ public class ResPanel extends javax.swing.JPanel {
 
     public void setDataTable(String[][][] dataTable) {
         this.dataTable = dataTable;
-        initComponents();
     }
 
     public void setRowHeader(String[][] rowHeader) {
@@ -957,4 +914,9 @@ public class ResPanel extends javax.swing.JPanel {
         return this.table4;
     }
 
+    public void setToolPanel(ToolPanel panel) {
+        this.toolPanelSC1 = panel;
+        
+        initComponents();
+    }
 }

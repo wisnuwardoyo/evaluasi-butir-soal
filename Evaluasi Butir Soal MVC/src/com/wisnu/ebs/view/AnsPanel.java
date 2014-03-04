@@ -22,17 +22,19 @@ import javax.swing.table.TableColumn;
  *
  * @author Wisnu Citra
  */
-public class AnsPanel extends javax.swing.JPanel  {
+public class AnsPanel extends javax.swing.JPanel {
+
     private JList listRowHeader;
     private String[] rowHeader;
     private String[] colHeader;
     private String[][] dataTable;
     private int type = 0;
-    
+    private ToolPanel toolPanel;
+
     private final boolean maintenance = true;
 
     public AnsPanel() {
-        
+
     }
 
     public void setTable() {
@@ -62,7 +64,7 @@ public class AnsPanel extends javax.swing.JPanel  {
         scroll.setRowHeaderView(listRowHeader);
         //System.out.println(table.getTableHeader().getBackground());
     }
-    
+
     /**
      * Setting for Dynamic Column Width
      */
@@ -71,7 +73,7 @@ public class AnsPanel extends javax.swing.JPanel  {
             setColumnWidth(i);
         }
     }
-    
+
     public void setColumnWidth(int columnIndex) {
         DefaultTableColumnModel columnModel = (DefaultTableColumnModel) table.getColumnModel();
         TableColumn tableColumn = columnModel.getColumn(columnIndex);
@@ -110,6 +112,7 @@ public class AnsPanel extends javax.swing.JPanel  {
         jPanel1 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        toolPanel1 = this.toolPanel;
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -137,13 +140,17 @@ public class AnsPanel extends javax.swing.JPanel  {
                 .addContainerGap()
                 .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setBackground(new Color(225, 225, 225, 20));
@@ -204,22 +211,31 @@ public class AnsPanel extends javax.swing.JPanel  {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JTable table;
+    private com.wisnu.ebs.view.ToolPanel toolPanel1;
     // End of variables declaration//GEN-END:variables
-    
-    public JTable getTable(){
+
+    public JTable getTable() {
         return this.table;
     }
-    public void setDataTable(String[][] dataTable){
+
+    public void setDataTable(String[][] dataTable) {
         this.dataTable = dataTable;
-        initComponents();
     }
-    public void setRowHeader(String[] rowHeader){
+
+    public void setRowHeader(String[] rowHeader) {
         this.rowHeader = rowHeader;
     }
-    public void setColHeader(String[] colHeader){
+
+    public void setColHeader(String[] colHeader) {
         this.colHeader = colHeader;
     }
-    public void setType(int type){
+
+    public void setType(int type) {
         this.type = type;
+    }
+
+    public void setToolPanel(ToolPanel panel) {
+        this.toolPanel = panel;
+        initComponents();
     }
 }

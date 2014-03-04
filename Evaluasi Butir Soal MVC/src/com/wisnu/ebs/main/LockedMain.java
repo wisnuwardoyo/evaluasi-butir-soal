@@ -24,7 +24,8 @@ public class LockedMain {
     public LockedMain() {
         try {
             now = sdf.parse(sdf.format(new Date()));
-            limit = sdf.parse("2014-3-2");
+            limit = sdf.parse("2014-3-30");
+            
             
             if (now.after(limit)) {
                 JOptionPane.showConfirmDialog(null, "This Program has expired", "Warning", JOptionPane.CLOSED_OPTION);
