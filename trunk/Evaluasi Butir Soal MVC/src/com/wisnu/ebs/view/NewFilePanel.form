@@ -52,6 +52,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelMouseEntered"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -207,6 +210,7 @@
             <Property name="text" type="java.lang.String" value="A,B,C,D"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radio1MouseEntered"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radio1ActionPerformed"/>
           </Events>
         </Component>
@@ -218,6 +222,7 @@
             <Property name="text" type="java.lang.String" value="A,B,C,D,E"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radio2MouseEntered"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radio2ActionPerformed"/>
           </Events>
         </Component>

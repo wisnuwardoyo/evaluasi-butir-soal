@@ -51,6 +51,11 @@ public class NewFilePanel extends javax.swing.JPanel {
         panel.setBackground(new java.awt.Color(225,225,225,25)
         );
         panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tambah Berkas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelMouseEntered(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Kompetensi");
@@ -75,6 +80,11 @@ public class NewFilePanel extends javax.swing.JPanel {
 
         radio1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         radio1.setText("A,B,C,D");
+        radio1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                radio1MouseEntered(evt);
+            }
+        });
         radio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radio1ActionPerformed(evt);
@@ -83,6 +93,11 @@ public class NewFilePanel extends javax.swing.JPanel {
 
         radio2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         radio2.setText("A,B,C,D,E");
+        radio2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                radio2MouseEntered(evt);
+            }
+        });
         radio2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radio2ActionPerformed(evt);
@@ -197,6 +212,19 @@ public class NewFilePanel extends javax.swing.JPanel {
         radio1.setSelected(false);
     }//GEN-LAST:event_radio2ActionPerformed
 
+    private void panelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseEntered
+        // TODO add your handling code here:
+        repaint();
+    }//GEN-LAST:event_panelMouseEntered
+
+    private void radio1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radio1MouseEntered
+        repaint();
+    }//GEN-LAST:event_radio1MouseEntered
+
+    private void radio2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radio2MouseEntered
+        repaint();
+    }//GEN-LAST:event_radio2MouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -263,5 +291,36 @@ public class NewFilePanel extends javax.swing.JPanel {
                         javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                         javax.swing.border.TitledBorder.DEFAULT_POSITION,
                         null, java.awt.Color.black));
+    }
+
+    public void setLabKompetensi(String kompetensi) {
+        this.labKompetensi.setText(kompetensi);
+    }
+
+    public void setLabKKM(String kkm) {
+        this.labKKM.setText(kkm);
+    }
+
+    public void setLabSiswa(String siswa) {
+        this.labSiswa.setText(siswa);
+    }
+
+    public void setLabSoal(String soal) {
+        this.labSoal.setText(soal);
+    }
+
+    public void setRadio(int radio) {
+        if (radio == 4) {
+            radio1.setSelected(true);
+            radio2.setSelected(false);
+        } else {
+            radio1.setSelected(false);
+            radio2.setSelected(true);
+        }
+    }
+
+    public void setTitle() {
+        panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Edit Berkas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+
     }
 }

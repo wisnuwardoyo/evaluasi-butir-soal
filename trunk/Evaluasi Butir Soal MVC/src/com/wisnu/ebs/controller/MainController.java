@@ -13,6 +13,7 @@ import com.wisnu.ebs.view.KeyPanel;
 import com.wisnu.ebs.view.MainFrame;
 import com.wisnu.ebs.view.NewDocumentPanel;
 import com.wisnu.ebs.view.ResPanel;
+import com.wisnu.ebs.view.ToolPanel;
 import com.wisnu.ebs.xml.ConfigStaxParser;
 import com.wisnu.ebs.xml.Help;
 import com.wisnu.ebs.xml.HelpStaxParser;
@@ -47,6 +48,7 @@ public class MainController implements MainListener {
     private ConfPanel configPanel;
     private FindingResult findingResult;
     private HelpPanel helpPanel;
+    private ToolPanel toolPanel;
     private final ConfigStaxParser configReader = new ConfigStaxParser();
     private final ItemStaXParser itemReader = new ItemStaXParser();
     private final HelpStaxParser helpReader = new HelpStaxParser();
@@ -61,7 +63,7 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-//        openDocumentAction("example.XML");
+        openDocumentAction("example.XML");
     }
 
     //New Document 
@@ -90,7 +92,8 @@ public class MainController implements MainListener {
         configPanel.setLabMataPelajaran(this.database.getMaPel());
         configPanel.setLabGuru(this.database.getNamaGuru());
         configPanel.setLabKelas(this.database.getNamaKelas());
-        configPanel.setLabBerkasAktif(String.valueOf(this.database.getJumlahBerkas()));
+        configPanel.setLabBerkas(String.valueOf(this.database.getJumlahBerkas()));
+        configPanel.setBerkasDesc(setConfigFileDesc());
         mainFrame.setViewPort(configPanel);
         mainFrame.itemCheck(true);
         ansPanel = null;
@@ -98,11 +101,40 @@ public class MainController implements MainListener {
 
     }
 
+    public Object[][] setConfigDataTable() {
+        int row = this.database.getJumlahBerkas();
+        int aktif = this.database.getBerkasAktif();
+        Object[][] dataTable = new Object[row][7];
+        for (int i = 0; i < row; i++) {
+            dataTable[i][0] = String.valueOf((i + 1));
+            dataTable[i][1] = this.database.getKompetensi()[i];
+            dataTable[i][2] = this.database.getKKM()[i];
+            dataTable[i][3] = this.database.getJmlSiswa()[i];
+            dataTable[i][4] = this.database.getJmlSoal()[i];
+            dataTable[i][5] = this.database.getTipeSoal()[i].equals("4") ? "A,B,C,D" : "A,B,C,D,E";
+            dataTable[i][6] = i == aktif ? true : false;
+        }
+        return dataTable;
+    }
+
+    public Object[] setConfigFileDesc() {
+        Object[] data = new Object[5];
+        int aktif = this.database.getBerkasAktif();
+        data[0] = this.database.getKompetensi()[aktif];
+        data[1] = this.database.getKKM()[aktif];
+        data[2] = this.database.getJmlSiswa()[aktif];
+        data[3] = this.database.getJmlSoal()[aktif];
+        data[4] = this.database.getTipeSoal()[aktif].equals("4") ? "A,B,C,D" : "A,B,C,D,E";
+
+        return data;
+    }
+
     //Open Document
     public void openDocumentAction(String path) {
         openingFile(path);
         database.setBerkasAktif(0);
         openingConfigurationPanel();
+        openingKeyPanel();
     }
 
     public void openingFile(String path) {
@@ -165,6 +197,7 @@ public class MainController implements MainListener {
         keyPanel.setRowHeader(rowHeader);
         keyPanel.setType(type);
         keyPanel.setDataTable(dataTable);
+        keyPanel.setToolPanel(toolBarSetting(1));
 
     }
 
@@ -198,6 +231,7 @@ public class MainController implements MainListener {
         ansPanel.setColHeader(colHeader);
         ansPanel.setType(type);
         ansPanel.setDataTable(dataTable);
+        ansPanel.setToolPanel(toolBarSetting(2));
 
     }
 
@@ -402,24 +436,9 @@ public class MainController implements MainListener {
         resultPanel.setRowHeader(rowHeader);
         resultPanel.setColHeader2(colHeader2);
         resultPanel.setDataTable(dataTable);
+        resultPanel.setToolPanel(toolBarSetting(3));
         resultPanel.setKeterangan(findingResult.getTempData());
 
-    }
-
-    public Object[][] setConfigDataTable() {
-        int row = this.database.getJumlahBerkas();
-        int aktif = this.database.getBerkasAktif();
-        Object[][] dataTable = new Object[row][7];
-        for (int i = 0; i < row; i++) {
-            dataTable[i][0] = String.valueOf((i + 1));
-            dataTable[i][1] = this.database.getKompetensi()[i];
-            dataTable[i][2] = this.database.getKKM()[i];
-            dataTable[i][3] = this.database.getJmlSiswa()[i];
-            dataTable[i][4] = this.database.getJmlSoal()[i];
-            dataTable[i][5] = this.database.getTipeSoal()[i].equals("4") ? "A,B,C,D" : "A,B,C,D,E";
-            dataTable[i][6] = i == aktif ? true : false;
-        }
-        return dataTable;
     }
 
     @Override
@@ -472,8 +491,8 @@ public class MainController implements MainListener {
 
         return object;
     }
-    
-    public void openingHelp(){
+
+    public void openingHelp() {
         helpPanel = new HelpPanel();
         List<Help> readHelp = helpReader.readConfig();
         int i = 0;
@@ -482,7 +501,20 @@ public class MainController implements MainListener {
             helpPanel.getContents()[i] = help.getContent();
             i++;
         }
-        
-        JOptionPane.showConfirmDialog(null,helpPanel);
+
+        JOptionPane.showConfirmDialog(null, helpPanel);
     }
+
+    public void repaint() {
+        mainFrame.repaint();
+    }
+
+    public ToolPanel toolBarSetting(int id) {
+        this.toolPanel = new ToolPanel();
+        toolPanel.setController(this);
+        toolPanel.setID(id);
+        toolPanel.setting(id);
+        return this.toolPanel;
+    }
+
 }
