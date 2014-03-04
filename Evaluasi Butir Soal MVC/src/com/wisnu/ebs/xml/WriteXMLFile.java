@@ -16,7 +16,7 @@ public class WriteXMLFile {
     public void write(String path) {
 
         try {
-            BufferedWriter printer = new BufferedWriter(new FileWriter(path + ".xml"));
+            BufferedWriter printer = new BufferedWriter(new FileWriter(path + ".rmd"));
             printer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             printer.newLine();
             printer.write("<root>");
@@ -103,7 +103,7 @@ public class WriteXMLFile {
 
             printer.close();
 
-            System.out.println("Saving File to : " + path + ".xml");
+            System.out.println("Saving File to : " + path + ".rmd");
 
             //return read.read();
         } catch (Exception ex) {

@@ -53,7 +53,11 @@ public class Database {
 
         for (int i = 0; i < jumlahSiswa; i++) {
             for (int j = 0; j <= jumlahSoal; j++) {
-                SoalBaru[0][i][j] = "";
+                if (j == 0) {
+                    SoalBaru[0][i][j] = "Siswa "+ String.valueOf((i+1));
+                } else {
+                    SoalBaru[0][i][j] = "";
+                }
             }
         }
         for (int i = 0; i < jumlahSoal; i++) {
@@ -90,19 +94,18 @@ public class Database {
             }
         }
     }
-    
-    public void fireErrorMessage(int i){
-        if(mainListener != null){
+
+    public void fireErrorMessage(int i) {
+        if (mainListener != null) {
             mainListener.fireErrorMessage(i);
         }
     }
-    
+
     //Border
-    
     public void setMainListener(MainListener mainListener) {
         this.mainListener = mainListener;
     }
-    
+
     public String[][] getKunci() {
         return kunci;
     }

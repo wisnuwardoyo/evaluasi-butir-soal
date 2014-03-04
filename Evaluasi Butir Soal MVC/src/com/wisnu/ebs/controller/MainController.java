@@ -57,13 +57,14 @@ public class MainController implements MainListener {
     private final ErrorMessage errorMessage = new ErrorMessage();
 
     private NewDocumentPanel newDocumentPanel;
-
+    private String path;
+    
     public MainController() {
         mainFrame.setVisible(true);
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        openDocumentAction("example.XML");
+        openDocumentAction("example.rmd");
     }
 
     //New Document 
@@ -131,6 +132,7 @@ public class MainController implements MainListener {
 
     //Open Document
     public void openDocumentAction(String path) {
+        this.path = path;
         openingFile(path);
         database.setBerkasAktif(0);
         openingConfigurationPanel();
@@ -171,6 +173,7 @@ public class MainController implements MainListener {
 
     //Save Document
     public void saveDocumentAction(String Path) {
+        Path = Path.replace(".rmd", "");
         database.setKunci(keyPanel);
         database.setSoal(ansPanel);
         saveFile.setDatabase(database);
@@ -516,5 +519,8 @@ public class MainController implements MainListener {
         toolPanel.setting(id);
         return this.toolPanel;
     }
-
+    
+    public String getPath(){
+        return this.path;
+    }
 }

@@ -88,6 +88,7 @@ public class ConfPanel extends javax.swing.JPanel {
         table = new TableCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -121,7 +122,7 @@ public class ConfPanel extends javax.swing.JPanel {
 
         jPanel4.setBackground(new Color(255, 255, 255, 20)
         );
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabel Berkas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabel Berkas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
         jScrollPane1.setPreferredSize(table.getPreferredSize());
         table.setModel(new DefaultTableModel(dataTable, header));
@@ -154,36 +155,47 @@ public class ConfPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel14.setText("Klik Pada Berkas Untuk Mengaktifkannya");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new Color(225,225,225,20));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/settingHover.png"))); // NOI18N
         jLabel1.setText("KONFIGURASI DOKUMEN");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -204,18 +216,22 @@ public class ConfPanel extends javax.swing.JPanel {
         );
 
         jPanel3.setBackground(new Color(225,225,225,20));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deskripsi Dokumen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deskripsi Dokumen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
         jLabel3.setText("Mata Pelajaran");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
         jLabel4.setText("Nama Guru");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 51));
         jLabel5.setText("Nama Kelas");
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 51));
         jLabel6.setText("Jumlah Berkas");
 
         labMataPelajaran.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -278,36 +294,46 @@ public class ConfPanel extends javax.swing.JPanel {
         });
 
         jPanel5.setBackground(new Color(225,225,225,20));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deskripsi Berkas Aktif", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 12))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deskripsi Berkas Aktif", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
         jLabel2.setText("Kompetensi");
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 51));
         jLabel7.setText("KKM");
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 51, 51));
         jLabel11.setText("Jumlah Siswa");
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 51, 51));
         jLabel12.setText("Jumlah Soal");
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 51, 51));
         jLabel13.setText("Tipe Soal");
 
         labKompetensi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labKompetensi.setForeground(new java.awt.Color(0, 102, 102));
         labKompetensi.setText("jLabel14");
 
         labKKM.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labKKM.setForeground(new java.awt.Color(0, 102, 102));
         labKKM.setText("jLabel15");
 
         labSiswa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labSiswa.setForeground(new java.awt.Color(0, 102, 102));
         labSiswa.setText("jLabel16");
 
         labSoal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labSoal.setForeground(new java.awt.Color(0, 102, 102));
         labSoal.setText("jLabel17");
 
         labTipe.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labTipe.setForeground(new java.awt.Color(0, 102, 102));
         labTipe.setText("jLabel18");
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -641,6 +667,7 @@ public class ConfPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
