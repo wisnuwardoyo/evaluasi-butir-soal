@@ -5,11 +5,6 @@
  */
 package com.wisnu.ebs.view;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.RoundRectangle2D;
-
 /**
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
@@ -38,8 +33,12 @@ public class HelpPanel extends javax.swing.JPanel {
         textPane = new javax.swing.JTextPane();
         labJudul = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 255, 255));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jList1.setForeground(new java.awt.Color(0, 51, 51));
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Membuat Dokumen", "Membuka Dokumen", "Konfigurasi Dokumen", "Menganalisis Dokumen", "Mencetak Dokumen", " " };
             public int getSize() { return strings.length; }
@@ -58,7 +57,7 @@ public class HelpPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -71,13 +70,14 @@ public class HelpPanel extends javax.swing.JPanel {
 
         textPane.setEditable(false);
         textPane.setContentType("text/html"); // NOI18N
-        textPane.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        textPane.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:center\">\r\n     \n    </p>\r\n  </body>\r\n</html>\r\n");
         jScrollPane1.setViewportView(textPane);
 
-        labJudul.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        labJudul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labJudul.setForeground(new java.awt.Color(0, 51, 51));
         labJudul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labJudul.setText("HELP CENTER");
+        labJudul.setText("PUSAT BANTUAN");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,11 +85,11 @@ public class HelpPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labJudul, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(labJudul, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -102,8 +102,7 @@ public class HelpPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(labJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -132,14 +131,6 @@ public class HelpPanel extends javax.swing.JPanel {
         return this.contents;
     }
 
-    @Override
-    protected void paintComponent(Graphics grphcs) {
-       super.paintComponent(grphcs);
-       final RoundRectangle2D kotak = new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),20,20);
-       final Graphics2D g2 = (Graphics2D) grphcs.create();
-       g2.setColor(Color.BLACK);
-       g2.draw(kotak);
-    }
     
     
 }

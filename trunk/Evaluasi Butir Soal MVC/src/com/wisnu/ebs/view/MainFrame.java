@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+
 /**
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
@@ -59,7 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
                     return true;
                 }
                 String f = file.getName().toUpperCase();
-                if (f.endsWith(".XML")) {
+                if (f.endsWith(".RMD")) {
                     return true;
                 }
                 return false;
@@ -67,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             @Override
             public String getDescription() {
-                return "XML File";
+                return "RMD File";
             }
         });
         try {
@@ -201,6 +202,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Evaluasi Butir Soal");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 formMouseMoved(evt);
@@ -218,7 +224,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         button_sc_key.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         button_sc_key.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/key_icon.png"))); // NOI18N
-        button_sc_key.setText("KEY      ");
+        button_sc_key.setText("KUNCI JAWABAN");
+        button_sc_key.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_sc_key.setOpaque(false);
         button_sc_key.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +237,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(button_sc_key, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addComponent(button_sc_key, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +249,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         button_sc_ans.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         button_sc_ans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/answer_icon.png"))); // NOI18N
-        button_sc_ans.setText("ANSWER");
+        button_sc_ans.setText("LEMBAR JAWABAN");
+        button_sc_ans.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_sc_ans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_ansActionPerformed(evt);
@@ -253,7 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(button_sc_ans, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addComponent(button_sc_ans, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +273,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         button_sc_res.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         button_sc_res.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/result_icon.png"))); // NOI18N
-        button_sc_res.setText("RESULT ");
+        button_sc_res.setText("HASIL ANALISIS");
+        button_sc_res.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_sc_res.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_resActionPerformed(evt);
@@ -288,7 +297,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         button_sc_print.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         button_sc_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer_icon.png"))); // NOI18N
-        button_sc_print.setText(" PRINT ");
+        button_sc_print.setText("CETAK HASIL");
+        button_sc_print.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_sc_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_printActionPerformed(evt);
@@ -312,7 +322,8 @@ public class MainFrame extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(160, 160, 160));
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit_icon.png"))); // NOI18N
-        jButton5.setText(" EXIT  ");
+        jButton5.setText("KELUAR PROGRAM");
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -507,13 +518,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(panel_home);
 
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(0, 20));
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(0, 25));
 
-        jMenu1.setText("File");
+        jMenu1.setText("File     ");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         menu_item_new.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_new.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        menu_item_new.setText("New");
+        menu_item_new.setText("Dokumen Baru");
         menu_item_new.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_item_newActionPerformed(evt);
@@ -523,7 +536,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         menu_item_open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_open.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        menu_item_open.setText("Open");
+        menu_item_open.setText("Buka Dokumen");
         menu_item_open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_item_openActionPerformed(evt);
@@ -533,7 +546,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         menu_item_save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_save.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        menu_item_save.setText("Save");
+        menu_item_save.setText("Simpan Dokumen");
         menu_item_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_item_saveActionPerformed(evt);
@@ -544,7 +557,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         menu_item_close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_close.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        menu_item_close.setText("Close File");
+        menu_item_close.setText("Tutup Berkas");
         menu_item_close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_item_closeActionPerformed(evt);
@@ -553,7 +566,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu1.add(menu_item_close);
 
         menu_item_exit.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        menu_item_exit.setText("Exit");
+        menu_item_exit.setText("Keluar Program");
         menu_item_exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_item_exitActionPerformed(evt);
@@ -563,11 +576,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Edit");
+        jMenu3.setText("Edit     ");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         menu_item_config.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_config.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        menu_item_config.setText("Configuration");
+        menu_item_config.setText("Konfigurasi Berkas");
         menu_item_config.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_item_configActionPerformed(evt);
@@ -578,6 +592,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Help");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem1.setText("Bantuan");
@@ -607,7 +622,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         pack();
@@ -640,7 +655,7 @@ public class MainFrame extends javax.swing.JFrame {
                     return true;
                 }
                 String f = file.getName().toUpperCase();
-                if (f.endsWith(".XML")) {
+                if (f.endsWith(".RMD")) {
                     return true;
                 }
                 return false;
@@ -648,7 +663,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             @Override
             public String getDescription() {
-                return "XML File";
+                return "RMD File";
             }
         });
         try {
@@ -660,18 +675,18 @@ public class MainFrame extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             try {
                 String path = saveDialog.getSelectedFile().getCanonicalPath().toString();
-                if (new File(path).exists() || new File(path + ".xml").exists()) {
+                if (new File(path).exists() || new File(path + ".rmd").exists()) {
                     int confirm = JOptionPane.showConfirmDialog(this, "Do You Want to Overwrite /n " + path + "?", "Save File", JOptionPane.YES_NO_OPTION);
                     if (confirm == 0) {
-                        path = path.contains(".xml") ? path.replace(".xml", "") : path;
+                        path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
                         controllerUtama.saveDocumentAction(path);
-                        controllerUtama.openDocumentAction(path + ".xml");
+                        controllerUtama.openDocumentAction(path + ".rmd");
                         this.repaint();
                     }
 
                 } else {
                     controllerUtama.saveDocumentAction(path);
-                    controllerUtama.openDocumentAction(path + ".xml");
+                    controllerUtama.openDocumentAction(path + ".rmd");
                     this.repaint();
                 }
 
@@ -683,7 +698,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_item_saveActionPerformed
 
     private void button_sc_resActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_resActionPerformed
-        controllerUtama.openingResultPanel();
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            controllerUtama.openingResultPanel();
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+
     }//GEN-LAST:event_button_sc_resActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -764,7 +785,11 @@ public class MainFrame extends javax.swing.JFrame {
         openDocumentAction();
     }//GEN-LAST:event_menu_item_openActionPerformed
 
-   
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       
+    }//GEN-LAST:event_formWindowClosing
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_sc_ans;
     private javax.swing.JButton button_sc_key;

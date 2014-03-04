@@ -75,7 +75,9 @@ public class KeyPanel extends javax.swing.JPanel {
         jPanel2.setBackground(new Color(225,225,225,20));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 204, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/key_icon.png"))); // NOI18N
         jLabel1.setText("FORMULIR PENGISIAN KUNCI JAWABAN");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -96,7 +98,7 @@ public class KeyPanel extends javax.swing.JPanel {
         );
 
         jPanel3.setBackground(new Color(225,225,225,20));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabel Kunci", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabel Kunci", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
         setTable();    setRowHeader();
 
@@ -130,18 +132,19 @@ public class KeyPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel4.setBackground(new Color(225,225,225,20));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Petunjuk", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Petunjuk", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
         jTextPane1.setEditable(false);
         jTextPane1.setBackground(new Color(225,225,225,20));
         jTextPane1.setContentType("text/html"); // NOI18N
-        jTextPane1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jTextPane1.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:justify\">\r\n      \rIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping.\n<br>Penggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n    </p>\r\n  </body>\r\n</html>\r\n");
+        jTextPane1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jTextPane1.setForeground(new java.awt.Color(0, 153, 153));
+        jTextPane1.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:justify\">\r\n      \rIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping.\n<br><br>Penggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n    </p>\r\n  </body>\r\n</html>\r\n");
         jTextPane1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextPane1.setEnabled(false);
         jTextPane1.setFocusCycleRoot(false);
@@ -160,7 +163,7 @@ public class KeyPanel extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

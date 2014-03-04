@@ -54,14 +54,7 @@ public class ConfController {
         String[] tipeSoal = database.getTipeSoal().clone();
         int jumlahBerkas = database.getJumlahBerkas() + 1;
 
-        database.setKunci(new String[jumlahBerkas][]);
-        database.setSoal(new String[jumlahBerkas][][]);
-        database.setKompetensi(new String[jumlahBerkas]);
-        database.setKKM(new String[jumlahBerkas]);
-        database.setJmlSiswa(new String[jumlahBerkas]);
-        database.setJmlSoal(new String[jumlahBerkas]);
-        database.setTipeSoal(new String[jumlahBerkas]);
-        database.setJumlahBerkas(jumlahBerkas);
+        initVar(jumlahBerkas);
 
         int siswaBaru = Integer.parseInt(panel.getLabJumlahSiswa().getText());
         int soalBaru = Integer.parseInt(panel.getLabSoal().getText());
@@ -126,7 +119,15 @@ public class ConfController {
         if (result == 0) {
             if (panel.itemCheck()) {
                 editFileAction(panel);
-                controllerUtama.openingConfigurationPanel();
+                try {
+                    controllerUtama.openingConfigurationPanel();
+                } finally {
+                    int save = JOptionPane.showConfirmDialog(null, "Dokumen berhasil diubah"
+                            + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.OK_OPTION);
+                    if (save == 0) {
+                        controllerUtama.saveDocumentAction(controllerUtama.getPath().replace(".xml", "").replace(".XML", ""));
+                    }
+                }
             }
         }
     }
@@ -166,7 +167,12 @@ public class ConfController {
                         }
                     } else {
                         for (int k = 0; k <= soalBaru; k++) {
-                            dataSoal[i][k] = "";
+                            if (k == 0) {
+                                dataSoal[i][k] = "Siswa" + String.valueOf(i+1);
+                            } else {
+                                dataSoal[i][k] = "";
+                            }
+
                         }
                     }
                 }
@@ -217,7 +223,7 @@ public class ConfController {
                 + "Tipe \t: " + (this.database.getTipeSoal()[aktif].equals("4") ? "A,B,C,D" : "A,B,C,D,E") + "\n",
                 "Peringatan", JOptionPane.OK_OPTION);
 
-        if (result == 0) {
+        if (result == 0 && database.getJumlahBerkas() > 1) {
             int jumlahBerkas = database.getJumlahBerkas() - 1;
             String[][] kunci = database.getKunci().clone();
             String[][][] soal = database.getSoal().clone();
@@ -227,14 +233,7 @@ public class ConfController {
             String[] jmlSoal = database.getJmlSoal().clone();
             String[] tipeSoal = database.getTipeSoal().clone();
 
-            database.setKunci(new String[jumlahBerkas][]);
-            database.setSoal(new String[jumlahBerkas][][]);
-            database.setKompetensi(new String[jumlahBerkas]);
-            database.setKKM(new String[jumlahBerkas]);
-            database.setJmlSiswa(new String[jumlahBerkas]);
-            database.setJmlSoal(new String[jumlahBerkas]);
-            database.setTipeSoal(new String[jumlahBerkas]);
-            database.setJumlahBerkas(jumlahBerkas);
+            initVar(jumlahBerkas);
 
             int j = 0;
             for (int i = 0; i <= jumlahBerkas; i++) {
@@ -248,14 +247,27 @@ public class ConfController {
                     database.getSoal()[j] = soal[i];
                     j++;
                 } else {
-                   
+
                 }
-                
+
             }
             database.setBerkasAktif(0);
             controllerUtama.openingConfigurationPanel();
 
+        } else if (result == 0 && database.getJumlahBerkas() <= 1) {
+
         }
+    }
+
+    public void initVar(int jumlahBerkas) {
+        database.setKunci(new String[jumlahBerkas][]);
+        database.setSoal(new String[jumlahBerkas][][]);
+        database.setKompetensi(new String[jumlahBerkas]);
+        database.setKKM(new String[jumlahBerkas]);
+        database.setJmlSiswa(new String[jumlahBerkas]);
+        database.setJmlSoal(new String[jumlahBerkas]);
+        database.setTipeSoal(new String[jumlahBerkas]);
+        database.setJumlahBerkas(jumlahBerkas);
     }
 
 }

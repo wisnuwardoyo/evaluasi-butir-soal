@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class FindingResult {
+
     Database database;
     private Pearson pearson;
     private Statistics statistics;
@@ -30,8 +31,8 @@ public class FindingResult {
     int col;
     int row;
     int aktif;
-    
-    public void initComponent(){
+
+    public void initComponent() {
         aktif = database.getBerkasAktif();
         col = Integer.parseInt(database.getJmlSiswa()[aktif]);
         row = Integer.parseInt(database.getJmlSoal()[aktif]);
@@ -48,7 +49,7 @@ public class FindingResult {
         setLetter(database.getSoal()[aktif]);
         setAnswerKey(database.getKunci()[aktif]);
     }
-    
+
     /**
      * Mencocokan jawaban dengan kunci, kemudian dikonversi menjadi 1 dan 0, dan
      * ditampung kedalam variable number pada resModel.
@@ -79,6 +80,7 @@ public class FindingResult {
         }
 
     }
+
     /**
      * Mencari tingkat kesulitan suatu soal, jumlah benar dalam satu soal di
      * jumlahkan lalu di bagi dengan banyaknya siswa. (proses pembagian
@@ -91,6 +93,7 @@ public class FindingResult {
             }
         }
     }
+
     /**
      * Mencari daya beda soal melalui beberapa tahap, tahap pertama adalah
      * mengurutkan angka berdasarkan nomor urut awal dan score tertinggi.
@@ -110,16 +113,16 @@ public class FindingResult {
         for (int i = 0; i < col; i++) {
             getNumber()[i][row + 1] = String.valueOf(getScore()[i]);
         }
-        
+
         //Variable dummy untuk membantu proses pengurutan
         String[][] dummy = new String[row][col];
-        
+
         // Menyalin variable number agar posisinya tetap dan dapat digunakan lain waktu
         angkaCopy = getNumber().clone();
-        
+
         //Mengurutkan angkaCopy menggunakan teknik buble sort
         for (int i = 0; i < col; i++) {
-            for (int j = 0; j < col; j++) {
+            for (int j = 0; j < row; j++) {
                 if (Integer.parseInt(angkaCopy[i][row + 1]) > Integer.parseInt(angkaCopy[j][row + 1])) {
 
                     dummy[i] = angkaCopy[i];
@@ -136,26 +139,26 @@ public class FindingResult {
                 }
             }
         }
-        
+
         // Menyalin angkaCopy kedalam variable sortedNumber agar dapat digunakan secara global
         setSortedNumber(angkaCopy.clone());
-        
+
         // Dua variable BA dan BB, untuk menampung siswa dalam batas atas dan bawah.
         String[][] BA = new String[col][row + 2];
         String[][] BB = new String[col][row + 2];
-        
+
         //Menempatkan siswa dalam batas atas kedalam BA
         for (int i = 0; i < (int) (col * 0.33); i++) {
             BA[i] = angkaCopy[i];
 
         }
-        
+
         //Menempatkan siswa dalam batas bawah kedalam BB
         for (int i = (col - ((int) (col * 0.33))); i < col; i++) {
             BB[i - (col - ((int) (col * 0.33)))] = angkaCopy[i];
 
         }
-        
+
         //Layer digunakan untuk menampung jumlah dari masing masing hasil olahan BA dan BB
         float[] layer = new float[col * row];
         for (int i = 1; i <= row; i++) {
@@ -173,7 +176,7 @@ public class FindingResult {
             getDb()[i] = (layer[i] / ((int) (row * 0.33))) - (layer[i + row] / ((int) (row * 0.33)));
         }
     }
-    
+
     public void ep() {
         int z = col;
 
@@ -217,13 +220,13 @@ public class FindingResult {
             }
         }
         //----End Of Checking Zero Chooser---//
-        
+
         //--Begin of checking score of options--//
         setIPc(new String[Integer.parseInt(database.getTipeSoal()[aktif])][row]);
         setnPc(new int[Integer.parseInt(database.getTipeSoal()[aktif])][row]);
         setnB(new int[row]);
         int a = 0;
-        float[][] IPcopy = new float[Integer.parseInt(database.getTipeSoal()[aktif])][row];
+        double[][] IPcopy = new double[Integer.parseInt(database.getTipeSoal()[aktif])][row];
         for (int i = 0; i < pola.length; i++) {
             for (int j = 1; j <= row; j++) {
                 getnPc()[i][j - 1] = 0;
@@ -244,23 +247,35 @@ public class FindingResult {
         }
         for (int i = 0; i < pola.length; i++) {
             for (int j = 0; j < row; j++) {
-                IPcopy[i][j] = (float) (getnPc()[i][j] / (float) ((float) (col - getnB()[i]) / (float) (Integer.parseInt(database.getTipeSoal()[aktif]) - 1))) * 100;
-                getIPc()[i][j] = String.valueOf(IPcopy[i][j]);
+                IPcopy[i][j] = (double)getnPc()[i][j];
+                IPcopy[i][j] /= (float) (col - getnB()[j]) / (float) (pola.length - 1);
+                IPcopy[i][j] *= 100;
+                
             }
 
         }
+ 
         for (int i = 0; i < pola.length; i++) {
             for (int j = 0; j < row; j++) {
                 if (IPcopy[i][j] >= 76 && IPcopy[i][j] <= 125) {
-                    getIPc()[i][j] = getIPc()[i][j] + " + +";
+
+                    getIPc()[i][j] = getnPc()[i][j] + " + +";
+
                 } else if ((IPcopy[i][j] >= 51 && IPcopy[i][j] <= 75) || (IPcopy[i][j] >= 126 && IPcopy[i][j] <= 150)) {
-                    getIPc()[i][j] = getIPc()[i][j] + " +";
+
+                    getIPc()[i][j] = getnPc()[i][j] + " +";
+
                 } else if ((IPcopy[i][j] >= 26 && IPcopy[i][j] <= 50) || (IPcopy[i][j] >= 151 && IPcopy[i][j] <= 175)) {
-                    getIPc()[i][j] = getIPc()[i][j] + " -";
+
+                    getIPc()[i][j] = getnPc()[i][j] + " -";
+
                 } else if ((IPcopy[i][j] >= 0 && IPcopy[i][j] <= 25) || (IPcopy[i][j] >= 176 && IPcopy[i][j] <= 200)) {
-                    getIPc()[i][j] = getIPc()[i][j] + " - -";
+
+                    getIPc()[i][j] = getnPc()[i][j] + " - -";
+
                 } else {
-                    getIPc()[i][j] = getIPc()[i][j] + " - - -";
+
+                    getIPc()[i][j] = getnPc()[i][j] + " - - -";
                 }
             }
         }
@@ -282,11 +297,11 @@ public class FindingResult {
             if (getAnswerKey()[i].equals("E")) {
                 pos = 4;
             }
-            getIPc()[pos][i] = String.valueOf(IPcopy[pos][i]) + " **";
+            getIPc()[pos][i] = String.valueOf(getnB()[i]) + " **";
         }
-
+        
     }
-    
+
     public void reliability() {
         double[] jawab = new double[col];
         for (int i = 0; i < col; i++) {
@@ -322,10 +337,10 @@ public class FindingResult {
         temp = Double.parseDouble(a);
         return temp;
     }
+
     /**
      * Mencari Validitas suatu soal.
      */
-    
     public void validity() {
         double[][] validity_cek = new double[row + 1][col];
 
@@ -346,13 +361,12 @@ public class FindingResult {
         }
 
     }
-    
+
     /**
-     * Mencari benar dan salah siswa akan soal-soal yang diberikan.
-     * NRaW menampung jawaban benar dan salah dengan alamat 0 untuk benar, dan
-     * alamat 1 untuk salah.
+     * Mencari benar dan salah siswa akan soal-soal yang diberikan. NRaW
+     * menampung jawaban benar dan salah dengan alamat 0 untuk benar, dan alamat
+     * 1 untuk salah.
      */
-    
     public void rightAndWrong() {
         for (int i = 0; i < col; i++) {
             getNRaW()[i][0] = 0;
@@ -368,7 +382,7 @@ public class FindingResult {
 
     }
     //BORDER
-    
+
     public Database getDatabase() {
         return database;
     }
@@ -377,7 +391,6 @@ public class FindingResult {
         this.database = database;
     }
 
- 
     public Pearson getPearson() {
         return pearson;
     }
@@ -513,6 +526,5 @@ public class FindingResult {
     public void setCorrelationNumber(double[] correlationNumber) {
         this.correlationNumber = correlationNumber;
     }
-    
-    
+
 }
