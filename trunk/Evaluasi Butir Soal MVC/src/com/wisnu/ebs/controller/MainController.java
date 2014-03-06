@@ -12,7 +12,7 @@ import com.wisnu.ebs.view.HelpPanel;
 import com.wisnu.ebs.view.KeyPanel;
 import com.wisnu.ebs.view.MainFrame;
 import com.wisnu.ebs.view.NewDocumentPanel;
-import com.wisnu.ebs.view.ResPanel;
+import com.wisnu.ebs.view.ResultPanel;
 import com.wisnu.ebs.view.ToolPanel;
 import com.wisnu.ebs.xml.ConfigStaxParser;
 import com.wisnu.ebs.xml.Help;
@@ -44,7 +44,7 @@ public class MainController implements MainListener {
     private final MainFrame mainFrame = new MainFrame();
     private AnsPanel ansPanel;
     private KeyPanel keyPanel;
-    private ResPanel resultPanel;
+    private ResultPanel resultPanel;
     private ConfPanel configPanel;
     private FindingResult findingResult;
     private HelpPanel helpPanel;
@@ -58,13 +58,13 @@ public class MainController implements MainListener {
 
     private NewDocumentPanel newDocumentPanel;
     private String path;
-    
+
     public MainController() {
         mainFrame.setVisible(true);
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        openDocumentAction("example.rmd");
+//        openDocumentAction("example.rmd");
     }
 
     //New Document 
@@ -112,7 +112,13 @@ public class MainController implements MainListener {
             dataTable[i][2] = this.database.getKKM()[i];
             dataTable[i][3] = this.database.getJmlSiswa()[i];
             dataTable[i][4] = this.database.getJmlSoal()[i];
-            dataTable[i][5] = this.database.getTipeSoal()[i].equals("4") ? "A,B,C,D" : "A,B,C,D,E";
+            if (this.database.getTipeSoal()[i].equals("3")) {
+                dataTable[i][5] = "A, B, C";
+            } else if (this.database.getTipeSoal()[i].equals("4")) {
+                dataTable[i][5] = "A, B, C, D";
+            } else {
+                dataTable[i][5] = "A, B, C, D, E";
+            }
             dataTable[i][6] = i == aktif ? true : false;
         }
         return dataTable;
@@ -125,7 +131,13 @@ public class MainController implements MainListener {
         data[1] = this.database.getKKM()[aktif];
         data[2] = this.database.getJmlSiswa()[aktif];
         data[3] = this.database.getJmlSoal()[aktif];
-        data[4] = this.database.getTipeSoal()[aktif].equals("4") ? "A,B,C,D" : "A,B,C,D,E";
+        if (this.database.getTipeSoal()[aktif].equals("3")) {
+            data[4] = "A, B, C";
+        } else if (this.database.getTipeSoal()[aktif].equals("4")) {
+            data[4] = "A, B, C, D";
+        } else {
+            data[4] = "A, B, C, D, E";
+        }
 
         return data;
     }
@@ -242,7 +254,7 @@ public class MainController implements MainListener {
     public void openingResultPanel() {
         database.setKunci(keyPanel);
         database.setSoal(ansPanel);
-        resultPanel = new ResPanel();
+        resultPanel = new ResultPanel();
         resultPanel.setFrame(mainFrame);
         findingResult();
         settingResultPanelDataTable();
@@ -261,6 +273,7 @@ public class MainController implements MainListener {
         findingResult.reliability();
         findingResult.validity();
         findingResult.rightAndWrong();
+        findingResult.meanOfValue();
 
     }
 
@@ -339,16 +352,16 @@ public class MainController implements MainListener {
                 if (j == 2) {
                     dataTable[1][i][j] = String.valueOf(findingResult.getIPc()[2][i]);
                 }
-                if (j == 3) {
+                if ((tipe == 4 || tipe == 5) && j == 3) {
                     dataTable[1][i][j] = String.valueOf(findingResult.getIPc()[3][i]);
                 }
                 if (tipe == 5 && j == 4) {
                     dataTable[1][i][j] = String.valueOf(findingResult.getIPc()[4][i]);
                 }
-                if ((tipe == 4 && j == 4) || (tipe == 5 && j == 5)) {
+                if ((tipe == 3 && j == 3) || (tipe == 4 && j == 4) || (tipe == 5 && j == 5)) {
                     dataTable[1][i][j] = findingResult.getEp()[i];
                 }
-                if ((tipe == 4 && j == 5) || (tipe == 5 && j == 6)) {
+                if ((tipe == 3 && j == 4) || (tipe == 4 && j == 5) || (tipe == 5 && j == 6)) {
                     if (findingResult.getEp()[i].equals("Tidak Efektif")) {
                         dataTable[1][i][j] = "Harus Diganti";
                     } else {
@@ -419,7 +432,13 @@ public class MainController implements MainListener {
             }
         }
 
-        if (tipe == 4) {
+        if (tipe == 3) {
+            colHeader2[0] = "A"; //damn to make it simple
+            colHeader2[1] = "B";
+            colHeader2[2] = "C";
+            colHeader2[3] = "KEEFEKTIFAN";
+            colHeader2[4] = "KETERANGAN";
+        } else if (tipe == 4) {
             colHeader2[0] = "A"; //damn to make it simple
             colHeader2[1] = "B";
             colHeader2[2] = "C";
@@ -440,7 +459,9 @@ public class MainController implements MainListener {
         resultPanel.setColHeader2(colHeader2);
         resultPanel.setDataTable(dataTable);
         resultPanel.setToolPanel(toolBarSetting(3));
+        
         resultPanel.setKeterangan(findingResult.getTempData());
+        int a = 0;
 
     }
 
@@ -519,8 +540,8 @@ public class MainController implements MainListener {
         toolPanel.setting(id);
         return this.toolPanel;
     }
-    
-    public String getPath(){
+
+    public String getPath() {
         return this.path;
     }
 }

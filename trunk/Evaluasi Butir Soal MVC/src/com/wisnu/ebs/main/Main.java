@@ -13,7 +13,7 @@ import com.wisnu.ebs.controller.MainController;
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class Main {
-    private MainController controllerUtama;
+    private final MainController controllerUtama;
     
     public Main(){
         controllerUtama = new MainController();

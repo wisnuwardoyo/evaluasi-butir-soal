@@ -115,14 +115,14 @@ public class FindingResult {
         }
 
         //Variable dummy untuk membantu proses pengurutan
-        String[][] dummy = new String[row][col];
+        String[][] dummy = new String[col][row];
 
         // Menyalin variable number agar posisinya tetap dan dapat digunakan lain waktu
         angkaCopy = getNumber().clone();
 
         //Mengurutkan angkaCopy menggunakan teknik buble sort
         for (int i = 0; i < col; i++) {
-            for (int j = 0; j < row; j++) {
+            for (int j = 0; j < col; j++) {
                 if (Integer.parseInt(angkaCopy[i][row + 1]) > Integer.parseInt(angkaCopy[j][row + 1])) {
 
                     dummy[i] = angkaCopy[i];
@@ -181,7 +181,11 @@ public class FindingResult {
         int z = col;
 
         String[] pola = new String[Integer.parseInt(database.getTipeSoal()[aktif])];
-        if (Integer.parseInt(database.getTipeSoal()[aktif]) == 4) {
+        if (pola.length == 3) {
+            pola[0] = "A"; //damn to make it simple
+            pola[1] = "B";
+            pola[2] = "C";
+        } else if (pola.length == 4) {
             pola[0] = "A"; //damn to make it simple
             pola[1] = "B";
             pola[2] = "C";
@@ -194,12 +198,12 @@ public class FindingResult {
             pola[4] = "E";
         }
         //--- Begin of checking zero chooser ----//
-        int[] dump = new int[Integer.parseInt(database.getTipeSoal()[aktif])];
-        for (int i = 0; i < Integer.parseInt(database.getTipeSoal()[aktif]); i++) {
+        int[] dump = new int[pola.length];
+        for (int i = 0; i < pola.length; i++) {
             dump[i] = 0;
         }
         for (int i = 1; i <= row; i++) {
-            for (int j = 0; j < Integer.parseInt(database.getTipeSoal()[aktif]); j++) {
+            for (int j = 0; j < pola.length; j++) {
                 for (int k = 0; k < col; k++) {
                     if (getLetter()[k][i].equals(pola[j])) {
                         dump[j] = 1;
@@ -208,9 +212,11 @@ public class FindingResult {
                 }
 
             }
-            if (Integer.parseInt(database.getTipeSoal()[aktif]) == 4 && (dump[0] == 1 && dump[1] == 1 && dump[2] == 1 && dump[3] == 1)) {
+            if (pola.length == 3 && (dump[0] == 1 && dump[1] == 1 && dump[2] == 1)) {
                 getEp()[i - 1] = "Efektif";
-            } else if (Integer.parseInt(database.getTipeSoal()[aktif]) == 5 && (dump[0] == 1 && dump[1] == 1 && dump[2] == 1 && dump[3] == 1 && dump[4] == 1)) {
+            } else if (pola.length == 4 && (dump[0] == 1 && dump[1] == 1 && dump[2] == 1 && dump[3] == 1)) {
+                getEp()[i - 1] = "Efektif";
+            } else if (pola.length == 5 && (dump[0] == 1 && dump[1] == 1 && dump[2] == 1 && dump[3] == 1 && dump[4] == 1)) {
                 getEp()[i - 1] = "Efektif";
             } else {
                 getEp()[i - 1] = "Tidak Efektif";
@@ -247,14 +253,14 @@ public class FindingResult {
         }
         for (int i = 0; i < pola.length; i++) {
             for (int j = 0; j < row; j++) {
-                IPcopy[i][j] = (double)getnPc()[i][j];
+                IPcopy[i][j] = (double) getnPc()[i][j];
                 IPcopy[i][j] /= (float) (col - getnB()[j]) / (float) (pola.length - 1);
                 IPcopy[i][j] *= 100;
-                
+
             }
 
         }
- 
+
         for (int i = 0; i < pola.length; i++) {
             for (int j = 0; j < row; j++) {
                 if (IPcopy[i][j] >= 76 && IPcopy[i][j] <= 125) {
@@ -299,7 +305,7 @@ public class FindingResult {
             }
             getIPc()[pos][i] = String.valueOf(getnB()[i]) + " **";
         }
-        
+
     }
 
     public void reliability() {
@@ -359,7 +365,7 @@ public class FindingResult {
             getCorrelation()[i] = String.valueOf(df.format(validity[i]));
             getCorrelationNumber()[i] = Double.parseDouble(df.format(validity[i]).replace(",", "."));
         }
-
+        int a = 0;
     }
 
     /**
@@ -381,8 +387,17 @@ public class FindingResult {
         }
 
     }
-    //BORDER
 
+    public void meanOfValue() {
+        double[] data = new double[col];
+        for (int i = 0; i < col; i++) {
+            data[i] = ((double) NRaW[i][0] / (double) row) * 100;
+        }
+        getTempData()[4] = new DecimalFormat("#.##").format(new Statistics(data).getMean());
+
+    }
+
+//BORDER
     public Database getDatabase() {
         return database;
     }

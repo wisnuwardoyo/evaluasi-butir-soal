@@ -5,8 +5,8 @@
 package com.wisnu.ebs.view;
 
 import com.wisnu.ebs.add.TableCellListener;
+import com.wisnu.ebs.add.TransparentTextArea;
 import com.wisnu.ebs.add.rowTable;
-import com.wisnu.ebs.model.Database;
 import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -66,9 +66,9 @@ public class KeyPanel extends javax.swing.JPanel {
         Scroll = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         toolPanel2 = this.toolPanel;
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setBackground(new Color(225,225,225,20));
 
@@ -139,34 +139,35 @@ public class KeyPanel extends javax.swing.JPanel {
         jPanel4.setBackground(new Color(225,225,225,20));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Petunjuk", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setBackground(new Color(225,225,225,20));
-        jTextPane1.setContentType("text/html"); // NOI18N
-        jTextPane1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(0, 153, 153));
-        jTextPane1.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:justify\">\r\n      \rIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping.\n<br><br>Penggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n    </p>\r\n  </body>\r\n</html>\r\n");
-        jTextPane1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextPane1.setEnabled(false);
-        jTextPane1.setFocusCycleRoot(false);
-        jScrollPane1.setViewportView(jTextPane1);
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new Color(0,0,0,0)
+        );
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPenggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa.");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setOpaque(false);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addContainerGap(322, Short.MAX_VALUE)
                 .addComponent(toolPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(toolPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -211,8 +212,8 @@ public class KeyPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable table;
     private com.wisnu.ebs.view.ToolPanel toolPanel2;
     // End of variables declaration//GEN-END:variables
