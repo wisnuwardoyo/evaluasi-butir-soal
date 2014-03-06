@@ -38,15 +38,17 @@ public class NewFilePanel extends javax.swing.JPanel {
         labKompetensi = new javax.swing.JTextField();
         labSiswa = new javax.swing.JTextField();
         labSoal = new javax.swing.JTextField();
-        radio1 = new javax.swing.JRadioButton();
         radio2 = new javax.swing.JRadioButton();
+        radio3 = new javax.swing.JRadioButton();
         labKKM = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        radio1 = new javax.swing.JRadioButton();
 
-        setBackground(new java.awt.Color(255, 255, 204));
+        setBackground(new java.awt.Color(153, 255, 255));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         panel.setBackground(new java.awt.Color(225,225,225,25)
         );
@@ -58,18 +60,23 @@ public class NewFilePanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Kompetensi");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
         jLabel2.setText("Jumlah Siswa");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
         jLabel3.setText("Jumlah Soal");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
         jLabel4.setText("Tipe Soal");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 51));
         jLabel5.setText("KKM");
 
         labKompetensi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -78,21 +85,8 @@ public class NewFilePanel extends javax.swing.JPanel {
 
         labSoal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        radio1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        radio1.setText("A,B,C,D");
-        radio1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                radio1MouseEntered(evt);
-            }
-        });
-        radio1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radio1ActionPerformed(evt);
-            }
-        });
-
         radio2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        radio2.setText("A,B,C,D,E");
+        radio2.setText("A,B,C,D");
         radio2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 radio2MouseEntered(evt);
@@ -101,6 +95,19 @@ public class NewFilePanel extends javax.swing.JPanel {
         radio2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radio2ActionPerformed(evt);
+            }
+        });
+
+        radio3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        radio3.setText("A,B,C,D,E");
+        radio3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                radio3MouseEntered(evt);
+            }
+        });
+        radio3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio3ActionPerformed(evt);
             }
         });
 
@@ -116,7 +123,21 @@ public class NewFilePanel extends javax.swing.JPanel {
         jLabel8.setText("*");
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 51));
         jLabel9.setText("* Hanya Numerik");
+
+        radio1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        radio1.setText("A, B, C");
+        radio1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                radio1MouseEntered(evt);
+            }
+        });
+        radio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -135,29 +156,31 @@ public class NewFilePanel extends javax.swing.JPanel {
                         .addGap(86, 86, 86)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(labKKM, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radio3)
+                                .addGap(64, 64, 64)
                                 .addComponent(jLabel8))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(radio1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(radio2))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(labSoal, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7))
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(labSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6))
-                            .addComponent(labKompetensi, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labKompetensi, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(panelLayout.createSequentialGroup()
+                                        .addComponent(radio1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(radio2))
+                                    .addComponent(labSoal, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7))
+                            .addComponent(labKKM, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel9))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(labKompetensi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,16 +197,19 @@ public class NewFilePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(radio1)
-                    .addComponent(radio2))
+                    .addComponent(radio2)
+                    .addComponent(radio1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(radio3))
                 .addGap(18, 18, 18)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labKKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -199,31 +225,45 @@ public class NewFilePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio1ActionPerformed
-        radio2.setSelected(false);
-    }//GEN-LAST:event_radio1ActionPerformed
-
     private void radio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio2ActionPerformed
         radio1.setSelected(false);
+        radio3.setSelected(false);
+        repaint();
     }//GEN-LAST:event_radio2ActionPerformed
+
+    private void radio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio3ActionPerformed
+        radio1.setSelected(false);
+        radio2.setSelected(false);
+        repaint();
+    }//GEN-LAST:event_radio3ActionPerformed
 
     private void panelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMouseEntered
         // TODO add your handling code here:
         repaint();
     }//GEN-LAST:event_panelMouseEntered
 
-    private void radio1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radio1MouseEntered
-        repaint();
-    }//GEN-LAST:event_radio1MouseEntered
-
     private void radio2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radio2MouseEntered
         repaint();
     }//GEN-LAST:event_radio2MouseEntered
+
+    private void radio3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radio3MouseEntered
+        repaint();
+    }//GEN-LAST:event_radio3MouseEntered
+
+    private void radio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio1ActionPerformed
+        radio2.setSelected(false);
+        radio3.setSelected(false);
+        repaint();
+    }//GEN-LAST:event_radio1ActionPerformed
+
+    private void radio1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radio1MouseEntered
+        repaint();
+    }//GEN-LAST:event_radio1MouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,13 +283,14 @@ public class NewFilePanel extends javax.swing.JPanel {
     private javax.swing.JPanel panel;
     private javax.swing.JRadioButton radio1;
     private javax.swing.JRadioButton radio2;
+    private javax.swing.JRadioButton radio3;
     // End of variables declaration//GEN-END:variables
     public boolean itemCheck() {
         if (!(labSoal.getText().isEmpty()
                 || labKKM.getText().isEmpty())
                 || labKompetensi.getText().isEmpty()
                 || labSiswa.getText().isEmpty()
-                && (radio1.isSelected() || radio2.isSelected())) {
+                && (radio1.isSelected() ||radio2.isSelected() || radio3.isSelected())) {
             try {
                 Integer.parseInt(labSiswa.getText());
                 Integer.parseInt(labSoal.getText());
@@ -266,7 +307,13 @@ public class NewFilePanel extends javax.swing.JPanel {
     }
 
     public int getRadio() {
-        return radio1.isSelected() ? 4 : 5;
+        if (radio1.isSelected()) {
+            return 3;
+        } else if (radio2.isSelected()) {
+            return 4;
+        } else {
+            return 5;
+        }
     }
 
     public JTextField getLabSoal() {
@@ -310,12 +357,15 @@ public class NewFilePanel extends javax.swing.JPanel {
     }
 
     public void setRadio(int radio) {
-        if (radio == 4) {
-            radio1.setSelected(true);
-            radio2.setSelected(false);
-        } else {
-            radio1.setSelected(false);
+        if (radio == 3) {
             radio2.setSelected(true);
+            radio3.setSelected(false);
+        } else if (radio == 4) {
+            radio2.setSelected(true);
+            radio3.setSelected(false);
+        } else {
+            radio2.setSelected(false);
+            radio3.setSelected(true);
         }
     }
 

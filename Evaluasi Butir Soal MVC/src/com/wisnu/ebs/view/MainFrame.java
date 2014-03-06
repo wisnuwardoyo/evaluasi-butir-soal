@@ -91,8 +91,62 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
+    public void saveDocumentAction() {
+        saveDialog.setAcceptAllFileFilterUsed(false);
+        saveDialog.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                if (file.isDirectory()) {
+                    return true;
+                }
+                String f = file.getName().toUpperCase();
+                if (f.endsWith(".RMD")) {
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public String getDescription() {
+                return "RMD File";
+            }
+        });
+        try {
+            saveDialog.setCurrentDirectory(new File(new File("").getCanonicalPath()));
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int returnVal = saveDialog.showDialog(new JDialog(), "Save");
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                String path = saveDialog.getSelectedFile().getCanonicalPath().toString();
+                if (new File(path).exists() || new File(path + ".rmd").exists()) {
+                    int confirm = JOptionPane.showConfirmDialog(this, "Do You Want to Overwrite /n " + path + "?", "Save File", JOptionPane.YES_NO_OPTION);
+                    if (confirm == 0) {
+                        path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
+                        controllerUtama.saveDocumentAction(path);
+                        controllerUtama.openDocumentAction(path + ".rmd");
+                        this.repaint();
+                    }
+
+                } else {
+                    controllerUtama.saveDocumentAction(path);
+                    controllerUtama.openDocumentAction(path + ".rmd");
+                    this.repaint();
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
     public void newDocumentAction() {
-        controllerUtama.createNewDocument();
+        try {
+            controllerUtama.createNewDocument();
+        } finally {
+            isFromFile = true;
+        }
     }
 
     public void itemCheck(boolean cek) {
@@ -389,7 +443,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setText("Tindakan :");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/elliot-condon.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/wisnu.png"))); // NOI18N
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -446,12 +500,12 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -646,55 +700,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_button_sc_ansActionPerformed
 
     private void menu_item_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_saveActionPerformed
-        // TODO add your handling code here:
-        saveDialog.setAcceptAllFileFilterUsed(false);
-        saveDialog.setFileFilter(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                if (file.isDirectory()) {
-                    return true;
-                }
-                String f = file.getName().toUpperCase();
-                if (f.endsWith(".RMD")) {
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public String getDescription() {
-                return "RMD File";
-            }
-        });
-        try {
-            saveDialog.setCurrentDirectory(new File(new File("").getCanonicalPath()));
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        int returnVal = saveDialog.showDialog(new JDialog(), "Save");
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            try {
-                String path = saveDialog.getSelectedFile().getCanonicalPath().toString();
-                if (new File(path).exists() || new File(path + ".rmd").exists()) {
-                    int confirm = JOptionPane.showConfirmDialog(this, "Do You Want to Overwrite /n " + path + "?", "Save File", JOptionPane.YES_NO_OPTION);
-                    if (confirm == 0) {
-                        path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
-                        controllerUtama.saveDocumentAction(path);
-                        controllerUtama.openDocumentAction(path + ".rmd");
-                        this.repaint();
-                    }
-
-                } else {
-                    controllerUtama.saveDocumentAction(path);
-                    controllerUtama.openDocumentAction(path + ".rmd");
-                    this.repaint();
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
+        saveDocumentAction();
     }//GEN-LAST:event_menu_item_saveActionPerformed
 
     private void button_sc_resActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_resActionPerformed
@@ -723,7 +729,7 @@ public class MainFrame extends javax.swing.JFrame {
         itemCheck(false);
         setFrameTitle("Evaluasi Butir Soal");
         scrollPane.setViewportView(jPanel10);
-
+        isFromFile = false;
     }//GEN-LAST:event_menu_item_closeActionPerformed
 
     private void menu_item_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_configActionPerformed
@@ -786,7 +792,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_item_openActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       
+        if (isFromFile) {
+            int save = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpannya terlebih dahulu?"
+                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.OK_OPTION);
+            if (save == 0) {
+                controllerUtama.saveDocumentAction(controllerUtama.getPath().replace(".xml", "").replace(".XML", ""));
+            }
+        }
     }//GEN-LAST:event_formWindowClosing
 
 
