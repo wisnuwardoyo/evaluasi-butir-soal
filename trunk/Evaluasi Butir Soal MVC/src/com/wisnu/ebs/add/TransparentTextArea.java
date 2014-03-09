@@ -18,7 +18,8 @@ import javax.swing.JTextArea;
 public class TransparentTextArea extends JTextArea {
 
     public TransparentTextArea() {
-        setOpaque(false);
+        super.setOpaque(false);
+        
     }
 
     @Override
@@ -33,4 +34,8 @@ public class TransparentTextArea extends JTextArea {
         super.paintComponent(g);
     }
 
+    @Override
+    public void setOpaque(boolean bln) {
+    }
+    
 }

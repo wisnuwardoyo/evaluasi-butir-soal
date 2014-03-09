@@ -130,7 +130,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Scroll" pref="303" max="32767" attributes="0"/>
+                  <Component id="Scroll" pref="407" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -180,7 +180,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="322" max="32767" attributes="0"/>
+                  <EmptySpace pref="351" max="32767" attributes="0"/>
                   <Component id="toolPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -207,6 +207,9 @@
           </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -217,15 +220,18 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new Color(0,0,0,0)&#xd;&#xa;" type="code"/>
+                  <Connection code="new Color(0, 0, 0, 0)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="33" red="0" type="rgb"/>
+                </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL&#xa;&#xa;Isikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. &#xa;&#xa;Penggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.&#xa;&#xa;Tekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa."/>
+                <Property name="text" type="java.lang.String" value="SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL&#xa;&#xa;Isikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. &#xa;&#xa;Penggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.&#xa;&#xa;Tekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa.&#xa;&#xa;KLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>

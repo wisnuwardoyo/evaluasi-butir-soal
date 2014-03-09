@@ -64,7 +64,7 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-//        openDocumentAction("example.rmd");
+        //openDocumentAction("example.rmd");
     }
 
     //New Document 
@@ -197,6 +197,7 @@ public class MainController implements MainListener {
         keyPanel = new KeyPanel();
         settingKeyPanelDataTable();
         mainFrame.setViewPort(keyPanel);
+        
     }
 
     public void settingKeyPanelDataTable() {
@@ -274,7 +275,7 @@ public class MainController implements MainListener {
         findingResult.validity();
         findingResult.rightAndWrong();
         findingResult.meanOfValue();
-
+        findingResult.sumPassGrade();
     }
 
     public void settingResultPanelDataTable() {
@@ -306,10 +307,16 @@ public class MainController implements MainListener {
                 if (j == 1) {
                     if ((float) findingResult.getTk()[i] / row <= 0.30) {
                         dataTable[0][i][j] = "Sukar";
+                        if((float) findingResult.getTk()[i] / row <= 0.15){
+                            dataTable[0][i][j] = "Sangat Sukar";
+                        }
                     } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
                         dataTable[0][i][j] = "Sedang";
                     } else {
                         dataTable[0][i][j] = "Mudah";
+                        if((float) findingResult.getTk()[i] / row >= 0.86){
+                            dataTable[0][i][j] = "Sangat Mudah";
+                        }
                     }
                 }
                 if (j == 2) {
@@ -461,7 +468,7 @@ public class MainController implements MainListener {
         resultPanel.setToolPanel(toolBarSetting(3));
         
         resultPanel.setKeterangan(findingResult.getTempData());
-        int a = 0;
+        //int a = 0;
 
     }
 
@@ -520,13 +527,13 @@ public class MainController implements MainListener {
         helpPanel = new HelpPanel();
         List<Help> readHelp = helpReader.readConfig();
         int i = 0;
-        helpPanel.setContents(new String[3][2]);
+        helpPanel.setContents(new String[5][2]);
         for (Help help : readHelp) {
             helpPanel.getContents()[i] = help.getContent();
             i++;
         }
 
-        JOptionPane.showConfirmDialog(null, helpPanel);
+        JOptionPane.showConfirmDialog(null, helpPanel,"HELP CONTENT",JOptionPane.CLOSED_OPTION);
     }
 
     public void repaint() {
