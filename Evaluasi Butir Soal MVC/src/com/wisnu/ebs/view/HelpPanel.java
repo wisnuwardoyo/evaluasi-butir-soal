@@ -5,14 +5,16 @@
  */
 package com.wisnu.ebs.view;
 
+import java.awt.Cursor;
+
 /**
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class HelpPanel extends javax.swing.JPanel {
-    
-    String [][] contents;
-    
+
+    String[][] contents;
+
     public HelpPanel() {
         initComponents();
     }
@@ -34,10 +36,11 @@ public class HelpPanel extends javax.swing.JPanel {
         labJudul = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 255, 255));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jList1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jList1.setForeground(new java.awt.Color(0, 51, 51));
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Membuat Dokumen", "Membuka Dokumen", "Konfigurasi Dokumen", "Menganalisis Dokumen", "Mencetak Dokumen", " " };
@@ -57,7 +60,7 @@ public class HelpPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -65,13 +68,13 @@ public class HelpPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         textPane.setEditable(false);
         textPane.setContentType("text/html"); // NOI18N
         textPane.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:center\">\r\n     \n    </p>\r\n  </body>\r\n</html>\r\n");
+        textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:justify\">\r\n     Selamat datang di pusat bantuan PROGRAM EVALUASI BUTIR SOAL\n<br>KLIK pada menu disamping untuk melihat topik yang disediakan.\n    </p>\r\n  </body>\r\n</html>\r\n");
         jScrollPane1.setViewportView(textPane);
 
         labJudul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -99,19 +102,25 @@ public class HelpPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(labJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        String SelectedItem = String.valueOf(jList1.getSelectedIndex());
-        String htmlTagOpen = "<html> <head> </head> <body><p style='margin-top: 0;text-align:justify'>";
-        String htmlTagClose ="</p></body></html>";
-        textPane.setText(htmlTagOpen+contents[jList1.getSelectedIndex()][1]+htmlTagClose);
-        
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            String SelectedItem = String.valueOf(jList1.getSelectedIndex());
+            String htmlTagOpen = "<html> <head> </head> <body><p style='margin-top: 0;text-align:justify'>";
+            String htmlTagClose = "</p></body></html>";
+            textPane.setText(htmlTagOpen + contents[jList1.getSelectedIndex()][1] + htmlTagClose);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+
+
     }//GEN-LAST:event_jList1MouseClicked
 
 
@@ -123,14 +132,13 @@ public class HelpPanel extends javax.swing.JPanel {
     private javax.swing.JLabel labJudul;
     private javax.swing.JTextPane textPane;
     // End of variables declaration//GEN-END:variables
-    
-    public void setContents(String [][] content){
+
+    public void setContents(String[][] content) {
         this.contents = content;
     }
-    public String[][] getContents(){
+
+    public String[][] getContents() {
         return this.contents;
     }
 
-    
-    
 }

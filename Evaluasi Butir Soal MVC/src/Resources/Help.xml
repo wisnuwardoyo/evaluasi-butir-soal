@@ -3,20 +3,32 @@
 <root>
     <item id="0">
         <judul>Membuat Dokumen</judul>
-        <isi>Untuk membuat dokumen baru langkah-langkahnya adalah sebagai berikut:LINE
+        <isi>Untuk membuat dokumen baru langkah-langkahnya adalah sebagai berikut:LINELINE
             1. Klik File -> New LINE2. Isikan Data-data dengan lengkap sesuai keterangan yang tertera. Kemudian Klik Yes.LINE3. Setelah klik Yes, anda akan berada pada halaman konfigurasi tempat anda mengatur dokumen anda.
         </isi>        
     </item>
     <item id="1">
         <judul>Membuka Dokumen</judul>
-        <isi>Untuk membuka dokumen yang telah tersimpan langkah-langkahnya adalah sebagai berikut:LINE
+        <isi>Untuk membuka dokumen yang telah tersimpan langkah-langkahnya adalah sebagai berikut:LINELINE
             1. Klik File -> OpenLINE2. pilih file yang akan dibuka. Lalu pilih Open.LINE3. Setelah terbuka anda akan berada pada halaman konfigurasi, tempat anda mengatur dokumen anda.
         </isi>        
     </item>
     <item id="2">
         <judul>Konfigurasi Dokumen</judul>
-        <isi>Untuk membuat dokumen baru langkah-langkahnya adalah sebagai berikut:LINE
-            1. Klik File -> NewLINE2. Isikan Data-data dengan lengkap sesuai keterangan yang tertera. Kemudian Klik Yes.LINE3. Setelah klik Yes, anda akan berada pada halam konfigurasi tempat anda mengatur dokumen anda.
+        <isi>Untuk mengatur konfigurasi dari dokumen anda,langkah-langkahnya adalah sebagai berikut:LINELINE
+            1. Buka atau buat dokumen baru.LINE2. Setelah dokumen terbuka, Klik View -> Konfigurasi.LINE3. Akan terdapat dua bagian pengaturan, disebelah kiri merupkan bagian pengaturan berkas (berkas adalah bagian kecil dari dokumen yang berisi kompetensi dalam satu mata pelajaran) sedangakan disisi kanan akan terdapat konfigurasi dokumen.LINE4. Pada sisi kiri anda dapat melakukan konfigurasi seperti mengganti nama mata pelajaran,nama guru, nama kelas, dan merubah pengaturan berkas yang sedang aktif.LINE5. Pada sisi kanan anda dapat melakukan konfigurasi dokumen, seperti MEMILIH BERKAS AKTIF, menambah berkasdan menghapus berkas.
+        </isi>        
+    </item>
+    <item id="3">
+        <judul>Menganalisis Dokumen</judul>
+        <isi> Untuk menganalisis dokumen, langkah-langkahnya adalah sebagai berikut:LINELINE
+            1. Buka atau buat dokumen baru.LINE2. Setelah terbuka, anda akan berada pada menu KUNCI JAWABAN. Masukan kunci jawaban pada tabel yang tersedia.LINE3. Setelah semua kunci jawaban terisi, tekan tombol NEXT (>) pada pojok kanan bawah, atau klik tombol LEMBAR JAWABAN pada bagian kiri panel. Isikan hasil pekerjaan siswa pada tabel yang sudah disediakan.(Perhatian antara kolom soal dan siswa).LINE4. Setelah pengisian keduanya selesai, tekan tombol NEXT (>) pada pojok kanan bawah, atau klik tombol HASIL ANALISIS pada bagian kiri panel. Dan hasilnya akan muncul. 
+        </isi>        
+    </item>
+    <item id="4">
+        <judul>Mencetak Dokumen</judul>
+        <isi>Untuk mencetak dokumen, langkah-langkahnya adalah sebagai berikut:LINELINE
+            1. Buka atau buat dokumen baru.LINE2. Pastikan anda sudah mengisi KUNCI JAWABAN dan LEMBAR JAWABAN untuk mendapatkan hasil yang akurat.LINE3. Klik tombol CETAK DOKUMEN pada panel kiri, maka akan terbuka halaman baru, anda dapat mencetak dokumen langsung ke printer atau menyimpannya dalam bentuk lain.
         </isi>        
     </item>
 </root>

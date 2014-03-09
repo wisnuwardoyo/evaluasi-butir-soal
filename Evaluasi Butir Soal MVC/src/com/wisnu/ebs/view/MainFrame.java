@@ -272,6 +272,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new Color (225,225,225,30));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 255, 102)));
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel3MouseMoved(evt);
+            }
+        });
 
         jPanel4.setBackground(new Color(225,225,225,20));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 153, 0)));
@@ -281,6 +286,11 @@ public class MainFrame extends javax.swing.JFrame {
         button_sc_key.setText("KUNCI JAWABAN");
         button_sc_key.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         button_sc_key.setOpaque(false);
+        button_sc_key.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                button_sc_keyMouseReleased(evt);
+            }
+        });
         button_sc_key.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_sc_keyActionPerformed(evt);
@@ -529,9 +539,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -545,7 +555,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -649,6 +661,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jMenuItem1.setText("Bantuan");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -658,9 +671,11 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
         jMenu2.add(jSeparator2);
 
+        jMenuItem3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jMenuItem3.setText("Beli Produk");
         jMenu2.add(jMenuItem3);
 
+        jMenuItem2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jMenuItem2.setText("Tetang Program");
         jMenu2.add(jMenuItem2);
 
@@ -687,10 +702,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_item_newActionPerformed
 
     private void button_sc_keyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_keyActionPerformed
-        // TODO add your handling code here:
-        controllerUtama.openingKeyPanel();
-
-
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            controllerUtama.openingKeyPanel();
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+            repaint();
+        }
+        repaint();
     }//GEN-LAST:event_button_sc_keyActionPerformed
 
     private void button_sc_ansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_ansActionPerformed
@@ -793,13 +812,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (isFromFile) {
-            int save = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menyimpannya terlebih dahulu?"
+            int save = JOptionPane.showConfirmDialog(null, "Anda telah membuka / membuat dokumen"
                     + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.OK_OPTION);
             if (save == 0) {
-                controllerUtama.saveDocumentAction(controllerUtama.getPath().replace(".xml", "").replace(".XML", ""));
+                controllerUtama.saveDocumentAction(controllerUtama.getPath().replace(".rmd", "").replace(".RMD", ""));
             }
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jPanel3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseMoved
+        repaint();
+    }//GEN-LAST:event_jPanel3MouseMoved
+
+    private void button_sc_keyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_sc_keyMouseReleased
+       repaint();
+    }//GEN-LAST:event_button_sc_keyMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

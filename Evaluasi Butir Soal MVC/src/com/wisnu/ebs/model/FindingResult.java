@@ -20,7 +20,7 @@ public class FindingResult {
     private String[] answerKey;
     private String[] ep;
     private String[] correlation;
-    private String[] tempData = new String[5];
+    private String[] tempData = new String[7];
     private int[][] NRaW;
     private int[][] nPc;
     private int[] tk;
@@ -396,6 +396,20 @@ public class FindingResult {
         getTempData()[4] = new DecimalFormat("#.##").format(new Statistics(data).getMean());
 
     }
+
+    public void sumPassGrade() {
+        int lulus = 0;
+        int tlulus = 0;
+        for (int i = 0; i < col; i++) {
+            if (((float) getNRaW()[i][0] / row) * 100 >= Float.parseFloat(database.getKKM()[aktif])) {
+                lulus += 1;
+            }else{
+                tlulus +=1;
+            }
+        }
+        getTempData()[5] = String.valueOf(lulus);
+        getTempData()[6] = String.valueOf(tlulus);
+   }
 
 //BORDER
     public Database getDatabase() {

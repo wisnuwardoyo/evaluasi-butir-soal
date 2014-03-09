@@ -21,9 +21,9 @@ public class KeyPanel extends javax.swing.JPanel {
     private String[][] dataTable;
     private int type;
     private ToolPanel toolPanel;
-    
+
     public KeyPanel() {
-     
+
     }
 
     public void setTable() {
@@ -48,8 +48,6 @@ public class KeyPanel extends javax.swing.JPanel {
         Scroll.setRowHeaderView(listRowHeader);
         //System.out.println(table.getTableHeader().getBackground());
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,21 +130,24 @@ public class KeyPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel4.setBackground(new Color(225,225,225,20));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Petunjuk", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
+        jScrollPane2.setOpaque(false);
+
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new Color(0,0,0,0)
+        jTextArea1.setBackground(new Color(0, 0, 0, 0)
         );
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 51, 51));
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPenggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa.");
+        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPenggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa.\n\nKLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut.");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setOpaque(false);
         jScrollPane2.setViewportView(jTextArea1);
@@ -156,7 +157,7 @@ public class KeyPanel extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(322, Short.MAX_VALUE)
+                .addContainerGap(351, Short.MAX_VALUE)
                 .addComponent(toolPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane2)
@@ -217,24 +218,31 @@ public class KeyPanel extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private com.wisnu.ebs.view.ToolPanel toolPanel2;
     // End of variables declaration//GEN-END:variables
-    
-    public JTable getTable(){
+
+    public JTable getTable() {
         return this.table;
     }
-    
-    public void setDataTable(String[][] dataTable){
+
+    public void setDataTable(String[][] dataTable) {
         this.dataTable = dataTable;
     }
-    public void setRowHeader(String[] rowHeader){
+
+    public void setRowHeader(String[] rowHeader) {
         this.rowHeader = rowHeader;
     }
-    public void setType(int type){
+
+    public void setType(int type) {
         this.type = type;
     }
-    
-    public void setToolPanel(ToolPanel panel){
+
+    public void setToolPanel(ToolPanel panel) {
         this.toolPanel = panel;
         initComponents();
+        jScrollPane2.getViewport().setOpaque(false);
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setViewportBorder(null);
+
+      
     }
-    
+
 }

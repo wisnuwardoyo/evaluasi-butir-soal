@@ -161,7 +161,7 @@
 	<title>
 		<band height="113" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="86" width="425" height="27" backcolor="#0000FF" uuid="0808a6cd-fbd1-4ea6-962b-bca8551ff5c0"/>
+				<reportElement x="0" y="86" width="425" height="27" backcolor="#009933" uuid="0808a6cd-fbd1-4ea6-962b-bca8551ff5c0"/>
 			</rectangle>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="263" y="93" width="162" height="20" forecolor="#FFFFFF" uuid="5af38dab-86fb-4fd6-9a8c-eb864373ec41"/>
@@ -171,10 +171,10 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="425" y="0" width="100" height="113" backcolor="#FFFFCC" uuid="083c15f7-3cbc-467d-9b33-984bb28e7a7f"/>
+				<reportElement x="425" y="0" width="100" height="113" backcolor="#FFFFFF" uuid="083c15f7-3cbc-467d-9b33-984bb28e7a7f"/>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Opaque" x="0" y="0" width="425" height="80" forecolor="#0000FF" backcolor="#0099FF" uuid="8e62a8ed-78f9-4b35-9d7b-5b62a663ecd0"/>
+				<reportElement mode="Opaque" x="0" y="0" width="425" height="80" forecolor="#000000" backcolor="#00FF33" uuid="8e62a8ed-78f9-4b35-9d7b-5b62a663ecd0"/>
 			</rectangle>
 			<staticText>
 				<reportElement mode="Transparent" x="8" y="7" width="405" height="73" forecolor="#FFFFFF" backcolor="#000000" uuid="70685088-254b-4f46-8a04-4686997a4902"/>
@@ -183,6 +183,10 @@
 				</textElement>
 				<text><![CDATA[HASIL ANALISIS BUTIR SOAL]]></text>
 			</staticText>
+			<image>
+				<reportElement x="431" y="7" width="90" height="105" uuid="20986cfe-0961-48ae-a67a-48f098c6767b"/>
+				<imageExpression><![CDATA["./src/Resources/logo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
