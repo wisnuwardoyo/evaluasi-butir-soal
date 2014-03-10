@@ -22,6 +22,7 @@ public class FindingResult {
     private String[] correlation;
     private String[] tempData = new String[7];
     private int[][] NRaW;
+    private int[][] NRaW2;
     private int[][] nPc;
     private int[] tk;
     private int[] nB;
@@ -39,6 +40,7 @@ public class FindingResult {
         setLetter(new String[col][row + 1]);
         setNumber(new String[col][row + 3]);
         setNRaW(new int[col][2]);
+        setNRaW2(new int[col][2]);
         setAnswerKey(new String[row]);
         setScore(new int[col]);
         setTk(new int[row]);
@@ -388,6 +390,21 @@ public class FindingResult {
 
     }
 
+    public void rightAndWrong2() {
+        for (int i = 0; i < col; i++) {
+            getNRaW2()[i][0] = 0;
+            getNRaW2()[i][1] = 0;
+            for (int j = 1; j <= row; j++) {
+                if (getNumber()[i][j].equals("1")) {
+                    getNRaW2()[i][0] += 1;
+                } else {
+                    getNRaW2()[i][1] += 1;
+                }
+            }
+        }
+
+    }
+
     public void meanOfValue() {
         double[] data = new double[col];
         for (int i = 0; i < col; i++) {
@@ -403,13 +420,13 @@ public class FindingResult {
         for (int i = 0; i < col; i++) {
             if (((float) getNRaW()[i][0] / row) * 100 >= Float.parseFloat(database.getKKM()[aktif])) {
                 lulus += 1;
-            }else{
-                tlulus +=1;
+            } else {
+                tlulus += 1;
             }
         }
         getTempData()[5] = String.valueOf(lulus);
         getTempData()[6] = String.valueOf(tlulus);
-   }
+    }
 
 //BORDER
     public Database getDatabase() {
@@ -556,4 +573,11 @@ public class FindingResult {
         this.correlationNumber = correlationNumber;
     }
 
+    public int[][] getNRaW2() {
+        return NRaW2;
+    }
+
+    public void setNRaW2(int[][] NRaW2) {
+        this.NRaW2 = NRaW2;
+    }
 }

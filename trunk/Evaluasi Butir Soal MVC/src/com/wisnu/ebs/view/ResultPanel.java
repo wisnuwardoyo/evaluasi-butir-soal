@@ -1067,9 +1067,17 @@ public class ResultPanel extends javax.swing.JPanel {
         labRata.setText(data[4]);
         labSimpangan.setText(data[1]);
         labKorelasi.setText(data[2]);
-        labReabilitas.setText(data[3]);
-        labLulus.setText(data[5]+" Siswa");
-        labTidakLulus.setText(data[6]+" Siswa");
+        if (Double.parseDouble(data[3].replace(",", ".")) >= 0.70
+                && Double.parseDouble(data[3].replace(",", ".")) < 0.90) {
+             labReabilitas.setText("Baik ("+data[3]+")");
+        } else if (Double.parseDouble(data[3].replace(",", ".")) >= 0.90) {
+             labReabilitas.setText("Sangat Baik ("+data[3]+")");
+        } else {
+             labReabilitas.setText("Buruk ("+data[3]+")");
+        }
+       
+        labLulus.setText(data[5] + " Siswa");
+        labTidakLulus.setText(data[6] + " Siswa");
     }
 
     public JTable getTable1() {
