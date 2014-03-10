@@ -182,12 +182,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
         openDialog = new javax.swing.JFileChooser();
         saveDialog = new javax.swing.JFileChooser();
-        panel_controll = new ImageBackgroundPanel(new ImageIcon("./src/icon/bg.png").getImage())
-        ;
-        jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panel_home = new ImageBackgroundPanel(image);
         jPanel3 = new javax.swing.JPanel();
@@ -226,33 +222,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 6));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
-        );
-
         saveDialog.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-
-        panel_controll.setMinimumSize(new java.awt.Dimension(520, 80));
-        panel_controll.setName(""); // NOI18N
-        panel_controll.setPreferredSize(new java.awt.Dimension(520, 80));
-        panel_controll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/key_iconHover.png"))); // NOI18N
-        jLabel11.setRequestFocusEnabled(false);
-        panel_controll.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 78));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Evaluasi Butir Soal");
@@ -671,12 +643,13 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
         jMenu2.add(jSeparator2);
 
-        jMenuItem3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jMenuItem3.setText("Beli Produk");
-        jMenu2.add(jMenuItem3);
-
         jMenuItem2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jMenuItem2.setText("Tetang Program");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -789,17 +762,23 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_scrollPaneMouseMoved
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-        // TODO add your handling code here:
+        // TODO add your handling code here
     }//GEN-LAST:event_formMouseMoved
 
     private void button_sc_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_printActionPerformed
-        try {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            controllerUtama.openingResultPanel();
-            controllerUtama.print();
-        } finally {
-            this.setCursor(Cursor.getDefaultCursor());
+        PrintPanel printPanel = new PrintPanel();
+        int result = JOptionPane.showConfirmDialog(null,printPanel , "PRINT", JOptionPane.OK_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+        if (result != 1) {
+            try {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                controllerUtama.openingResultPanel();
+                controllerUtama.print(printPanel.getSelection());
+            } finally {
+                this.setCursor(Cursor.getDefaultCursor());
+            }
         }
+
     }//GEN-LAST:event_button_sc_printActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -825,8 +804,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseMoved
 
     private void button_sc_keyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_sc_keyMouseReleased
-       repaint();
+        repaint();
     }//GEN-LAST:event_button_sc_keyMouseReleased
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JOptionPane.showConfirmDialog(null, new AboutPanel(), "About", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -837,7 +820,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -852,9 +834,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -871,7 +851,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_item_open;
     private javax.swing.JMenuItem menu_item_save;
     private javax.swing.JFileChooser openDialog;
-    private javax.swing.JPanel panel_controll;
     private javax.swing.JPanel panel_home;
     private javax.swing.JFileChooser saveDialog;
     private javax.swing.JScrollPane scrollPane;

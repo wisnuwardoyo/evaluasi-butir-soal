@@ -6,6 +6,8 @@ import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
 import com.wisnu.ebs.model.FindingResult;
 import com.wisnu.ebs.model.PrintData;
+import com.wisnu.ebs.model.PrintDataPengecoh;
+import com.wisnu.ebs.model.PrintDataSiswa;
 import com.wisnu.ebs.view.AnsPanel;
 import com.wisnu.ebs.view.ConfPanel;
 import com.wisnu.ebs.view.HelpPanel;
@@ -64,7 +66,7 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        //openDocumentAction("example.rmd");
+       //openDocumentAction("example.rmd");
     }
 
     //New Document 
@@ -197,7 +199,7 @@ public class MainController implements MainListener {
         keyPanel = new KeyPanel();
         settingKeyPanelDataTable();
         mainFrame.setViewPort(keyPanel);
-        
+
     }
 
     public void settingKeyPanelDataTable() {
@@ -274,6 +276,7 @@ public class MainController implements MainListener {
         findingResult.reliability();
         findingResult.validity();
         findingResult.rightAndWrong();
+        findingResult.rightAndWrong2();
         findingResult.meanOfValue();
         findingResult.sumPassGrade();
     }
@@ -307,14 +310,14 @@ public class MainController implements MainListener {
                 if (j == 1) {
                     if ((float) findingResult.getTk()[i] / row <= 0.30) {
                         dataTable[0][i][j] = "Sukar";
-                        if((float) findingResult.getTk()[i] / row <= 0.15){
+                        if ((float) findingResult.getTk()[i] / row <= 0.15) {
                             dataTable[0][i][j] = "Sangat Sukar";
                         }
                     } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
                         dataTable[0][i][j] = "Sedang";
                     } else {
                         dataTable[0][i][j] = "Mudah";
-                        if((float) findingResult.getTk()[i] / row >= 0.86){
+                        if ((float) findingResult.getTk()[i] / row >= 0.86) {
                             dataTable[0][i][j] = "Sangat Mudah";
                         }
                     }
@@ -403,10 +406,16 @@ public class MainController implements MainListener {
                 if (j == 0) {
                     if ((float) findingResult.getTk()[i] / row <= 0.30) {
                         dataTable[3][i][j] = "Sukar";
+                        if ((float) findingResult.getTk()[i] / row <= 0.15) {
+                            dataTable[3][i][j] = "Sangat Sukar";
+                        }
                     } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
                         dataTable[3][i][j] = "Sedang";
                     } else {
                         dataTable[3][i][j] = "Mudah";
+                        if ((float) findingResult.getTk()[i] / row >= 0.86) {
+                            dataTable[3][i][j] = "Sangat Mudah";
+                        }
                     }
                 }
                 if (j == 1) {
@@ -434,7 +443,16 @@ public class MainController implements MainListener {
                     }
                 }
                 if (j == 4) {
-                    dataTable[3][i][j] = "-";
+                    if (dataTable[3][i][0].equals("Sangat Sukar")
+                            || dataTable[3][i][0].equals("Sangat Mudah")
+                            || dataTable[3][i][1].equals("Buruk")) {
+                        dataTable[3][i][j] = "Dibuang";
+                    }else if(dataTable[3][i][1].equals("Cukup")
+                            || dataTable[3][i][2].equals("Tidak Efektif")){
+                         dataTable[3][i][j] = "Revisi";
+                    }else{
+                         dataTable[3][i][j] = "Pertahankan";
+                    }
                 }
             }
         }
@@ -466,7 +484,7 @@ public class MainController implements MainListener {
         resultPanel.setColHeader2(colHeader2);
         resultPanel.setDataTable(dataTable);
         resultPanel.setToolPanel(toolBarSetting(3));
-        
+
         resultPanel.setKeterangan(findingResult.getTempData());
         //int a = 0;
 
@@ -478,23 +496,64 @@ public class MainController implements MainListener {
                 JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
     }
 
-    public void print() {
-        try {
+    public void print(int selection) {
+        switch (selection) {
+            case 0:
+                try {
 
-            String reportName = "./src/com/wisnu/ebs/report/printmodel.jrxml";
-            String compiledName = "./src/com/wisnu/ebs/report/printmodel.jasper";
-            JasperDesign jasperDesign = JRXmlLoader.load(reportName);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
-                    new JRBeanCollectionDataSource(
-                            getDataTable()));
-            JasperViewer.viewReport(jasperPrint, false);
+                    String reportName = "./src/com/wisnu/ebs/report/printmodel.jrxml";
+                    String compiledName = "./src/com/wisnu/ebs/report/printmodel.jasper";
+                    JasperDesign jasperDesign = JRXmlLoader.load(reportName);
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
+                            new JRBeanCollectionDataSource(
+                                    getDataTable()));
+                    JasperViewer.viewReport(jasperPrint, false);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("reports Error  " + e.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("reports Error  " + e.toString());
 
+                }
+                break;
+            case 1:
+                try {
+
+                    String reportName = "./src/com/wisnu/ebs/report/printmodel2.jrxml";
+                    String compiledName = "./src/com/wisnu/ebs/report/printmodel2.jasper";
+                    JasperDesign jasperDesign = JRXmlLoader.load(reportName);
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
+                            new JRBeanCollectionDataSource(
+                                    getDataTable2()));
+                    JasperViewer.viewReport(jasperPrint, false);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("reports Error  " + e.toString());
+
+                }
+                break;
+            case 2:
+                try {
+
+                    String reportName = "./src/com/wisnu/ebs/report/printmodel3.jrxml";
+                    String compiledName = "./src/com/wisnu/ebs/report/printmodel3.jasper";
+                    JasperDesign jasperDesign = JRXmlLoader.load(reportName);
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
+                            new JRBeanCollectionDataSource(
+                                    getDataTable3()));
+                    JasperViewer.viewReport(jasperPrint, false);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("reports Error  " + e.toString());
+
+                }
+                break;
         }
+
     }
 
     public List<Object> getDataTable() {
@@ -510,12 +569,102 @@ public class MainController implements MainListener {
             data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
             data.setSiswa(database.getJmlSiswa()[aktif]);
             data.setSoal(database.getJmlSoal()[aktif]);
-            data.setReabilitas(String.valueOf(this.findingResult.getTempData()[3]));
+
+            if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.70
+                    && Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) < 0.90) {
+                data.setReabilitas("Baik");
+            } else if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.90) {
+                data.setReabilitas("Sangat Baik");
+            } else {
+                data.setReabilitas("Buruk");
+            }
             data.setTk(resultPanel.getTable4().getValueAt(i, 0).toString());
             data.setDb(resultPanel.getTable4().getValueAt(i, 1).toString());
             data.setKp(resultPanel.getTable4().getValueAt(i, 2).toString());
             data.setHm(resultPanel.getTable4().getValueAt(i, 3).toString());
             data.setKt(resultPanel.getTable4().getValueAt(i, 4).toString());
+
+            object.add(data);
+        }
+
+        return object;
+    }
+
+    public List<Object> getDataTable2() {
+        int aktif = database.getBerkasAktif();
+        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
+        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
+        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+
+        List<Object> object = new LinkedList<Object>();
+
+        for (int i = 0; i < row; i++) {
+            PrintDataPengecoh data = new PrintDataPengecoh();
+            data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
+            data.setSiswa(database.getJmlSiswa()[aktif]);
+            data.setSoal(database.getJmlSoal()[aktif]);
+            if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.70
+                    && Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) < 0.90) {
+                data.setReabilitas("Baik");
+            } else if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.90) {
+                data.setReabilitas("Sangat Baik");
+            } else {
+                data.setReabilitas("Buruk");
+            }
+            data.setA(resultPanel.getTable2().getValueAt(i, 0).toString());
+            data.setB(resultPanel.getTable2().getValueAt(i, 1).toString());
+            data.setC(resultPanel.getTable2().getValueAt(i, 2).toString());
+            if (tipe == 4) {
+                data.setE("-");
+                data.setD(resultPanel.getTable2().getValueAt(i, 3).toString());
+                data.setKefektifan(resultPanel.getTable2().getValueAt(i, 4).toString());
+                data.setKeterangan(resultPanel.getTable2().getValueAt(i, 5).toString());
+            } else if (tipe == 5) {
+                data.setD(resultPanel.getTable2().getValueAt(i, 3).toString());
+                data.setE(resultPanel.getTable2().getValueAt(i, 4).toString());
+                data.setKefektifan(resultPanel.getTable2().getValueAt(i, 5).toString());
+                data.setKeterangan(resultPanel.getTable2().getValueAt(i, 6).toString());
+            } else {
+                data.setD("-");
+                data.setE("-");
+                data.setKefektifan(resultPanel.getTable2().getValueAt(i, 3).toString());
+                data.setKeterangan(resultPanel.getTable2().getValueAt(i, 4).toString());
+            }
+            object.add(data);
+        }
+
+        return object;
+    }
+
+    public List<Object> getDataTable3() {
+        int aktif = database.getBerkasAktif();
+        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
+        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
+        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+
+        List<Object> object = new LinkedList<Object>();
+
+        for (int i = 0; i < row; i++) {
+            PrintDataSiswa data = new PrintDataSiswa();
+            data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
+            data.setSiswa(database.getJmlSiswa()[aktif]);
+            data.setSoal(database.getJmlSoal()[aktif]);
+            if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.70
+                    && Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) < 0.90) {
+                data.setReabilitas("Baik");
+            } else if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.90) {
+                data.setReabilitas("Sangat Baik");
+            } else {
+                data.setReabilitas("Buruk");
+            }
+            data.setKKM(database.getKKM()[aktif]);
+            data.setNilaiRata(findingResult.getTempData()[4]);
+            data.setNama(database.getSoal()[aktif][i][0]);
+            data.setBenar(String.valueOf(findingResult.getNRaW2()[i][0]));
+            data.setSalah(String.valueOf(findingResult.getNRaW2()[i][1]));
+            data.setNilai(new DecimalFormat("#.##").format(((float) findingResult.getNRaW2()[i][0] / (float) row) * 100));
+            data.setKeterangan(Integer.parseInt(data.getNilai()) >= Integer.parseInt(database.getKKM()[aktif])
+                    ? "Lulus" : "Tidak Lulus");
 
             object.add(data);
         }
@@ -533,7 +682,7 @@ public class MainController implements MainListener {
             i++;
         }
 
-        JOptionPane.showConfirmDialog(null, helpPanel,"HELP CONTENT",JOptionPane.CLOSED_OPTION);
+        JOptionPane.showConfirmDialog(null, helpPanel, "HELP CONTENT", JOptionPane.CLOSED_OPTION);
     }
 
     public void repaint() {
