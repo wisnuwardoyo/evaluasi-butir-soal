@@ -1,10 +1,26 @@
 
-import java.io.File;
+import javax.swing.JTable;
 
-public class testMain {
+/**
+ * @author echo
+ * 
+*/
+public class testMain extends javax.swing.JFrame {
 
+   
     public static void main(String[] args) {
 
-        System.out.println(System.getProperty("user.name"));
+        int rows = 10;
+        int cols = 5;
+        JTable table = new JTable(rows, cols);
+
+        // Enable the ability to select a single cell
+        table.setColumnSelectionAllowed(true);
+        table.setRowSelectionAllowed(true);
+
+        if (table.getCellEditor() != null) {
+            table.getCellEditor().stopCellEditing();
+        }
+
     }
 }

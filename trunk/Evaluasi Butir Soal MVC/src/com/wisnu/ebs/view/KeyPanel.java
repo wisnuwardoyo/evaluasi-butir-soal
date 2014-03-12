@@ -4,14 +4,21 @@
  */
 package com.wisnu.ebs.view;
 
+import com.wisnu.ebs.add.TableCellChangeListener;
 import com.wisnu.ebs.add.TableCellListener;
 import com.wisnu.ebs.add.TransparentTextArea;
 import com.wisnu.ebs.add.rowTable;
+import java.awt.AWTException;
 import java.awt.Color;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 
 public class KeyPanel extends javax.swing.JPanel {
 
@@ -33,7 +40,7 @@ public class KeyPanel extends javax.swing.JPanel {
         tableModel.setDataVector(dataTable, colHeader);
         table = new JTable(tableModel);
         table.setRowHeight(20);
-        table.getColumnModel().getColumn(0).setCellRenderer(new TableCellListener(type));
+        table.getColumnModel().getColumn(0).setCellRenderer(new TableCellListener(type));        
         Scroll = new JScrollPane(table);
         //scroll.setPreferredSize(new Dimension(400, 200));
     }
@@ -101,6 +108,14 @@ public class KeyPanel extends javax.swing.JPanel {
         setTable();    setRowHeader();
 
         table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                tableCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                tableInputMethodTextChanged(evt);
+            }
+        });
         table.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tablePropertyChange(evt);
@@ -206,6 +221,14 @@ public class KeyPanel extends javax.swing.JPanel {
     private void tablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tablePropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_tablePropertyChange
+
+    private void tableCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tableCaretPositionChanged
+        
+    }//GEN-LAST:event_tableCaretPositionChanged
+
+    private void tableInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tableInputMethodTextChanged
+        System.out.println("asd");
+    }//GEN-LAST:event_tableInputMethodTextChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scroll;
