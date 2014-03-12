@@ -60,7 +60,7 @@ public class HelpPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -74,7 +74,9 @@ public class HelpPanel extends javax.swing.JPanel {
         textPane.setEditable(false);
         textPane.setContentType("text/html"); // NOI18N
         textPane.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:justify\">\r\n     Selamat datang di pusat bantuan PROGRAM EVALUASI BUTIR SOAL\n<br>KLIK pada menu disamping untuk melihat topik yang disediakan.\n    </p>\r\n  </body>\r\n</html>\r\n");
+        textPane.setText("<html>\r\n  <head>\r\n\r\n  </head>\r\n  <body>\r\n    <p style=\"margin-top: 0;text-align:justify\">\r\n    PROGRAM ANALISIS BUTIR SOAL PILIHAN GANDA\n<br><br>\nAnda dapat melakukan analisis butir soal pilihan ganda secara cepat dan mudah. Analisis terhadap butir soal meliputi aspek Tingkat Kesukaran, Daya Beda, Keefektifan Pengecoh, dan Homogenitas butir. Program juga menganalisis realibilitas tes secara keseluruhan.\n\n<br><br>\nHasil analisis ditampilkan dengan cepat, mudah dengan tampilan yang menarik. Anda dapat membuat atau membuka dokumen serta mencetak hasil analisis ataupun mengubah hasil analisis kebentuk dokumen lain.\n\n<br><br>\nUntuk panduan penggunaan program silahkan klik menu disamping.\n    </p>\r\n  </body>\r\n</html>\r\n");
+        textPane.setMaximumSize(new java.awt.Dimension(494, 46));
+        textPane.setPreferredSize(new java.awt.Dimension(494, 46));
         jScrollPane1.setViewportView(textPane);
 
         labJudul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -88,11 +90,11 @@ public class HelpPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(labJudul, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE))
+                    .addComponent(labJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

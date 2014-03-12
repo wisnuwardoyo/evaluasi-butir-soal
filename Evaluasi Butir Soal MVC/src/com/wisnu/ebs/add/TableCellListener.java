@@ -1,6 +1,7 @@
 package com.wisnu.ebs.add;
 
 import java.awt.Component;
+import java.awt.event.InputMethodListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -64,4 +65,9 @@ public class TableCellListener extends DefaultTableCellRenderer {
 
         return component;
     }
+
+    
+
+
+
 }

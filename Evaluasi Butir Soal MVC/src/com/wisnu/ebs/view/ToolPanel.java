@@ -47,6 +47,7 @@ public class ToolPanel extends javax.swing.JPanel {
 
         labPrev.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/prev.png"))); // NOI18N
+        labPrev.setToolTipText("PREVIOUS");
         labPrev.setPreferredSize(new java.awt.Dimension(60, 60));
         labPrev.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -62,6 +63,7 @@ public class ToolPanel extends javax.swing.JPanel {
 
         labNext.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/next.png"))); // NOI18N
+        labNext.setToolTipText("NEXT");
         labNext.setPreferredSize(new java.awt.Dimension(60, 60));
         labNext.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -77,6 +79,7 @@ public class ToolPanel extends javax.swing.JPanel {
 
         labSetting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/setting.png"))); // NOI18N
+        labSetting.setToolTipText("PENGATURAN");
         labSetting.setPreferredSize(new java.awt.Dimension(60, 60));
         labSetting.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,12 +152,15 @@ public class ToolPanel extends javax.swing.JPanel {
     private void labPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labPrevMouseClicked
         switch (id) {
             case 1:
+                controller.savingState();
                 controller.openingConfigurationPanel();
                 break;
             case 2:
+                controller.savingState();
                 controller.openingKeyPanel();
                 break;
             case 3:
+                controller.savingState();
                 controller.openingAnswerPanel();
                 break;
         }
@@ -164,9 +170,11 @@ public class ToolPanel extends javax.swing.JPanel {
     private void labNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labNextMouseClicked
         switch (id) {
             case 1:
+                controller.savingState();
                 controller.openingAnswerPanel();
                 break;
             case 2:
+                controller.savingState();
                 controller.openingResultPanel();
                 break;
             case 3:
@@ -175,6 +183,7 @@ public class ToolPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_labNextMouseClicked
 
     private void labSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labSettingMouseClicked
+        controller.savingState();
         controller.openingConfigurationPanel();
     }//GEN-LAST:event_labSettingMouseClicked
 

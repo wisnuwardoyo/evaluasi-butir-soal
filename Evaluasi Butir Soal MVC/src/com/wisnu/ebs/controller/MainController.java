@@ -22,6 +22,10 @@ import com.wisnu.ebs.xml.HelpStaxParser;
 import com.wisnu.ebs.xml.Item;
 import com.wisnu.ebs.xml.ItemStaXParser;
 import com.wisnu.ebs.xml.WriteXMLFile;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -66,18 +70,19 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-       //openDocumentAction("example.rmd");
+        //openDocumentAction("example.rmd");
     }
 
     //New Document 
     public void createNewDocument() {
         newDocumentPanel = new NewDocumentPanel();
-        int result = JOptionPane.showConfirmDialog(null, newDocumentPanel, "New Document", JOptionPane.OK_CANCEL_OPTION);
+        int result = JOptionPane.showConfirmDialog(null, newDocumentPanel, "New Document", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (result == 0) {
             if (newDocumentPanel.itemCheck()) {
                 database.newDocument(newDocumentPanel);
                 openingConfigurationPanel();
+                openingKeyPanel();
             } else {
                 JOptionPane.showConfirmDialog(null, "Input yang anda masukan salah", "Warning", JOptionPane.CLOSED_OPTION);
             }
@@ -221,6 +226,7 @@ public class MainController implements MainListener {
 
     //Ans Pressed
     public void openingAnswerPanel() {
+
         ansPanel = new AnsPanel();
         settingAnswerPanelDataTable();
         mainFrame.setViewPort(ansPanel);
@@ -447,11 +453,11 @@ public class MainController implements MainListener {
                             || dataTable[3][i][0].equals("Sangat Mudah")
                             || dataTable[3][i][1].equals("Buruk")) {
                         dataTable[3][i][j] = "Dibuang";
-                    }else if(dataTable[3][i][1].equals("Cukup")
-                            || dataTable[3][i][2].equals("Tidak Efektif")){
-                         dataTable[3][i][j] = "Revisi";
-                    }else{
-                         dataTable[3][i][j] = "Pertahankan";
+                    } else if (dataTable[3][i][1].equals("Cukup")
+                            || dataTable[3][i][2].equals("Tidak Efektif")) {
+                        dataTable[3][i][j] = "Revisi";
+                    } else {
+                        dataTable[3][i][j] = "Pertahankan";
                     }
                 }
             }
@@ -682,7 +688,7 @@ public class MainController implements MainListener {
             i++;
         }
 
-        JOptionPane.showConfirmDialog(null, helpPanel, "HELP CONTENT", JOptionPane.CLOSED_OPTION);
+        JOptionPane.showConfirmDialog(null, helpPanel, "HELP CONTENT", JOptionPane.CLOSED_OPTION, JOptionPane.PLAIN_MESSAGE);
     }
 
     public void repaint() {
@@ -699,5 +705,29 @@ public class MainController implements MainListener {
 
     public String getPath() {
         return this.path;
+    }
+
+    public void savingState() {
+        if (keyPanel != null) {
+            robot();
+            database.setKunci(keyPanel);
+        }
+        if (ansPanel != null) {
+            robot();
+            database.setSoal(ansPanel);
+        }
+    }
+
+    public void robot() {
+        try {
+            Robot robot = new Robot();
+            // Simulate a key press
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
+            
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+
     }
 }
