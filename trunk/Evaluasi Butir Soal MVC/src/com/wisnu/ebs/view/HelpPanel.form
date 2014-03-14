@@ -108,9 +108,10 @@
                     <StringItem index="2" value="Konfigurasi Dokumen"/>
                     <StringItem index="3" value="Menganalisis Dokumen"/>
                     <StringItem index="4" value="Mencetak Dokumen"/>
-                    <StringItem index="5" value=" "/>
+                    <StringItem index="5" value="Cetak Bentuk Lain"/>
                   </StringArray>
                 </Property>
+                <Property name="selectionMode" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jList1MouseClicked"/>

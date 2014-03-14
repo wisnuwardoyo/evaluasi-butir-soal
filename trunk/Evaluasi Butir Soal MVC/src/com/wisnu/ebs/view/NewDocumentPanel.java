@@ -345,7 +345,7 @@ public class NewDocumentPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton radio2;
     private javax.swing.JRadioButton radio3;
     // End of variables declaration//GEN-END:variables
-    public boolean itemCheck() {
+    public int itemCheck() {
         if (!(labGuru.getText().isEmpty()
                 || labJumlahSiswa.getText().isEmpty()
                 || labKelas.getText().isEmpty()
@@ -359,25 +359,25 @@ public class NewDocumentPanel extends javax.swing.JPanel {
                 Integer.parseInt(labSoal.getText());
                 Integer.parseInt(labKKM.getText());
 
-                return true;
+                return 0;
             } catch (NumberFormatException e) {
-                return false;
+                return 11;
             }
 
         } else {
-            return false;
+            return 10;
         }
     }
 
     public int getRadio() {
-        if(radio1.isSelected()){
+        if (radio1.isSelected()) {
             return 3;
-        }else if(radio2.isSelected()){
+        } else if (radio2.isSelected()) {
             return 4;
-        }else{
+        } else {
             return 5;
         }
-        
+
     }
 
     public JTextField getLabGuru() {
@@ -407,4 +407,6 @@ public class NewDocumentPanel extends javax.swing.JPanel {
     public JTextField getLabKompetensi() {
         return labKompetensi;
     }
+    
+    
 }

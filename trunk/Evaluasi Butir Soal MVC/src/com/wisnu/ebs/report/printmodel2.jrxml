@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="printmodel2" pageWidth="595" pageHeight="842" columnWidth="525" leftMargin="40" rightMargin="30" topMargin="40" bottomMargin="30" uuid="c446ee49-024d-4be7-a441-f1734e1e4092">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="38"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -269,7 +269,7 @@
 	<pageFooter>
 		<band height="21">
 			<textField>
-				<reportElement x="425" y="1" width="100" height="20" uuid="873da882-31b3-4704-91a2-528ec7993bfe"/>
+				<reportElement x="507" y="1" width="18" height="20" uuid="873da882-31b3-4704-91a2-528ec7993bfe"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

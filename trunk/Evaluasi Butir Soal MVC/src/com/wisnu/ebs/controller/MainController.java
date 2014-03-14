@@ -22,10 +22,6 @@ import com.wisnu.ebs.xml.HelpStaxParser;
 import com.wisnu.ebs.xml.Item;
 import com.wisnu.ebs.xml.ItemStaXParser;
 import com.wisnu.ebs.xml.WriteXMLFile;
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -70,7 +66,7 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        //openDocumentAction("example.rmd");
+        openDocumentAction("example.rmd");
     }
 
     //New Document 
@@ -79,12 +75,33 @@ public class MainController implements MainListener {
         int result = JOptionPane.showConfirmDialog(null, newDocumentPanel, "New Document", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (result == 0) {
-            if (newDocumentPanel.itemCheck()) {
+            if (newDocumentPanel.itemCheck() == 0) {
                 database.newDocument(newDocumentPanel);
                 openingConfigurationPanel();
                 openingKeyPanel();
+                mainFrame.itemCheck(true);
             } else {
-                JOptionPane.showConfirmDialog(null, "Input yang anda masukan salah", "Warning", JOptionPane.CLOSED_OPTION);
+                fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
+                createNewDocument(newDocumentPanel);
+            }
+        } else {
+
+        }
+    }
+
+    //New Document on Error
+    public void createNewDocument(NewDocumentPanel panel) {
+        int result = JOptionPane.showConfirmDialog(null, panel, "New Document", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == 0) {
+            if (newDocumentPanel.itemCheck() == 0) {
+                database.newDocument(newDocumentPanel);
+                openingConfigurationPanel();
+                openingKeyPanel();
+                mainFrame.itemCheck(true);
+            } else {
+                fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
+                createNewDocument(panel);
             }
         } else {
 
@@ -497,8 +514,10 @@ public class MainController implements MainListener {
     }
 
     @Override
-    public void fireErrorMessage(int i) {
-        JOptionPane.showConfirmDialog(mainFrame, errorMessage.message[i], "ERROR..!",
+    public void fireErrorMessage(int i, int j, String Error) {
+        String add = j != 99 ? errorMessage.message[j] : Error;
+        JOptionPane.showConfirmDialog(mainFrame, errorMessage.message[i] + "\n"
+                + add, "ERROR..!",
                 JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
     }
 
@@ -517,8 +536,7 @@ public class MainController implements MainListener {
                     JasperViewer.viewReport(jasperPrint, false);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("reports Error  " + e.toString());
+                    fireErrorMessage(5, 99, e.toString());
 
                 }
                 break;
@@ -535,8 +553,7 @@ public class MainController implements MainListener {
                     JasperViewer.viewReport(jasperPrint, false);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("reports Error  " + e.toString());
+                    fireErrorMessage(5, 99, e.toString());
 
                 }
                 break;
@@ -553,8 +570,7 @@ public class MainController implements MainListener {
                     JasperViewer.viewReport(jasperPrint, false);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("reports Error  " + e.toString());
+                    fireErrorMessage(5, 99, e.toString());
 
                 }
                 break;
@@ -682,7 +698,7 @@ public class MainController implements MainListener {
         helpPanel = new HelpPanel();
         List<Help> readHelp = helpReader.readConfig();
         int i = 0;
-        helpPanel.setContents(new String[5][2]);
+        helpPanel.setContents(new String[6][2]);
         for (Help help : readHelp) {
             helpPanel.getContents()[i] = help.getContent();
             i++;
@@ -709,25 +725,10 @@ public class MainController implements MainListener {
 
     public void savingState() {
         if (keyPanel != null) {
-            robot();
             database.setKunci(keyPanel);
         }
         if (ansPanel != null) {
-            robot();
             database.setSoal(ansPanel);
         }
-    }
-
-    public void robot() {
-        try {
-            Robot robot = new Robot();
-            // Simulate a key press
-            robot.keyPress(KeyEvent.VK_TAB);
-            robot.keyRelease(KeyEvent.VK_TAB);
-            
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-
     }
 }

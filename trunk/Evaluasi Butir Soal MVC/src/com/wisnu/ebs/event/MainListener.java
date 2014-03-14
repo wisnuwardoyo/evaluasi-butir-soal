@@ -11,5 +11,5 @@ package com.wisnu.ebs.event;
  * @author Wisnu Citra
  */
 public interface MainListener {    
-    public void fireErrorMessage(int i);
+    public void fireErrorMessage(int i,int j,String Error);
 }
