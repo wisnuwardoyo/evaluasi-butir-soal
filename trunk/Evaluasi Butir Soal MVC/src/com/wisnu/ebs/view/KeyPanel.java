@@ -162,7 +162,7 @@ public class KeyPanel extends javax.swing.JPanel {
         jTextArea1.setForeground(new java.awt.Color(0, 51, 51));
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPenggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa.\n\nKLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut.");
+        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPastikan mengisi semua kunci jawaban yang ada, dengan menekan tombol TAB atau ENTER atau ARAH PANAH setelah selesai mengetik.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa, dan lakukan hal yang sama pada saat mengisikan kunci jawaban.\n\nKLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut.");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setOpaque(false);
         jScrollPane2.setViewportView(jTextArea1);

@@ -66,7 +66,8 @@ public class MainController implements MainListener {
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
-        openDocumentAction("example.rmd");
+        //openDocumentAction("example.rmd");
+        System.out.println(0/144);
     }
 
     //New Document 
@@ -79,13 +80,15 @@ public class MainController implements MainListener {
                 database.newDocument(newDocumentPanel);
                 openingConfigurationPanel();
                 openingKeyPanel();
+                mainFrame.isNewDocument(true);
                 mainFrame.itemCheck(true);
             } else {
                 fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
+                mainFrame.isNewDocument(false);
                 createNewDocument(newDocumentPanel);
             }
         } else {
-
+            mainFrame.isNewDocument(false);
         }
     }
 
@@ -98,13 +101,15 @@ public class MainController implements MainListener {
                 database.newDocument(newDocumentPanel);
                 openingConfigurationPanel();
                 openingKeyPanel();
+                mainFrame.isNewDocument(true);
                 mainFrame.itemCheck(true);
             } else {
                 fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
+                mainFrame.isNewDocument(false);
                 createNewDocument(panel);
             }
         } else {
-
+            mainFrame.isNewDocument(false);
         }
     }
 

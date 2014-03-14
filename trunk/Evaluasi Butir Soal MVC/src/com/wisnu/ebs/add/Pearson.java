@@ -4,6 +4,8 @@
  */
 package com.wisnu.ebs.add;
 
+import static java.lang.Double.NaN;
+
 /**
  *
  * @author Wisnu Citra
@@ -28,10 +30,15 @@ public class Pearson {
         }
 
         double Rxy = 0;
+        
         Rxy = ((siswa * dump[4]) - (dump[0] * dump[1]))
                 / (Math.sqrt((siswa * dump[2]) - (dump[0] * dump[0]))
                 * Math.sqrt((siswa * dump[3]) - (dump[1] * dump[1])));
-
+        
+        if(String.valueOf(Rxy).equals("NaN")){
+            Rxy = 0;
+        }
+        
         double Rtt = 0;
         Rtt = (2 * Rxy) / (1 + Rxy);
         

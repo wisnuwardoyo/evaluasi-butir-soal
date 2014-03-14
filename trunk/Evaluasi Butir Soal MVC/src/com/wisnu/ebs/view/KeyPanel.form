@@ -233,7 +233,7 @@
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL&#xa;&#xa;Isikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. &#xa;&#xa;Penggunaan huruf yang salah akan dikoreksi secara otomatis oleh program, sehingga harus di ingat tipe soal yang sudah diinputkan.&#xa;&#xa;Tekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa.&#xa;&#xa;KLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut."/>
+                <Property name="text" type="java.lang.String" value="SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL&#xa;&#xa;Isikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. &#xa;&#xa;Pastikan mengisi semua kunci jawaban yang ada, dengan menekan tombol TAB atau ENTER atau ARAH PANAH setelah selesai mengetik.&#xa;&#xa;Tekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa, dan lakukan hal yang sama pada saat mengisikan kunci jawaban.&#xa;&#xa;KLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>

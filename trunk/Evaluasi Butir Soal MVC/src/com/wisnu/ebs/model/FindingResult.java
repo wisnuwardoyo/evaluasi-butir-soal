@@ -176,6 +176,9 @@ public class FindingResult {
         //Perhitungan daya beda
         for (int i = 0; i < row; i++) {
             getDb()[i] = (layer[i] / ((int) (row * 0.33))) - (layer[i + row] / ((int) (row * 0.33)));
+            if(String.valueOf(getDb()[i]).equals("NaN")){
+                getDb()[i] = 0;
+            }
         }
     }
 
@@ -267,23 +270,23 @@ public class FindingResult {
             for (int j = 0; j < row; j++) {
                 if (IPcopy[i][j] >= 76 && IPcopy[i][j] <= 125) {
 
-                    getIPc()[i][j] = getnPc()[i][j] + " + +";
+                    getIPc()[i][j] = getnPc()[i][j] + " (+ +)";
 
                 } else if ((IPcopy[i][j] >= 51 && IPcopy[i][j] <= 75) || (IPcopy[i][j] >= 126 && IPcopy[i][j] <= 150)) {
 
-                    getIPc()[i][j] = getnPc()[i][j] + " +";
+                    getIPc()[i][j] = getnPc()[i][j] + " (+)";
 
                 } else if ((IPcopy[i][j] >= 26 && IPcopy[i][j] <= 50) || (IPcopy[i][j] >= 151 && IPcopy[i][j] <= 175)) {
 
-                    getIPc()[i][j] = getnPc()[i][j] + " -";
+                    getIPc()[i][j] = getnPc()[i][j] + " (-)";
 
                 } else if ((IPcopy[i][j] >= 0 && IPcopy[i][j] <= 25) || (IPcopy[i][j] >= 176 && IPcopy[i][j] <= 200)) {
 
-                    getIPc()[i][j] = getnPc()[i][j] + " - -";
+                    getIPc()[i][j] = getnPc()[i][j] + " (- -)";
 
                 } else {
 
-                    getIPc()[i][j] = getnPc()[i][j] + " - - -";
+                    getIPc()[i][j] = getnPc()[i][j] + " (- - -)";
                 }
             }
         }
@@ -305,7 +308,7 @@ public class FindingResult {
             if (getAnswerKey()[i].equals("E")) {
                 pos = 4;
             }
-            getIPc()[pos][i] = String.valueOf(getnB()[i]) + " **";
+            getIPc()[pos][i] = String.valueOf(getnB()[i]) + " (**)";
         }
 
     }
@@ -363,11 +366,12 @@ public class FindingResult {
             setPearson(new Pearson(col, validity_cek[i], validity_cek[row]));
             validity[i] = getPearson().getHasil();
         }
+        
         for (int i = 0; i < row; i++) {
             getCorrelation()[i] = String.valueOf(df.format(validity[i]));
             getCorrelationNumber()[i] = Double.parseDouble(df.format(validity[i]).replace(",", "."));
         }
-        int a = 0;
+        
     }
 
     /**
