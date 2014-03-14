@@ -8,13 +8,18 @@ package com.wisnu.ebs.add;
 public class ErrorMessage {
 
     public final String[] message = new String[15];
-    
-    
-    public ErrorMessage(){
-        message [0] = "Error while opening file";
-        message [1] = "Error while saving file";
-        message [2] = "Error while computing result";
-        message [3] = "Error while editing";
+
+    public ErrorMessage() {
+        message[0] = "Error while opening file";
+        message[1] = "Error while saving file";
+        message[2] = "Error while computing result";
+        message[3] = "Error while editing";
+        message[4] = "Error while creating new document";
+        message[5] = "Error while printing";
+        
+        message[10] = "Lengkapi pengisian formulir";
+        message[11] = "Input Jumlah Siswa, Jumlah Soal dan KKM Hanya dalam Numerik";
+       
     }
-    
+
 }

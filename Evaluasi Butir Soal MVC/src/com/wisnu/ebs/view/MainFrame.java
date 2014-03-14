@@ -86,7 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
                 isFromFile = true;
                 this.repaint();
             } catch (IOException ex) {
-                controllerUtama.fireErrorMessage(0);
+                controllerUtama.fireErrorMessage(0, 99,"");
             }
         } else {
         }
@@ -143,11 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void newDocumentAction() {
-        try {
-            controllerUtama.createNewDocument();
-        } finally {
-            isNewDocument = true;
-        }
+        controllerUtama.createNewDocument();
     }
 
     public void itemCheck(boolean cek) {
@@ -177,7 +173,8 @@ public class MainFrame extends javax.swing.JFrame {
     public void exit(int i) {
         if (isFromFile) {
             int save = JOptionPane.showConfirmDialog(null, "Anda telah membuka / membuat dokumen"
-                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.OK_OPTION);
+                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.YES_NO_CANCEL_OPTION);
+            System.out.println(save);
             if (save == 0) {
                 isFromFile = false;
                 controllerUtama.saveDocumentAction(controllerUtama.getPath().replace(".rmd", "").replace(".RMD", ""));
@@ -185,6 +182,8 @@ public class MainFrame extends javax.swing.JFrame {
                     System.out.println("Program Stopped");
                     System.exit(0);
                 }
+            } else if (save == 2) {
+
             } else {
                 if (i == 1) {
                     System.out.println("Program Stopped");
@@ -193,7 +192,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         } else if (isNewDocument) {
             int save = JOptionPane.showConfirmDialog(null, "Anda telah membuka / membuat dokumen"
-                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.OK_OPTION);
+                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.YES_NO_CANCEL_OPTION);
             if (save == 0) {
                 isNewDocument = false;
                 saveDocumentAction();
@@ -201,6 +200,8 @@ public class MainFrame extends javax.swing.JFrame {
                     System.out.println("Program Stopped");
                     System.exit(0);
                 }
+            } else if (save == 2) {
+
             } else {
                 if (i == 1) {
                     System.out.println("Program Stopped");
@@ -723,7 +724,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void button_sc_keyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sc_keyActionPerformed
         try {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
             controllerUtama.savingState();
             controllerUtama.openingKeyPanel();
         } finally {

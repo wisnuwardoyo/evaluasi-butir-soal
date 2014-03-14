@@ -43,10 +43,11 @@ public class HelpPanel extends javax.swing.JPanel {
         jList1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jList1.setForeground(new java.awt.Color(0, 51, 51));
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Membuat Dokumen", "Membuka Dokumen", "Konfigurasi Dokumen", "Menganalisis Dokumen", "Mencetak Dokumen", " " };
+            String[] strings = { "Membuat Dokumen", "Membuka Dokumen", "Konfigurasi Dokumen", "Menganalisis Dokumen", "Mencetak Dokumen", "Cetak Bentuk Lain" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);

@@ -95,9 +95,9 @@ public class Database {
         }
     }
 
-    public void fireErrorMessage(int i) {
+    public void fireErrorMessage(int i,int j,String Error) {
         if (mainListener != null) {
-            mainListener.fireErrorMessage(i);
+            mainListener.fireErrorMessage(i,j,Error);
         }
     }
 
