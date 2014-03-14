@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<config>
+<mapel>asd</mapel>
+<guru>aSD</guru>
+<berkas>1</berkas>
+<kelas>ASD</kelas>
+</config>
+<item id="0">
+<kompetensi>AD</kompetensi>
+<siswa>2</siswa>
+<jmlSoal>2</jmlSoal>
+<tipe>3</tipe>
+<kkm>70</kkm>
+<kunci>A</kunci>
+<kunci>A</kunci>
+<soal>SISWA 1</soal>
+<soal>A</soal>
+<soal>A</soal>
+<soal>SISWA 2</soal>
+<soal>A</soal>
+<soal>A</soal>
+</item>
+</root>
