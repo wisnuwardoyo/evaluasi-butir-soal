@@ -16,29 +16,27 @@ import javax.swing.JOptionPane;
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class LockedMain {
-    
+
     private MainController controllerUtama;
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     Date now, limit;
-    
+
     public LockedMain() {
         try {
             now = sdf.parse(sdf.format(new Date()));
-            limit = sdf.parse("2014-3-30");
-            
-            
+            limit = sdf.parse("2014-4-30");
+
             if (now.after(limit)) {
                 JOptionPane.showConfirmDialog(null, "This Program has expired", "Warning", JOptionPane.CLOSED_OPTION);
             } else if (now.before(limit) || now.equals(limit)) {
                 controllerUtama = new MainController();
             }
-            
+
         } catch (ParseException ex) {
-            ex.printStackTrace();
         }
-        
+
     }
-    
+
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -47,5 +45,5 @@ public class LockedMain {
             }
         });
     }
-    
+
 }
