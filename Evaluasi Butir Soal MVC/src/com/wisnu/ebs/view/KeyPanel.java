@@ -4,21 +4,13 @@
  */
 package com.wisnu.ebs.view;
 
-import com.wisnu.ebs.add.TableCellChangeListener;
 import com.wisnu.ebs.add.TableCellListener;
-import com.wisnu.ebs.add.TransparentTextArea;
 import com.wisnu.ebs.add.rowTable;
-import java.awt.AWTException;
 import java.awt.Color;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 
 public class KeyPanel extends javax.swing.JPanel {
 
