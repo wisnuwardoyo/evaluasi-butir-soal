@@ -82,11 +82,11 @@ public class MainFrame extends javax.swing.JFrame {
             try {
                 System.out.println("Opening File : " + openDialog.getSelectedFile().getCanonicalPath().toString());
                 controllerUtama.openDocumentAction(openDialog.getSelectedFile().getCanonicalPath().toString());
-                setTitle("Evaluasi Butir Soal " + openDialog.getSelectedFile().getCanonicalPath().toString());
+                setTitle("AnisSo V.1.5.1 " + openDialog.getSelectedFile().getCanonicalPath().toString());
                 isFromFile = true;
                 this.repaint();
             } catch (IOException ex) {
-                controllerUtama.fireErrorMessage(0, 99,"");
+                controllerUtama.fireErrorMessage(0, 99, "");
                 isFromFile = false;
             }
         } else {
@@ -132,19 +132,47 @@ public class MainFrame extends javax.swing.JFrame {
                     }
 
                 } else {
+                    path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
                     controllerUtama.saveDocumentAction(path);
                     controllerUtama.openDocumentAction(path + ".rmd");
                     this.repaint();
                 }
 
             } catch (IOException ex) {
-               controllerUtama.fireErrorMessage(1, 99, ex.toString());
+                controllerUtama.fireErrorMessage(1, 99, ex.toString());
             }
         }
     }
 
     public void newDocumentAction() {
-        controllerUtama.createNewDocument();
+        if (isFromFile) {
+            int save = JOptionPane.showConfirmDialog(null, "Anda telah membuka / membuat dokumen"
+                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.YES_NO_CANCEL_OPTION);
+            System.out.println(save);
+            if (save == 0) {
+                isFromFile = false;
+                controllerUtama.saveDocumentAction(controllerUtama.getPath().replace(".rmd", "").replace(".RMD", ""));
+                controllerUtama.createNewDocument();
+            } else if (save == 2) {
+
+            } else {
+                controllerUtama.createNewDocument();
+            }
+        } else if (isNewDocument) {
+            int save = JOptionPane.showConfirmDialog(null, "Anda telah membuka / membuat dokumen"
+                    + "\nApakah Anda akan menyimpannya?", "Warning", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (save == 0) {
+                isNewDocument = false;
+                saveDocumentAction();
+                controllerUtama.createNewDocument();
+            } else if (save == 2) {
+
+            } else {
+                controllerUtama.createNewDocument();
+            }
+        } else {
+            controllerUtama.createNewDocument();
+        }
     }
 
     public void itemCheck(boolean cek) {
@@ -273,7 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
         saveDialog.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Evaluasi Butir Soal");
+        setTitle("AnisSo v.1.5.1");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -759,7 +787,7 @@ public class MainFrame extends javax.swing.JFrame {
             controllerUtama.openingResultPanel();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showConfirmDialog(null, e,"Error",JOptionPane.CLOSED_OPTION);
+            JOptionPane.showConfirmDialog(null, e, "Error", JOptionPane.CLOSED_OPTION);
         } finally {
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -778,7 +806,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         exit(0);
         itemCheck(false);
-        setFrameTitle("Evaluasi Butir Soal");
+        setFrameTitle("AniSso v.1.5.1");
         scrollPane.setViewportView(jPanel10);
         isFromFile = false;
     }//GEN-LAST:event_menu_item_closeActionPerformed
@@ -929,11 +957,12 @@ public class MainFrame extends javax.swing.JFrame {
         label.setIcon(new ImageIcon("./src/icon/" + icon + ".png"));
         repaint();
     }
-    
-    public void isFromFile(boolean b){
+
+    public void isFromFile(boolean b) {
         this.isFromFile = b;
     }
-    public void isNewDocument(boolean b){
+
+    public void isNewDocument(boolean b) {
         this.isNewDocument = b;
     }
 }
