@@ -6,6 +6,9 @@ package com.wisnu.ebs.xml;
 
 import com.wisnu.ebs.model.Database;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class WriteXMLFile {
 
@@ -13,10 +16,12 @@ public class WriteXMLFile {
 
     private Database database;
 
-    public void write(String path) {
-
+    public boolean write(String path) {
+        BufferedWriter printer = null;
+        File file = new File(path + ".rmd\\");
         try {
-            BufferedWriter printer = new BufferedWriter(new FileWriter(path + ".rmd"));
+
+            printer = new BufferedWriter(new FileWriter(file));
             printer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             printer.newLine();
             printer.write("<root>");
@@ -105,9 +110,22 @@ public class WriteXMLFile {
 
             System.out.println("Saving File to : " + path + ".rmd");
 
-            //return read.read();
-        } catch (Exception ex) {
-            
+            return true;
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, new Object[]{
+                "Maaf anda tidak dapat menyimpan pada folder ini",
+                "Akses ke folder ini tidak diizinkan",
+                "Silahkan pilih folder lain!"
+            });
+            return false;
+        } finally {
+            if (printer != null) {
+                try {
+                    printer.close();
+                } catch (IOException ex) {
+
+                }
+            }
         }
 
     }
@@ -116,5 +134,4 @@ public class WriteXMLFile {
         this.database = database;
     }
 
-    
 }

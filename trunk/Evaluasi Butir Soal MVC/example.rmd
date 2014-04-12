@@ -88,7 +88,7 @@
 <soal>B</soal>
 <soal>C</soal>
 <soal>B</soal>
-<soal>SISWA 7</soal>
+<soal>BEVA MAZISADA</soal>
 <soal>C</soal>
 <soal>D</soal>
 <soal>D</soal>
