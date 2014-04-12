@@ -10,7 +10,7 @@ public class testMain extends javax.swing.JFrame {
    
     public static void main(String[] args) {
 
-        System.out.println(System.getProperty("user.document"));
+        System.out.println((int)(10*0.27));
 
     }
 }

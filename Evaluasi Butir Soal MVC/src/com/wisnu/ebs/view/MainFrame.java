@@ -9,8 +9,6 @@ import com.wisnu.ebs.controller.MainController;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -61,10 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
                     return true;
                 }
                 String f = file.getName().toUpperCase();
-                if (f.endsWith(".RMD")) {
-                    return true;
-                }
-                return false;
+                return f.endsWith(".RMD");
             }
 
             @Override
@@ -79,6 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
                 System.out.println("Opening File : " + openDialog.getSelectedFile().getCanonicalPath().toString());
                 controllerUtama.openDocumentAction(openDialog.getSelectedFile().getCanonicalPath().toString());
                 isFromFile = true;
+                isNewDocument = false;
                 this.repaint();
             } catch (IOException ex) {
                 controllerUtama.fireErrorMessage(0, 99, "");
@@ -97,10 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
                     return true;
                 }
                 String f = file.getName().toUpperCase();
-                if (f.endsWith(".RMD")) {
-                    return true;
-                }
-                return false;
+                return f.endsWith(".RMD");
             }
 
             @Override
@@ -164,7 +157,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-    public void itemCheck(boolean cek) {
+    public final void itemCheck(boolean cek) {
         if (cek) {
             menu_item_save.setEnabled(true);
             menu_item_close.setEnabled(true);
@@ -934,16 +927,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void setViewPort(Component component) {
         contentScrollPane.setViewportView(component);
-        repaint();
-    }
-
-    private void hover(javax.swing.JLabel label, String icon) {
-        label.setIcon(new ImageIcon("./src/icon/" + icon + "Hover.png"));
-        repaint();
-    }
-
-    private void noHover(javax.swing.JLabel label, String icon) {
-        label.setIcon(new ImageIcon("./src/icon/" + icon + ".png"));
         repaint();
     }
 

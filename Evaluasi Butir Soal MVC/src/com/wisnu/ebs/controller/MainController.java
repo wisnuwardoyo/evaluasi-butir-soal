@@ -1,14 +1,13 @@
 package com.wisnu.ebs.controller;
 
 import com.wisnu.ebs.add.CorrelationTableValue;
-import com.wisnu.ebs.add.CreateAnisSoFolder;
 import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
 import com.wisnu.ebs.model.FindingResult;
-import com.wisnu.ebs.model.PrintData;
-import com.wisnu.ebs.model.PrintDataPengecoh;
-import com.wisnu.ebs.model.PrintDataSiswa;
+import com.wisnu.ebs.model.PrintResult;
+import com.wisnu.ebs.model.PrintDistractor;
+import com.wisnu.ebs.model.PrintStudentSummary;
 import com.wisnu.ebs.view.AnsPanel;
 import com.wisnu.ebs.view.ConfPanel;
 import com.wisnu.ebs.view.HelpPanel;
@@ -28,6 +27,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -58,18 +58,15 @@ public class MainController implements MainListener {
     private final WriteXMLFile saveFile = new WriteXMLFile();
     private final ConfController confController = new ConfController();
     private final ErrorMessage errorMessage = new ErrorMessage();
-    private final CreateAnisSoFolder anisSoFolder = new CreateAnisSoFolder();
     private NewDocumentPanel newDocumentPanel;
     private String path;
 
     public MainController() {
-        anisSoFolder.createAnissoFolder();
         mainFrame.setVisible(true);
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
         //openDocumentAction("example.rmd");
-
     }
 
     //New Document 
@@ -83,6 +80,7 @@ public class MainController implements MainListener {
                 openingConfigurationPanel();
                 openingKeyPanel();
                 mainFrame.isNewDocument(true);
+                 mainFrame.isFromFile(false);
                 mainFrame.itemCheck(true);
             } else {
                 fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
@@ -104,6 +102,7 @@ public class MainController implements MainListener {
                 openingConfigurationPanel();
                 openingKeyPanel();
                 mainFrame.isNewDocument(true);
+                mainFrame.isFromFile(false);
                 mainFrame.itemCheck(true);
             } else {
                 fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
@@ -121,10 +120,10 @@ public class MainController implements MainListener {
         configPanel.setFrame(mainFrame);
         configPanel.setController(confController);
         configPanel.setDataTable(setConfigDataTable());
-        configPanel.setLabMataPelajaran(this.database.getMaPel());
-        configPanel.setLabGuru(this.database.getNamaGuru());
-        configPanel.setLabKelas(this.database.getNamaKelas());
-        configPanel.setLabBerkas(String.valueOf(this.database.getJumlahBerkas()));
+        configPanel.setLabMataPelajaran(this.database.getSubject());
+        configPanel.setLabGuru(this.database.getTeacherName());
+        configPanel.setLabKelas(this.database.getClassName());
+        configPanel.setLabBerkas(String.valueOf(this.database.getFileCount()));
         configPanel.setBerkasDesc(setConfigFileDesc());
         mainFrame.setViewPort(configPanel);
         mainFrame.itemCheck(true);
@@ -134,18 +133,18 @@ public class MainController implements MainListener {
     }
 
     public Object[][] setConfigDataTable() {
-        int row = this.database.getJumlahBerkas();
-        int aktif = this.database.getBerkasAktif();
+        int row = this.database.getFileCount();
+        int aktif = this.database.getCurrentlySelectedItem();
         Object[][] dataTable = new Object[row][7];
         for (int i = 0; i < row; i++) {
             dataTable[i][0] = String.valueOf((i + 1));
-            dataTable[i][1] = this.database.getKompetensi()[i];
-            dataTable[i][2] = this.database.getKKM()[i];
-            dataTable[i][3] = this.database.getJmlSiswa()[i];
-            dataTable[i][4] = this.database.getJmlSoal()[i];
-            if (this.database.getTipeSoal()[i].equals("3")) {
+            dataTable[i][1] = this.database.getCompetency()[i];
+            dataTable[i][2] = this.database.getMinimumPassValue()[i];
+            dataTable[i][3] = this.database.getStudentsCount()[i];
+            dataTable[i][4] = this.database.getItemCount()[i];
+            if (this.database.getItemType()[i].equals("3")) {
                 dataTable[i][5] = "A, B, C";
-            } else if (this.database.getTipeSoal()[i].equals("4")) {
+            } else if (this.database.getItemType()[i].equals("4")) {
                 dataTable[i][5] = "A, B, C, D";
             } else {
                 dataTable[i][5] = "A, B, C, D, E";
@@ -157,14 +156,14 @@ public class MainController implements MainListener {
 
     public Object[] setConfigFileDesc() {
         Object[] data = new Object[5];
-        int aktif = this.database.getBerkasAktif();
-        data[0] = this.database.getKompetensi()[aktif];
-        data[1] = this.database.getKKM()[aktif];
-        data[2] = this.database.getJmlSiswa()[aktif];
-        data[3] = this.database.getJmlSoal()[aktif];
-        if (this.database.getTipeSoal()[aktif].equals("3")) {
+        int aktif = this.database.getCurrentlySelectedItem();
+        data[0] = this.database.getCompetency()[aktif];
+        data[1] = this.database.getMinimumPassValue()[aktif];
+        data[2] = this.database.getStudentsCount()[aktif];
+        data[3] = this.database.getItemCount()[aktif];
+        if (this.database.getItemType()[aktif].equals("3")) {
             data[4] = "A, B, C";
-        } else if (this.database.getTipeSoal()[aktif].equals("4")) {
+        } else if (this.database.getItemType()[aktif].equals("4")) {
             data[4] = "A, B, C, D";
         } else {
             data[4] = "A, B, C, D, E";
@@ -177,7 +176,7 @@ public class MainController implements MainListener {
     public void openDocumentAction(String path) {
         this.path = path;
         openingFile(path);
-        database.setBerkasAktif(0);
+        database.setCurrentlySelectedItem(0);
         openingConfigurationPanel();
         openingKeyPanel();
         mainFrame.setTitle("AnisSo V.1.5.1 " + path);
@@ -186,36 +185,36 @@ public class MainController implements MainListener {
     public void openDocumentAction(String path, int fileSelected) {
         this.path = path;
         openingFile(path);
-        database.setBerkasAktif(fileSelected);
+        database.setCurrentlySelectedItem(fileSelected);
         openingConfigurationPanel();
         openingKeyPanel();
         mainFrame.setTitle("AnisSo V.1.5.1 " + path);
     }
 
-    public void openingFile(String path) {
+    protected void openingFile(String path) {
         configReader.setModel(database);
         configReader.readConfig(path);
-        int jumlahBerkas = database.getJumlahBerkas();
-        if (jumlahBerkas > 0) {
-            database.setKompetensi(new String[jumlahBerkas]);
-            database.setJmlSiswa(new String[jumlahBerkas]);
-            database.setJmlSoal(new String[jumlahBerkas]);
-            database.setTipeSoal(new String[jumlahBerkas]);
-            database.setKKM(new String[jumlahBerkas]);
-            database.setKunci(new String[jumlahBerkas][]);
-            database.setSoal(new String[jumlahBerkas][][]);
+        int fileCount = database.getFileCount();
+        if (fileCount > 0) {
+            database.setCompetency(new String[fileCount]);
+            database.setStudentsCount(new String[fileCount]);
+            database.setItemCount(new String[fileCount]);
+            database.setItemType(new String[fileCount]);
+            database.setMinimumPassValue(new String[fileCount]);
+            database.setKey(new String[fileCount][]);
+            database.setStudentsAnswer(new String[fileCount][][]);
 
             List<Item> readConfig = itemReader.readConfig(path);
 
             for (Item item : readConfig) {
-                int i = Integer.parseInt(item.getId());
-                database.getKompetensi()[i] = item.getKompetensi();
-                database.getJmlSiswa()[i] = item.getJumlahSiswa();
-                database.getJmlSoal()[i] = item.getJumlahSoal();
-                database.getTipeSoal()[i] = item.getTipe();
-                database.getKKM()[i] = item.getKkm();
-                database.getKunci()[i] = item.getKunci();
-                database.getSoal()[i] = item.getSoal();
+                int id = Integer.parseInt(item.getId());
+                database.getCompetency()[id] = item.getKompetensi();
+                database.getStudentsCount()[id] = item.getJumlahSiswa();
+                database.getItemCount()[id] = item.getJumlahSoal();
+                database.getItemType()[id] = item.getTipe();
+                database.getMinimumPassValue()[id] = item.getKkm();
+                database.getKey()[id] = item.getKunci();
+                database.getStudentsAnswer()[id] = item.getSoal();
             }
 
             //database.fireNewDocument();
@@ -226,10 +225,10 @@ public class MainController implements MainListener {
 
     //Save Document
     public void saveDocumentAction(String path) {
-        int currentFileSelected = database.getBerkasAktif();
+        int currentFileSelected = database.getCurrentlySelectedItem();
         path = path.replace(".rmd", "");
-        database.setKunci(keyPanel);
-        database.setSoal(ansPanel);
+        database.setKey(keyPanel);
+        database.setStudentAnswer(ansPanel);
         saveFile.setDatabase(database);
         if (saveFile.write(path)) {
             openDocumentAction(path + ".rmd", currentFileSelected);
@@ -244,15 +243,15 @@ public class MainController implements MainListener {
 
     }
 
-    public void settingKeyPanelDataTable() {
-        int row = Integer.parseInt(database.getJmlSoal()[database.getBerkasAktif()]);
+    protected void settingKeyPanelDataTable() {
+        int row = Integer.parseInt(database.getItemCount()[database.getCurrentlySelectedItem()]);
         String[] rowHeader = new String[row];
         String[][] dataTable = new String[row][1];
         for (int i = 0; i < row; i++) {
             rowHeader[i] = String.valueOf("SOAL " + (i + 1));
-            dataTable[i][0] = database.getKunci()[database.getBerkasAktif()][i];
+            dataTable[i][0] = database.getKey()[database.getCurrentlySelectedItem()][i];
         }
-        int type = Integer.parseInt(database.getTipeSoal()[database.getBerkasAktif()]);
+        int type = Integer.parseInt(database.getItemType()[database.getCurrentlySelectedItem()]);
 
         keyPanel.setRowHeader(rowHeader);
         keyPanel.setType(type);
@@ -269,14 +268,14 @@ public class MainController implements MainListener {
         mainFrame.setViewPort(ansPanel);
     }
 
-    public void settingAnswerPanelDataTable() {
-        int row = Integer.parseInt(database.getJmlSiswa()[database.getBerkasAktif()]);
-        int col = Integer.parseInt(database.getJmlSoal()[database.getBerkasAktif()]);
+    protected void settingAnswerPanelDataTable() {
+        int row = Integer.parseInt(database.getStudentsCount()[database.getCurrentlySelectedItem()]);
+        int col = Integer.parseInt(database.getItemCount()[database.getCurrentlySelectedItem()]);
 
         String[] rowHeader = new String[row];
         String[] colHeader = new String[col + 1];
-        String[][] dataTable = database.getSoal()[database.getBerkasAktif()];
-        int type = Integer.parseInt(database.getTipeSoal()[database.getBerkasAktif()]);
+        String[][] dataTable = database.getStudentsAnswer()[database.getCurrentlySelectedItem()];
+        int type = Integer.parseInt(database.getItemType()[database.getCurrentlySelectedItem()]);
         for (int i = 0; i <= col; i++) {
             if (i == 0) {
                 colHeader[i] = "Nama Siswa";
@@ -298,8 +297,8 @@ public class MainController implements MainListener {
 
     //Result Pressed
     public void openingResultPanel() {
-        database.setKunci(keyPanel);
-        database.setSoal(ansPanel);
+        database.setKey(keyPanel);
+        database.setStudentAnswer(ansPanel);
         resultPanel = new ResultPanel();
         resultPanel.setFrame(mainFrame);
         findingResult();
@@ -308,7 +307,7 @@ public class MainController implements MainListener {
 
     }
 
-    public void findingResult() {
+    protected void findingResult() {
         findingResult = new FindingResult();
         findingResult.setDatabase(database);
         findingResult.initComponent();
@@ -324,11 +323,11 @@ public class MainController implements MainListener {
         findingResult.sumPassGrade();
     }
 
-    public void settingResultPanelDataTable() {
-        int aktif = database.getBerkasAktif();
-        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
-        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
-        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+    protected void settingResultPanelDataTable() {
+        int aktif = database.getCurrentlySelectedItem();
+        int col = Integer.parseInt(database.getStudentsCount()[aktif]);
+        int row = Integer.parseInt(database.getItemCount()[aktif]);
+        int tipe = Integer.parseInt(database.getItemType()[aktif]);
         double[] value = new CorrelationTableValue().CorrelationTableValue(row);
         String[][][] dataTable = new String[4][][];
         String[][] rowHeader = new String[4][];
@@ -438,7 +437,7 @@ public class MainController implements MainListener {
                 }
                 if (j == 3) {
                     dataTable[2][i][3] = ((float) findingResult.getNRaW()[i][0] / row) * 100
-                            >= Float.parseFloat(database.getKKM()[aktif]) ? "Lulus" : "Tidak Lulus";
+                            >= Float.parseFloat(database.getMinimumPassValue()[aktif]) ? "Lulus" : "Tidak Lulus";
                 }
             }
 
@@ -540,14 +539,13 @@ public class MainController implements MainListener {
                 + add, "ERROR..!",
                 JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
     }
-
+    
     public void print(int selection) {
         switch (selection) {
             case 0:
                 try {
 
                     String reportName = "./src/com/wisnu/ebs/report/printmodel.jrxml";
-                    String compiledName = "./src/com/wisnu/ebs/report/printmodel.jasper";
                     JasperDesign jasperDesign = JRXmlLoader.load(reportName);
                     JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
@@ -555,7 +553,7 @@ public class MainController implements MainListener {
                                     getDataTable()));
                     JasperViewer.viewReport(jasperPrint, false);
 
-                } catch (Exception e) {
+                } catch (JRException e) {
                     fireErrorMessage(5, 99, e.toString());
 
                 }
@@ -564,7 +562,6 @@ public class MainController implements MainListener {
                 try {
 
                     String reportName = "./src/com/wisnu/ebs/report/printmodel2.jrxml";
-                    String compiledName = "./src/com/wisnu/ebs/report/printmodel2.jasper";
                     JasperDesign jasperDesign = JRXmlLoader.load(reportName);
                     JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
@@ -572,7 +569,7 @@ public class MainController implements MainListener {
                                     getDataTable2()));
                     JasperViewer.viewReport(jasperPrint, false);
 
-                } catch (Exception e) {
+                } catch (JRException e) {
                     fireErrorMessage(5, 99, e.toString());
 
                 }
@@ -581,7 +578,6 @@ public class MainController implements MainListener {
                 try {
 
                     String reportName = "./src/com/wisnu/ebs/report/printmodel3.jrxml";
-                    String compiledName = "./src/com/wisnu/ebs/report/printmodel3.jasper";
                     JasperDesign jasperDesign = JRXmlLoader.load(reportName);
                     JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(),
@@ -589,7 +585,7 @@ public class MainController implements MainListener {
                                     getDataTable3()));
                     JasperViewer.viewReport(jasperPrint, false);
 
-                } catch (Exception e) {
+                } catch (JRException e) {
                     fireErrorMessage(5, 99, e.toString());
 
                 }
@@ -598,19 +594,19 @@ public class MainController implements MainListener {
 
     }
 
-    public List<Object> getDataTable() {
-        int aktif = database.getBerkasAktif();
-        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
-        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
-        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+    protected List<Object> getDataTable() {
+        int aktif = database.getCurrentlySelectedItem();
+        int col = Integer.parseInt(database.getStudentsCount()[aktif]);
+        int row = Integer.parseInt(database.getItemCount()[aktif]);
+        int tipe = Integer.parseInt(database.getItemType()[aktif]);
 
         List<Object> object = new LinkedList<Object>();
 
         for (int i = 0; i < row; i++) {
-            PrintData data = new PrintData();
-            data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
-            data.setSiswa(database.getJmlSiswa()[aktif]);
-            data.setSoal(database.getJmlSoal()[aktif]);
+            PrintResult data = new PrintResult();
+            data.setKompetensi(database.getCompetency()[aktif].toUpperCase());
+            data.setSiswa(database.getStudentsCount()[aktif]);
+            data.setSoal(database.getItemCount()[aktif]);
 
             if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.70
                     && Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) < 0.90) {
@@ -632,19 +628,19 @@ public class MainController implements MainListener {
         return object;
     }
 
-    public List<Object> getDataTable2() {
-        int aktif = database.getBerkasAktif();
-        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
-        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
-        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+    protected List<Object> getDataTable2() {
+        int aktif = database.getCurrentlySelectedItem();
+        int col = Integer.parseInt(database.getStudentsCount()[aktif]);
+        int row = Integer.parseInt(database.getItemCount()[aktif]);
+        int tipe = Integer.parseInt(database.getItemType()[aktif]);
 
         List<Object> object = new LinkedList<Object>();
 
         for (int i = 0; i < row; i++) {
-            PrintDataPengecoh data = new PrintDataPengecoh();
-            data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
-            data.setSiswa(database.getJmlSiswa()[aktif]);
-            data.setSoal(database.getJmlSoal()[aktif]);
+            PrintDistractor data = new PrintDistractor();
+            data.setKompetensi(database.getCompetency()[aktif].toUpperCase());
+            data.setSiswa(database.getStudentsCount()[aktif]);
+            data.setSoal(database.getItemCount()[aktif]);
             if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.70
                     && Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) < 0.90) {
                 data.setReabilitas("Baik");
@@ -678,19 +674,19 @@ public class MainController implements MainListener {
         return object;
     }
 
-    public List<Object> getDataTable3() {
-        int aktif = database.getBerkasAktif();
-        int col = Integer.parseInt(database.getJmlSiswa()[aktif]);
-        int row = Integer.parseInt(database.getJmlSoal()[aktif]);
-        int tipe = Integer.parseInt(database.getTipeSoal()[aktif]);
+    protected List<Object> getDataTable3() {
+        int aktif = database.getCurrentlySelectedItem();
+        int col = Integer.parseInt(database.getStudentsCount()[aktif]);
+        int row = Integer.parseInt(database.getItemCount()[aktif]);
+        int tipe = Integer.parseInt(database.getItemType()[aktif]);
 
         List<Object> object = new LinkedList<Object>();
 
         for (int i = 0; i < row; i++) {
-            PrintDataSiswa data = new PrintDataSiswa();
-            data.setKompetensi(database.getKompetensi()[aktif].toUpperCase());
-            data.setSiswa(database.getJmlSiswa()[aktif]);
-            data.setSoal(database.getJmlSoal()[aktif]);
+            PrintStudentSummary data = new PrintStudentSummary();
+            data.setKompetensi(database.getCompetency()[aktif].toUpperCase());
+            data.setSiswa(database.getStudentsCount()[aktif]);
+            data.setSoal(database.getItemCount()[aktif]);
             if (Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) >= 0.70
                     && Double.parseDouble(this.findingResult.getTempData()[3].replace(",", ".")) < 0.90) {
                 data.setReabilitas("Baik");
@@ -699,13 +695,13 @@ public class MainController implements MainListener {
             } else {
                 data.setReabilitas("Buruk");
             }
-            data.setKKM(database.getKKM()[aktif]);
+            data.setKKM(database.getMinimumPassValue()[aktif]);
             data.setNilaiRata(findingResult.getTempData()[4]);
-            data.setNama(database.getSoal()[aktif][i][0]);
+            data.setNama(database.getStudentsAnswer()[aktif][i][0]);
             data.setBenar(String.valueOf(findingResult.getNRaW2()[i][0]));
             data.setSalah(String.valueOf(findingResult.getNRaW2()[i][1]));
             data.setNilai(new DecimalFormat("#.##").format(((float) findingResult.getNRaW2()[i][0] / (float) row) * 100));
-            data.setKeterangan(Integer.parseInt(data.getNilai()) >= Integer.parseInt(database.getKKM()[aktif])
+            data.setKeterangan(Integer.parseInt(data.getNilai()) >= Integer.parseInt(database.getMinimumPassValue()[aktif])
                     ? "Lulus" : "Tidak Lulus");
 
             object.add(data);
@@ -745,10 +741,10 @@ public class MainController implements MainListener {
 
     public void savingState() {
         if (keyPanel != null) {
-            database.setKunci(keyPanel);
+            database.setKey(keyPanel);
         }
         if (ansPanel != null) {
-            database.setSoal(ansPanel);
+            database.setStudentAnswer(ansPanel);
         }
     }
 

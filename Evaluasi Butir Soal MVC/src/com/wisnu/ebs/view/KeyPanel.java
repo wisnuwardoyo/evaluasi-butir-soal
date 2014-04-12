@@ -5,7 +5,7 @@
 package com.wisnu.ebs.view;
 
 import com.wisnu.ebs.add.TableCellListener;
-import com.wisnu.ebs.add.rowTable;
+import com.wisnu.ebs.add.RowTable;
 import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -43,7 +43,7 @@ public class KeyPanel extends javax.swing.JPanel {
         listRowHeader.setFixedCellWidth(60);
         listRowHeader.setFixedCellHeight(20);
         listRowHeader.setBackground(new java.awt.Color(214, 217, 223));
-        listRowHeader.setCellRenderer(new rowTable(table));
+        listRowHeader.setCellRenderer(new RowTable(table));
         Scroll.setRowHeaderView(listRowHeader);
         //System.out.println(table.getTableHeader().getBackground());
     }

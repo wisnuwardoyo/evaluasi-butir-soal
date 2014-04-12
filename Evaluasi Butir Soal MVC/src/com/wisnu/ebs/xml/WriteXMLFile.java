@@ -31,68 +31,68 @@ public class WriteXMLFile {
             printer.newLine();
 
             printer.write("<mapel>");
-            printer.write(database.getMaPel());
+            printer.write(database.getSubject());
             printer.write("</mapel>");
             printer.newLine();
 
             printer.write("<guru>");
-            printer.write(database.getNamaGuru());
+            printer.write(database.getTeacherName());
             printer.write("</guru>");
             printer.newLine();
 
             printer.write("<berkas>");
-            printer.write(String.valueOf(database.getJumlahBerkas()));
+            printer.write(String.valueOf(database.getFileCount()));
             printer.write("</berkas>");
             printer.newLine();
 
             printer.write("<kelas>");
-            printer.write(database.getNamaKelas());
+            printer.write(database.getClassName());
             printer.write("</kelas>");
             printer.newLine();
 
             printer.write("</config>");
             printer.newLine();
 
-            for (int i = 0; i < database.getJumlahBerkas(); i++) {
+            for (int i = 0; i < database.getFileCount(); i++) {
                 printer.write("<item id=\"" + (i) + "\">");
                 printer.newLine();
 
                 printer.write("<kompetensi>");
-                printer.write(database.getKompetensi()[i]);
+                printer.write(database.getCompetency()[i]);
                 printer.write("</kompetensi>");
                 printer.newLine();
 
                 printer.write("<siswa>");
-                printer.write(database.getJmlSiswa()[i]);
+                printer.write(database.getStudentsCount()[i]);
                 printer.write("</siswa>");
                 printer.newLine();
 
                 printer.write("<jmlSoal>");
-                printer.write(database.getJmlSoal()[i]);
+                printer.write(database.getItemCount()[i]);
                 printer.write("</jmlSoal>");
                 printer.newLine();
 
                 printer.write("<tipe>");
-                printer.write(database.getTipeSoal()[i]);
+                printer.write(database.getItemType()[i]);
                 printer.write("</tipe>");
                 printer.newLine();
 
                 printer.write("<kkm>");
-                printer.write(database.getKKM()[i]);
+                printer.write(database.getMinimumPassValue()[i]);
                 printer.write("</kkm>");
                 printer.newLine();
 
-                for (int j = 0; j < database.getKunci()[i].length; j++) {
+                for (int j = 0; j < database.getKey()[i].length; j++) {
                     printer.write("<kunci>");
-                    printer.write(database.getKunci()[i][j].equals("") ? "?" : database.getKunci()[i][j]);
+                    printer.write(database.getKey()[i][j].equals("") ? "?" : database.getKey()[i][j]);
                     printer.write("</kunci>");
                     printer.newLine();
                 }
 
-                for (int k = 0; k < database.getSoal()[i].length; k++) {
-                    for (int l = 0; l < database.getSoal()[i][k].length; l++) {
+                for (int k = 0; k < database.getStudentsAnswer()[i].length; k++) {
+                    for (int l = 0; l < database.getStudentsAnswer()[i][k].length; l++) {
                         printer.write("<soal>");
-                        printer.write(database.getSoal()[i][k][l].equals("") ? "?" : database.getSoal()[i][k][l]);
+                        printer.write(database.getStudentsAnswer()[i][k][l].equals("") ? "?" : database.getStudentsAnswer()[i][k][l]);
                         printer.write("</soal>");
                         printer.newLine();
                     }

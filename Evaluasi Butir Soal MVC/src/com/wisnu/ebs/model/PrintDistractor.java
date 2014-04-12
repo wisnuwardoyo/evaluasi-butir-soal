@@ -9,35 +9,11 @@ package com.wisnu.ebs.model;
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
-public class PrintDataSiswa {
+public class PrintDistractor {
 
-    String nama,benar, salah, nilai, keterangan;
-    String kompetensi, soal, siswa, reabilitas,KKM,nilaiRata;
-
-    public String getNilaiRata() {
-        return nilaiRata;
-    }
-
-    public void setNilaiRata(String nilaiRata) {
-        this.nilaiRata = nilaiRata;
-    }
-
-    
-    public String getKKM() {
-        return KKM;
-    }
-
-    public void setKKM(String KKM) {
-        this.KKM = KKM;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
+    String a, b, c, d, e;
+    String kefektifan, keterangan;
+    String kompetensi, soal, siswa, reabilitas;
 
     public String getKompetensi() {
         return kompetensi;
@@ -70,30 +46,53 @@ public class PrintDataSiswa {
     public void setReabilitas(String reabilitas) {
         this.reabilitas = reabilitas;
     }
-
     
-    public String getBenar() {
-        return benar;
+    public String getA() {
+        return a;
     }
 
-    public void setBenar(String benar) {
-        this.benar = benar;
+    public void setA(String a) {
+        this.a = a;
     }
 
-    public String getSalah() {
-        return salah;
+    public String getB() {
+        return b;
     }
 
-    public void setSalah(String salah) {
-        this.salah = salah;
+    public void setB(String b) {
+        this.b = b;
     }
 
-    public String getNilai() {
-        return nilai;
+    public String getC() {
+        return c;
     }
 
-    public void setNilai(String nilai) {
-        this.nilai = nilai;
+    public void setC(String c) {
+        this.c = c;
+    }
+
+    public String getD() {
+        return d;
+    }
+
+    public void setD(String d) {
+        this.d = d;
+    }
+
+    public String getE() {
+        return e;
+    }
+
+    public void setE(String e) {
+        this.e = e;
+    }
+
+    public String getKefektifan() {
+        return kefektifan;
+    }
+
+    public void setKefektifan(String kefektifan) {
+        this.kefektifan = kefektifan;
     }
 
     public String getKeterangan() {
@@ -103,5 +102,6 @@ public class PrintDataSiswa {
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
     }
-
+    
+    
 }

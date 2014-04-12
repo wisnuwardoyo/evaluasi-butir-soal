@@ -6,6 +6,7 @@
 package com.wisnu.ebs.main;
 
 import com.wisnu.ebs.controller.MainController;
+import com.wisnu.ebs.controller.thread.GenerateFolder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +20,9 @@ public class LockedMain {
 
     private MainController controllerUtama;
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    Date now, limit;
+    private Date now, limit;
+    private Thread folderGenerator = new GenerateFolder();
+    
 
     public LockedMain() {
         try {
@@ -29,6 +32,7 @@ public class LockedMain {
             if (now.after(limit)) {
                 JOptionPane.showConfirmDialog(null, "This Program has expired", "Warning", JOptionPane.CLOSED_OPTION);
             } else if (now.before(limit) || now.equals(limit)) {
+                folderGenerator.start();
                 controllerUtama = new MainController();
             }
 

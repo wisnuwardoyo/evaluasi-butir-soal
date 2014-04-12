@@ -23,7 +23,7 @@ public class CreateAnisSoFolder {
     protected boolean findAnissoFolder() {
         String[] listFolder = new File(DefaultFolder).list();
         for (String folder : listFolder) {
-            if (new File(DefaultFolder + folder).isDirectory()) {
+            if (new File(DefaultFolder +"\\"+folder).isDirectory()) {
                 if (folder.equalsIgnoreCase("anisso")) {
                     return true;
                 }
@@ -36,6 +36,9 @@ public class CreateAnisSoFolder {
         if(!findAnissoFolder()){
             File file = new File(DefaultFolder+"\\AnisSo\\");
             file.mkdir();
+            System.out.println("Folder Created");
+        }else{
+            System.out.println("Folder Already Exist");
         }
     }
     

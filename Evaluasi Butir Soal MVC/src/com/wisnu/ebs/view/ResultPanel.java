@@ -6,7 +6,7 @@ package com.wisnu.ebs.view;
 
 import com.wisnu.ebs.add.ColoredTable;
 import com.wisnu.ebs.add.TransparentTextArea;
-import com.wisnu.ebs.add.rowTable;
+import com.wisnu.ebs.add.RowTable;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JFrame;
@@ -71,7 +71,7 @@ public class ResultPanel extends javax.swing.JPanel {
         listRowHeader[0].setFixedCellWidth(60);
         listRowHeader[0].setFixedCellHeight(20);
         listRowHeader[0].setBackground(new java.awt.Color(214, 217, 223));
-        listRowHeader[0].setCellRenderer(new rowTable(table));
+        listRowHeader[0].setCellRenderer(new RowTable(table));
         scroll.setRowHeaderView(listRowHeader[0]);
         //System.out.println(table.getTableHeader().getBackground());
     }
@@ -96,7 +96,7 @@ public class ResultPanel extends javax.swing.JPanel {
         listRowHeader[1].setFixedCellWidth(60);
         listRowHeader[1].setFixedCellHeight(20);
         listRowHeader[1].setBackground(new java.awt.Color(214, 217, 223));
-        listRowHeader[1].setCellRenderer(new rowTable(table2));
+        listRowHeader[1].setCellRenderer(new RowTable(table2));
         scroll2.setRowHeaderView(listRowHeader[1]);
         //System.out.println(table.getTableHeader().getBackground());
     }
@@ -124,7 +124,7 @@ public class ResultPanel extends javax.swing.JPanel {
         listRowHeader[2].setFixedCellWidth(100);
         listRowHeader[2].setFixedCellHeight(20);
         listRowHeader[2].setBackground(new java.awt.Color(214, 217, 223));
-        listRowHeader[2].setCellRenderer(new rowTable(table3) {
+        listRowHeader[2].setCellRenderer(new RowTable(table3) {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JTableHeader header = table.getTableHeader();
@@ -202,7 +202,7 @@ public class ResultPanel extends javax.swing.JPanel {
         listRowHeader[3].setFixedCellWidth(60);
         listRowHeader[3].setFixedCellHeight(20);
         listRowHeader[3].setBackground(new java.awt.Color(214, 217, 223));
-        listRowHeader[3].setCellRenderer(new rowTable(table4));
+        listRowHeader[3].setCellRenderer(new RowTable(table4));
         scroll4.setRowHeaderView(listRowHeader[3]);
         //System.out.println(table.getTableHeader().getBackground());
     }
@@ -356,7 +356,7 @@ public class ResultPanel extends javax.swing.JPanel {
                     .addComponent(labKorelasi)
                     .addComponent(labSimpangan)
                     .addComponent(labRata))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,7 +377,7 @@ public class ResultPanel extends javax.swing.JPanel {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(labReabilitas))
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new Color(225,225,255,20));
@@ -445,10 +445,12 @@ public class ResultPanel extends javax.swing.JPanel {
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(0, 210, Short.MAX_VALUE)
+                                .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,7 +468,7 @@ public class ResultPanel extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
-        jTabbedPane1.addTab("Rekap Analisa", jPanel10);
+        jTabbedPane1.addTab("Rekap Analisis", jPanel10);
 
         jPanel2.setBackground(new Color(225,225,225,30));
 
@@ -509,7 +511,7 @@ public class ResultPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -580,7 +582,7 @@ public class ResultPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Analisa Soal", jPanel2);
+        jTabbedPane1.addTab("Analisis Soal", jPanel2);
 
         jPanel3.setBackground(new Color(225,225,225,30));
 
@@ -598,7 +600,7 @@ public class ResultPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -757,7 +759,7 @@ public class ResultPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Analisa Pengecoh", jPanel3);
+        jTabbedPane1.addTab("Analisis Pengecoh", jPanel3);
 
         jPanel7.setBackground(new Color(225,225,225,30));
 
@@ -802,7 +804,7 @@ public class ResultPanel extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -940,7 +942,7 @@ public class ResultPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

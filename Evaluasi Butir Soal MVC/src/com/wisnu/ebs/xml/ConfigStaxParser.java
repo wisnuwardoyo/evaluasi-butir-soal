@@ -45,27 +45,27 @@ public class ConfigStaxParser {
                         if (event.asStartElement().getName().getLocalPart()
                                 .equals(MAPEL)) {
                             event = eventReader.nextEvent();
-                            database.setMaPel(event.asCharacters().getData());
+                            database.setSubject(event.asCharacters().getData());
                             continue;
                         }
                     }
                     if (event.asStartElement().getName().getLocalPart()
                             .equals(GURU)) {
                         event = eventReader.nextEvent();
-                        database.setNamaGuru(event.asCharacters().getData());
+                        database.setTeacherName(event.asCharacters().getData());
                         continue;
                     }
                     if (event.asStartElement().getName().getLocalPart()
                             .equals(BERKAS)) {
                         event = eventReader.nextEvent();
-                        database.setJumlahBerkas(Integer.parseInt(event.asCharacters().getData()));
+                        database.setFileCount(Integer.parseInt(event.asCharacters().getData()));
                         continue;
                     }
 
                     if (event.asStartElement().getName().getLocalPart()
                             .equals(KELAS)) {
                         event = eventReader.nextEvent();
-                        database.setNamaKelas(event.asCharacters().getData());
+                        database.setClassName(event.asCharacters().getData());
                         continue;
                     }
 
