@@ -1,6 +1,7 @@
 package com.wisnu.ebs.controller;
 
 import com.wisnu.ebs.add.CorrelationTableValue;
+import com.wisnu.ebs.add.CreateAnisSoFolder;
 import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
@@ -57,17 +58,18 @@ public class MainController implements MainListener {
     private final WriteXMLFile saveFile = new WriteXMLFile();
     private final ConfController confController = new ConfController();
     private final ErrorMessage errorMessage = new ErrorMessage();
-
+    private final CreateAnisSoFolder anisSoFolder = new CreateAnisSoFolder();
     private NewDocumentPanel newDocumentPanel;
     private String path;
 
     public MainController() {
+        anisSoFolder.createAnissoFolder();
         mainFrame.setVisible(true);
         mainFrame.setController(this);
         confController.setDatabase(database);
         confController.setControllerUtama(this);
         //openDocumentAction("example.rmd");
-        System.out.println(0/144);
+
     }
 
     //New Document 
@@ -178,6 +180,16 @@ public class MainController implements MainListener {
         database.setBerkasAktif(0);
         openingConfigurationPanel();
         openingKeyPanel();
+        mainFrame.setTitle("AnisSo V.1.5.1 " + path);
+    }
+
+    public void openDocumentAction(String path, int fileSelected) {
+        this.path = path;
+        openingFile(path);
+        database.setBerkasAktif(fileSelected);
+        openingConfigurationPanel();
+        openingKeyPanel();
+        mainFrame.setTitle("AnisSo V.1.5.1 " + path);
     }
 
     public void openingFile(String path) {
@@ -213,12 +225,15 @@ public class MainController implements MainListener {
     }
 
     //Save Document
-    public void saveDocumentAction(String Path) {
-        Path = Path.replace(".rmd", "");
+    public void saveDocumentAction(String path) {
+        int currentFileSelected = database.getBerkasAktif();
+        path = path.replace(".rmd", "");
         database.setKunci(keyPanel);
         database.setSoal(ansPanel);
         saveFile.setDatabase(database);
-        saveFile.write(Path);
+        if (saveFile.write(path)) {
+            openDocumentAction(path + ".rmd", currentFileSelected);
+        }
     }
 
     //Key Pressed
@@ -736,4 +751,5 @@ public class MainController implements MainListener {
             database.setSoal(ansPanel);
         }
     }
+
 }

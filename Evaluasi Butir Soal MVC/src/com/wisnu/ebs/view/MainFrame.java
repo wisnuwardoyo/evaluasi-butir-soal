@@ -72,17 +72,12 @@ public class MainFrame extends javax.swing.JFrame {
                 return "RMD File";
             }
         });
-        try {
-            openDialog.setCurrentDirectory(new File(new File("").getCanonicalPath()));
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        openDialog.setCurrentDirectory(new File(openDialog.getCurrentDirectory().getAbsoluteFile().toString() + "\\anisso\\"));
         int returnVal = openDialog.showDialog(new JDialog(), "Open");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             try {
                 System.out.println("Opening File : " + openDialog.getSelectedFile().getCanonicalPath().toString());
                 controllerUtama.openDocumentAction(openDialog.getSelectedFile().getCanonicalPath().toString());
-                setTitle("AnisSo V.1.5.1 " + openDialog.getSelectedFile().getCanonicalPath().toString());
                 isFromFile = true;
                 this.repaint();
             } catch (IOException ex) {
@@ -113,11 +108,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return "RMD File";
             }
         });
-        try {
-            saveDialog.setCurrentDirectory(new File(new File("").getCanonicalPath()));
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        saveDialog.setCurrentDirectory(new File(saveDialog.getCurrentDirectory().getAbsoluteFile().toString() + "\\anisso\\"));
         int returnVal = saveDialog.showDialog(new JDialog(), "Save");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             try {
@@ -127,14 +118,12 @@ public class MainFrame extends javax.swing.JFrame {
                     if (confirm == 0) {
                         path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
                         controllerUtama.saveDocumentAction(path);
-                        controllerUtama.openDocumentAction(path + ".rmd");
                         this.repaint();
                     }
-
                 } else {
                     path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
+                    System.out.println(path);
                     controllerUtama.saveDocumentAction(path);
-                    controllerUtama.openDocumentAction(path + ".rmd");
                     this.repaint();
                 }
 
@@ -256,9 +245,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         openDialog = new javax.swing.JFileChooser();
         saveDialog = new javax.swing.JFileChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        mainScrollPane = new javax.swing.JScrollPane();
         panel_home = new ImageBackgroundPanel(image);
-        scrollPane = new javax.swing.JScrollPane();
+        contentScrollPane = new javax.swing.JScrollPane();
         jPanel10 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -271,7 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        menuScrollPane = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         button_sc_key = new javax.swing.JButton();
@@ -284,7 +273,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuFile = new javax.swing.JMenu();
         menu_item_new = new javax.swing.JMenuItem();
         menu_item_open = new javax.swing.JMenuItem();
         menu_item_save = new javax.swing.JMenuItem();
@@ -316,10 +305,10 @@ public class MainFrame extends javax.swing.JFrame {
         panel_home.setBackground(new java.awt.Color(0, 51, 51));
         panel_home.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        scrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 255, 102)));
-        scrollPane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        contentScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(102, 255, 102)));
+        contentScrollPane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                scrollPaneMouseMoved(evt);
+                contentScrollPaneMouseMoved(evt);
             }
         });
 
@@ -459,9 +448,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        scrollPane.setViewportView(jPanel10);
+        contentScrollPane.setViewportView(jPanel10);
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        menuScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel3.setBackground(new Color (225,225,225,30));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -622,30 +611,30 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setViewportView(jPanel3);
+        menuScrollPane.setViewportView(jPanel3);
 
         javax.swing.GroupLayout panel_homeLayout = new javax.swing.GroupLayout(panel_home);
         panel_home.setLayout(panel_homeLayout);
         panel_homeLayout.setHorizontalGroup(
             panel_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_homeLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
+                .addComponent(contentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
         );
         panel_homeLayout.setVerticalGroup(
             panel_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(contentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(menuScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(panel_home);
+        mainScrollPane.setViewportView(panel_home);
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(0, 25));
 
-        jMenu1.setText("File     ");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuFile.setText("File     ");
+        menuFile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         menu_item_new.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_new.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -655,7 +644,7 @@ public class MainFrame extends javax.swing.JFrame {
                 menu_item_newActionPerformed(evt);
             }
         });
-        jMenu1.add(menu_item_new);
+        menuFile.add(menu_item_new);
 
         menu_item_open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_open.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -665,7 +654,7 @@ public class MainFrame extends javax.swing.JFrame {
                 menu_item_openActionPerformed(evt);
             }
         });
-        jMenu1.add(menu_item_open);
+        menuFile.add(menu_item_open);
 
         menu_item_save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_save.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -675,8 +664,8 @@ public class MainFrame extends javax.swing.JFrame {
                 menu_item_saveActionPerformed(evt);
             }
         });
-        jMenu1.add(menu_item_save);
-        jMenu1.add(jSeparator1);
+        menuFile.add(menu_item_save);
+        menuFile.add(jSeparator1);
 
         menu_item_close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         menu_item_close.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -686,7 +675,7 @@ public class MainFrame extends javax.swing.JFrame {
                 menu_item_closeActionPerformed(evt);
             }
         });
-        jMenu1.add(menu_item_close);
+        menuFile.add(menu_item_close);
 
         menu_item_exit.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         menu_item_exit.setText("Keluar Program");
@@ -695,9 +684,9 @@ public class MainFrame extends javax.swing.JFrame {
                 menu_item_exitActionPerformed(evt);
             }
         });
-        jMenu1.add(menu_item_exit);
+        menuFile.add(menu_item_exit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuFile);
 
         jMenu3.setText("Edit     ");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -745,11 +734,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
+            .addComponent(mainScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(mainScrollPane)
         );
 
         pack();
@@ -807,7 +796,7 @@ public class MainFrame extends javax.swing.JFrame {
         exit(0);
         itemCheck(false);
         setFrameTitle("AniSso v.1.5.1");
-        scrollPane.setViewportView(jPanel10);
+        contentScrollPane.setViewportView(jPanel10);
         isFromFile = false;
     }//GEN-LAST:event_menu_item_closeActionPerformed
 
@@ -844,9 +833,9 @@ public class MainFrame extends javax.swing.JFrame {
         openDocumentAction();
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void scrollPaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrollPaneMouseMoved
+    private void contentScrollPaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentScrollPaneMouseMoved
         repaint();
-    }//GEN-LAST:event_scrollPaneMouseMoved
+    }//GEN-LAST:event_contentScrollPaneMouseMoved
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here
@@ -898,6 +887,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton button_sc_key;
     private javax.swing.JButton button_sc_print;
     private javax.swing.JButton button_sc_res;
+    private javax.swing.JScrollPane contentScrollPane;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -910,7 +900,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -923,10 +912,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JScrollPane mainScrollPane;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JScrollPane menuScrollPane;
     private javax.swing.JMenuItem menu_item_close;
     private javax.swing.JMenuItem menu_item_config;
     private javax.swing.JMenuItem menu_item_exit;
@@ -936,7 +926,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JFileChooser openDialog;
     private javax.swing.JPanel panel_home;
     private javax.swing.JFileChooser saveDialog;
-    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 
     public void setController(MainController controller) {
@@ -944,7 +933,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void setViewPort(Component component) {
-        scrollPane.setViewportView(component);
+        contentScrollPane.setViewportView(component);
         repaint();
     }
 

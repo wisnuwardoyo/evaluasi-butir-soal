@@ -34,7 +34,7 @@ public class ResultPanel extends javax.swing.JPanel {
     String[][][] dataTable = new String[4][][];
     String[][] rowHeader = new String[4][];
     JList[] listRowHeader = new JList[4];
-    private ToolPanel toolPanelSC1, toolPanelSC2;
+    private ToolPanel toolPanelSC1;
     private JFrame frame;
 
     public ResultPanel() {
