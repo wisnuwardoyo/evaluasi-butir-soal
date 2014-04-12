@@ -10,7 +10,7 @@ package com.wisnu.ebs.model;
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com> 
  */
-public class PrintData {
+public class PrintResult {
     String tk,db,kp,hm,kt;
     String kompetensi, soal, siswa, reabilitas;
 

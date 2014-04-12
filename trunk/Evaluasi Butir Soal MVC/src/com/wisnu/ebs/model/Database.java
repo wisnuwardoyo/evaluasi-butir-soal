@@ -12,19 +12,19 @@ import javax.swing.JTable;
  */
 public class Database {
 
-    private String[][] kunci;
-    private String[][][] soal;
-    private String[] kompetensi;
-    private String[] KKM;
-    private String[] jmlSiswa;
-    private String[] jmlSoal;
-    private String[] tipeSoal;
+    private String[][] key;
+    private String[][][] studentsAnswer;
+    private String[] competency;
+    private String[] minimumPassValue;
+    private String[] studentsCount;
+    private String[] itemCount;
+    private String[] itemType;
 
-    private String maPel;
-    private String namaGuru;
-    private String namaKelas;
-    private int jumlahBerkas;
-    private int berkasAktif;
+    private String subject;
+    private String teacherName;
+    private String className;
+    private int fileCount;
+    private int currentlySelectedItem;
 
     private MainListener mainListener;
 
@@ -35,19 +35,19 @@ public class Database {
     public void newDocument(NewDocumentPanel panel) {
         NewDocumentPanel inputPanel = panel;
 
-        setMaPel(inputPanel.getLabMaPel().getText());
-        setNamaGuru(inputPanel.getLabGuru().getText());
-        setNamaKelas(inputPanel.getLabKelas().getText());
-        setJumlahBerkas(1);
+        setSubject(inputPanel.getLabMaPel().getText());
+        setTeacherName(inputPanel.getLabGuru().getText());
+        setClassName(inputPanel.getLabKelas().getText());
+        setFileCount(1);
 
         int jumlahSiswa = Integer.parseInt(inputPanel.getLabJumlahSiswa().getText());
         int jumlahSoal = Integer.parseInt(inputPanel.getLabSoal().getText());
 
-        setKompetensi(new String[1]);
-        setJmlSoal(new String[1]);
-        setJmlSiswa(new String[1]);
-        setTipeSoal(new String[1]);
-        setKKM(new String[1]);
+        setCompetency(new String[1]);
+        setItemCount(new String[1]);
+        setStudentsCount(new String[1]);
+        setItemType(new String[1]);
+        setMinimumPassValue(new String[1]);
         String[][][] SoalBaru = new String[1][jumlahSiswa][jumlahSoal + 1];
         String[][] kunciBaru = new String[1][jumlahSoal];
 
@@ -64,32 +64,32 @@ public class Database {
             kunciBaru[0][i] = "";
         }
 
-        kompetensi[0] = inputPanel.getLabKompetensi().getText();
-        jmlSoal[0] = inputPanel.getLabSoal().getText();
-        jmlSiswa[0] = inputPanel.getLabJumlahSiswa().getText();
-        tipeSoal[0] = String.valueOf(inputPanel.getRadio());
-        KKM[0] = inputPanel.getLabKKM().getText();
-        setKunci(kunciBaru);
-        setSoal(SoalBaru);
-        setBerkasAktif(0);
+        competency[0] = inputPanel.getLabKompetensi().getText();
+        itemCount[0] = inputPanel.getLabSoal().getText();
+        studentsCount[0] = inputPanel.getLabJumlahSiswa().getText();
+        itemType[0] = String.valueOf(inputPanel.getRadio());
+        minimumPassValue[0] = inputPanel.getLabKKM().getText();
+        setKey(kunciBaru);
+        setStudentsAnswer(SoalBaru);
+        setCurrentlySelectedItem(0);
 
     }
 
-    public void setKunci(KeyPanel panel) {
+    public void setKey(KeyPanel panel) {
         if (panel != null) {
             JTable table = panel.getTable();
-            for (int i = 0; i < Integer.parseInt(getJmlSoal()[getBerkasAktif()]); i++) {
-                getKunci()[getBerkasAktif()][i] = table.getValueAt(i, 0).toString().toUpperCase();
+            for (int i = 0; i < Integer.parseInt(getItemCount()[getCurrentlySelectedItem()]); i++) {
+                getKey()[getCurrentlySelectedItem()][i] = table.getValueAt(i, 0).toString().toUpperCase();
             }
         }
     }
 
-    public void setSoal(AnsPanel panel) {
+    public void setStudentAnswer(AnsPanel panel) {
         if (panel != null) {
             JTable table = panel.getTable();
-            for (int i = 0; i < Integer.parseInt(getJmlSiswa()[getBerkasAktif()]); i++) {
-                for (int j = 0; j <= Integer.parseInt(getJmlSoal()[getBerkasAktif()]); j++) {
-                    getSoal()[getBerkasAktif()][i][j] = table.getValueAt(i, j).toString().toUpperCase();
+            for (int i = 0; i < Integer.parseInt(getStudentsCount()[getCurrentlySelectedItem()]); i++) {
+                for (int j = 0; j <= Integer.parseInt(getItemCount()[getCurrentlySelectedItem()]); j++) {
+                    getStudentsAnswer()[getCurrentlySelectedItem()][i][j] = table.getValueAt(i, j).toString().toUpperCase();
                 }
             }
         }
@@ -106,100 +106,100 @@ public class Database {
         this.mainListener = mainListener;
     }
 
-    public String[][] getKunci() {
-        return kunci;
+    public String[][] getKey() {
+        return key;
     }
 
-    public void setKunci(String[][] kunci) {
-        this.kunci = kunci;
+    public void setKey(String[][] key) {
+        this.key = key;
     }
 
-    public String[][][] getSoal() {
-        return soal;
+    public String[][][] getStudentsAnswer() {
+        return studentsAnswer;
     }
 
-    public void setSoal(String[][][] soal) {
-        this.soal = soal;
+    public void setStudentsAnswer(String[][][] studentsAnswer) {
+        this.studentsAnswer = studentsAnswer;
     }
 
-    public String[] getKompetensi() {
-        return kompetensi;
+    public String[] getCompetency() {
+        return competency;
     }
 
-    public void setKompetensi(String[] kompetensi) {
-        this.kompetensi = kompetensi;
+    public void setCompetency(String[] competency) {
+        this.competency = competency;
     }
 
-    public String[] getKKM() {
-        return KKM;
+    public String[] getMinimumPassValue() {
+        return minimumPassValue;
     }
 
-    public void setKKM(String[] KKM) {
-        this.KKM = KKM;
+    public void setMinimumPassValue(String[] minimumPassValue) {
+        this.minimumPassValue = minimumPassValue;
     }
 
-    public String[] getJmlSiswa() {
-        return jmlSiswa;
+    public String[] getStudentsCount() {
+        return studentsCount;
     }
 
-    public void setJmlSiswa(String[] jmlSiswa) {
-        this.jmlSiswa = jmlSiswa;
+    public void setStudentsCount(String[] studentsCount) {
+        this.studentsCount = studentsCount;
     }
 
-    public String[] getJmlSoal() {
-        return jmlSoal;
+    public String[] getItemCount() {
+        return itemCount;
     }
 
-    public void setJmlSoal(String[] jmlSoal) {
-        this.jmlSoal = jmlSoal;
+    public void setItemCount(String[] itemCount) {
+        this.itemCount = itemCount;
     }
 
-    public String[] getTipeSoal() {
-        return tipeSoal;
+    public String[] getItemType() {
+        return itemType;
     }
 
-    public void setTipeSoal(String[] tipeSoal) {
-        this.tipeSoal = tipeSoal;
+    public void setItemType(String[] itemType) {
+        this.itemType = itemType;
     }
 
-    public String getMaPel() {
-        return maPel;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setMaPel(String maPel) {
-        this.maPel = maPel;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getNamaGuru() {
-        return namaGuru;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setNamaGuru(String namaGuru) {
-        this.namaGuru = namaGuru;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
-    public String getNamaKelas() {
-        return namaKelas;
+    public String getClassName() {
+        return className;
     }
 
-    public void setNamaKelas(String namaKelas) {
-        this.namaKelas = namaKelas;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
-    public int getJumlahBerkas() {
-        return jumlahBerkas;
+    public int getFileCount() {
+        return fileCount;
     }
 
-    public void setJumlahBerkas(int jumlahBerkas) {
-        this.jumlahBerkas = jumlahBerkas;
+    public void setFileCount(int fileCount) {
+        this.fileCount = fileCount;
     }
 
-    public int getBerkasAktif() {
-        return berkasAktif;
+    public int getCurrentlySelectedItem() {
+        return currentlySelectedItem;
     }
 
-    public void setBerkasAktif(int berkasAktif) {
-        this.berkasAktif = berkasAktif;
+    public void setCurrentlySelectedItem(int currentlySelectedItem) {
+        this.currentlySelectedItem = currentlySelectedItem;
     }
 
 }

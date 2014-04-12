@@ -62,8 +62,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Rekap Analisa">
-                <Property name="tabTitle" type="java.lang.String" value="Rekap Analisa"/>
+              <JTabbedPaneConstraints tabName="Rekap Analisis">
+                <Property name="tabTitle" type="java.lang.String" value="Rekap Analisis"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -82,10 +82,13 @@
                               <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel17" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="210" max="32767" attributes="0"/>
                                       <Component id="toolPanel1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jPanel17" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -148,7 +151,7 @@
                               <Component id="labSimpangan" min="-2" max="-2" attributes="0"/>
                               <Component id="labRata" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="224" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -175,7 +178,7 @@
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="labReabilitas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="240" max="32767" attributes="0"/>
+                          <EmptySpace pref="262" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -396,8 +399,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Analisa Soal">
-                <Property name="tabTitle" type="java.lang.String" value="Analisa Soal"/>
+              <JTabbedPaneConstraints tabName="Analisis Soal">
+                <Property name="tabTitle" type="java.lang.String" value="Analisis Soal"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -510,7 +513,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" pref="940" max="32767" attributes="0"/>
+                          <Component id="jLabel1" pref="890" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -623,8 +626,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Analisa Pengecoh">
-                <Property name="tabTitle" type="java.lang.String" value="Analisa Pengecoh"/>
+              <JTabbedPaneConstraints tabName="Analisis Pengecoh">
+                <Property name="tabTitle" type="java.lang.String" value="Analisis Pengecoh"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -684,7 +687,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel7" pref="940" max="32767" attributes="0"/>
+                          <Component id="jLabel7" pref="890" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1085,7 +1088,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel8" pref="940" max="32767" attributes="0"/>
+                          <Component id="jLabel8" pref="890" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

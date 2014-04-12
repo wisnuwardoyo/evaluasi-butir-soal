@@ -16,13 +16,13 @@ public class ColoredTable extends JTable {
     public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
         Component cell = super.prepareRenderer(renderer, row, col);
         cell.setForeground(Color.BLACK);
-        if (row < this.getRowCount() / 3) {
+        if (row < (int) (this.getRowCount() * 0.27)) {
             if (row % 2 == 0) {
                 cell.setBackground(new Color(153, 255, 153));
             } else {
                 cell.setBackground(new Color(102, 255, 102));
             }
-        } else if (row >= this.getRowCount() / 3 && row <= (this.getRowCount() * 2) / 3) {
+        } else if (row >= (int) (this.getRowCount() * 0.27) && row <= (int) (this.getRowCount() * 0.73)) {
             if (row % 2 == 0) {
                 cell.setBackground(new Color(255, 255, 255));
             } else {
@@ -35,7 +35,7 @@ public class ColoredTable extends JTable {
                 cell.setBackground(new Color(255, 102, 102));
             }
         }
-       
+
         return cell;
     }
 }

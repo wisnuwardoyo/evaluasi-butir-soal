@@ -27,13 +27,13 @@ public class ConfController {
     public void changeProperty(int code, String temp) {
         switch (code) {
             case 1:
-                database.setMaPel(temp);
+                database.setSubject(temp);
                 break;
             case 2:
-                database.setNamaGuru(temp);
+                database.setTeacherName(temp);
                 break;
             case 3:
-                database.setNamaKelas(temp);
+                database.setClassName(temp);
                 break;
             default:
                 break;
@@ -45,75 +45,75 @@ public class ConfController {
     }
 
     public void addFile(NewFilePanel panel) {
-        String[][] kunci = database.getKunci().clone();
-        String[][][] soal = database.getSoal().clone();
-        String[] kompetensi = database.getKompetensi().clone();
-        String[] KKM = database.getKKM().clone();
-        String[] jmlSiswa = database.getJmlSiswa().clone();
-        String[] jmlSoal = database.getJmlSoal().clone();
-        String[] tipeSoal = database.getTipeSoal().clone();
-        int jumlahBerkas = database.getJumlahBerkas() + 1;
+        String[][] kunci = database.getKey().clone();
+        String[][][] soal = database.getStudentsAnswer().clone();
+        String[] kompetensi = database.getCompetency().clone();
+        String[] KKM = database.getMinimumPassValue().clone();
+        String[] jmlSiswa = database.getStudentsCount().clone();
+        String[] jmlSoal = database.getItemCount().clone();
+        String[] tipeSoal = database.getItemType().clone();
+        int jumlahBerkas = database.getFileCount() + 1;
 
         initVar(jumlahBerkas);
 
         int siswaBaru = Integer.parseInt(panel.getLabJumlahSiswa().getText());
         int soalBaru = Integer.parseInt(panel.getLabSoal().getText());
 
-        database.getKunci()[jumlahBerkas - 1] = new String[soalBaru];
-        database.getSoal()[jumlahBerkas - 1] = new String[siswaBaru][soalBaru + 1];
+        database.getKey()[jumlahBerkas - 1] = new String[soalBaru];
+        database.getStudentsAnswer()[jumlahBerkas - 1] = new String[siswaBaru][soalBaru + 1];
 
         for (int i = 0; i < jumlahBerkas; i++) {
             if (i == (jumlahBerkas - 1)) {
-                database.getKompetensi()[i] = panel.getLabKompetensi().getText();
-                database.getKKM()[i] = panel.getLabKKM().getText();
-                database.getTipeSoal()[i] = String.valueOf(panel.getRadio());
-                database.getJmlSiswa()[i] = panel.getLabJumlahSiswa().getText();
-                database.getJmlSoal()[i] = panel.getLabSoal().getText();
+                database.getCompetency()[i] = panel.getLabKompetensi().getText();
+                database.getMinimumPassValue()[i] = panel.getLabKKM().getText();
+                database.getItemType()[i] = String.valueOf(panel.getRadio());
+                database.getStudentsCount()[i] = panel.getLabJumlahSiswa().getText();
+                database.getItemCount()[i] = panel.getLabSoal().getText();
                 for (int j = 0; j < soalBaru; j++) {
-                    database.getKunci()[i][j] = "";
+                    database.getKey()[i][j] = "";
                 }
                 for (int j = 0; j < siswaBaru; j++) {
                     for (int k = 0; k <= soalBaru; k++) {
                         if (k == 0) {
-                            database.getSoal()[i][j][k] = "Siswa " + String.valueOf(j + 1);
+                            database.getStudentsAnswer()[i][j][k] = "Siswa " + String.valueOf(j + 1);
                         } else {
-                            database.getSoal()[i][j][k] = "";
+                            database.getStudentsAnswer()[i][j][k] = "";
                         }
                     }
                 }
 
             } else {
-                database.getKompetensi()[i] = kompetensi[i];
-                database.getKKM()[i] = KKM[i];
-                database.getJmlSiswa()[i] = jmlSiswa[i];
-                database.getJmlSoal()[i] = jmlSoal[i];
-                database.getTipeSoal()[i] = tipeSoal[i];
-                database.getKunci()[i] = kunci[i];
-                database.getSoal()[i] = soal[i];
+                database.getCompetency()[i] = kompetensi[i];
+                database.getMinimumPassValue()[i] = KKM[i];
+                database.getStudentsCount()[i] = jmlSiswa[i];
+                database.getItemCount()[i] = jmlSoal[i];
+                database.getItemType()[i] = tipeSoal[i];
+                database.getKey()[i] = kunci[i];
+                database.getStudentsAnswer()[i] = soal[i];
             }
         }
-        database.setBerkasAktif(jumlahBerkas - 1);
+        database.setCurrentlySelectedItem(jumlahBerkas - 1);
         controllerUtama.openingConfigurationPanel();
     }
 
     public void changeFile(int number) {
-        database.setBerkasAktif(number);
+        database.setCurrentlySelectedItem(number);
         controllerUtama.openingConfigurationPanel();
     }
 
     public void setAllLab() {
-        confPanel.setLabMataPelajaran(database.getMaPel());
-        confPanel.setLabGuru(database.getNamaGuru());
-        confPanel.setLabKelas(database.getNamaKelas());
+        confPanel.setLabMataPelajaran(database.getSubject());
+        confPanel.setLabGuru(database.getTeacherName());
+        confPanel.setLabKelas(database.getClassName());
     }
 
     public void editFile(NewFilePanel panel) {
-        int aktif = this.database.getBerkasAktif();
-        panel.setLabKompetensi(this.database.getKompetensi()[aktif]);
-        panel.setLabKKM(this.database.getKKM()[aktif]);
-        panel.setLabSiswa(this.database.getJmlSiswa()[aktif]);
-        panel.setLabSoal(this.database.getJmlSoal()[aktif]);
-        panel.setRadio(this.database.getTipeSoal()[aktif].equals("4") ? 4 : 5);
+        int aktif = this.database.getCurrentlySelectedItem();
+        panel.setLabKompetensi(this.database.getCompetency()[aktif]);
+        panel.setLabKKM(this.database.getMinimumPassValue()[aktif]);
+        panel.setLabSiswa(this.database.getStudentsCount()[aktif]);
+        panel.setLabSoal(this.database.getItemCount()[aktif]);
+        panel.setRadio(this.database.getItemType()[aktif].equals("4") ? 4 : 5);
         panel.setTitle();
         int result = JOptionPane.showConfirmDialog(null, panel, "Edit File", JOptionPane.YES_NO_OPTION);
         if (result == 0) {
@@ -133,19 +133,19 @@ public class ConfController {
     }
 
     public void editFileAction(NewFilePanel panel) {
-        int aktif = this.database.getBerkasAktif();
-        if (!panel.getLabKompetensi().getText().equals(this.database.getKompetensi()[aktif])) {
-            this.database.getKompetensi()[aktif] = panel.getLabKompetensi().getText();
+        int aktif = this.database.getCurrentlySelectedItem();
+        if (!panel.getLabKompetensi().getText().equals(this.database.getCompetency()[aktif])) {
+            this.database.getCompetency()[aktif] = panel.getLabKompetensi().getText();
         }
-        if (!panel.getLabKKM().getText().equals(this.database.getKKM()[aktif])) {
-            this.database.getKKM()[aktif] = panel.getLabKKM().getText();
+        if (!panel.getLabKKM().getText().equals(this.database.getMinimumPassValue()[aktif])) {
+            this.database.getMinimumPassValue()[aktif] = panel.getLabKKM().getText();
         }
-        if (!panel.getLabJumlahSiswa().getText().equals(this.database.getJmlSiswa()[aktif])
-                || !panel.getLabSoal().getText().equals(this.database.getJmlSoal()[aktif])) {
+        if (!panel.getLabJumlahSiswa().getText().equals(this.database.getStudentsCount()[aktif])
+                || !panel.getLabSoal().getText().equals(this.database.getItemCount()[aktif])) {
             int siswaBaru = Integer.parseInt(panel.getLabJumlahSiswa().getText());
             int soalBaru = Integer.parseInt(panel.getLabSoal().getText());
-            int siswaLama = Integer.parseInt(this.database.getJmlSiswa()[aktif]);
-            int soalLama = Integer.parseInt(this.database.getJmlSoal()[aktif]);
+            int siswaLama = Integer.parseInt(this.database.getStudentsCount()[aktif]);
+            int soalLama = Integer.parseInt(this.database.getItemCount()[aktif]);
 
             String[][] dataSoal = new String[siswaBaru][soalBaru + 1];
             String[] dataKunci = new String[soalBaru];
@@ -156,7 +156,7 @@ public class ConfController {
                     || (siswaBaru > siswaLama && soalBaru > soalLama)) {
                 for (int i = 0; i < siswaLama; i++) {
                     for (int j = 0; j <= soalLama; j++) {
-                        dataSoal[i][j] = this.database.getSoal()[aktif][i][j];
+                        dataSoal[i][j] = this.database.getStudentsAnswer()[aktif][i][j];
                     }
                 }
 
@@ -179,7 +179,7 @@ public class ConfController {
             } else {
                 for (int i = 0; i < siswaBaru; i++) {
                     for (int j = 0; j <= soalBaru; j++) {
-                        dataSoal[i][j] = this.database.getSoal()[aktif][i][j];
+                        dataSoal[i][j] = this.database.getStudentsAnswer()[aktif][i][j];
                     }
                 }
             }
@@ -188,86 +188,86 @@ public class ConfController {
             if (soalBaru > soalLama) {
                 for (int i = 0; i < soalBaru; i++) {
                     if (i < soalLama) {
-                        dataKunci[i] = this.database.getKunci()[aktif][i];
+                        dataKunci[i] = this.database.getKey()[aktif][i];
                     } else {
                         dataKunci[i] = "";
                     }
                 }
             } else {
                 for (int i = 0; i < soalBaru; i++) {
-                    dataKunci[i] = this.database.getKunci()[aktif][i];
+                    dataKunci[i] = this.database.getKey()[aktif][i];
                 }
             }
 
             //-------------Setting UP-----------//
-            this.database.getSoal()[aktif] = new String[siswaBaru][soalBaru + 1];
-            this.database.getSoal()[aktif] = dataSoal;
-            this.database.getJmlSiswa()[aktif] = panel.getLabJumlahSiswa().getText();
-            this.database.getJmlSoal()[aktif] = panel.getLabSoal().getText();
+            this.database.getStudentsAnswer()[aktif] = new String[siswaBaru][soalBaru + 1];
+            this.database.getStudentsAnswer()[aktif] = dataSoal;
+            this.database.getStudentsCount()[aktif] = panel.getLabJumlahSiswa().getText();
+            this.database.getItemCount()[aktif] = panel.getLabSoal().getText();
 
         }
-        if (panel.getRadio() != Integer.parseInt(this.database.getTipeSoal()[aktif])) {
-            this.database.getTipeSoal()[aktif] = String.valueOf(panel.getRadio());
+        if (panel.getRadio() != Integer.parseInt(this.database.getItemType()[aktif])) {
+            this.database.getItemType()[aktif] = String.valueOf(panel.getRadio());
         }
     }
 
     public void deleteData() {
-        int aktif = this.database.getBerkasAktif();
+        int aktif = this.database.getCurrentlySelectedItem();
 
         int result = JOptionPane.showConfirmDialog(null,
                 "Apakah anda yakin akan menghapus data?\n\n"
-                + "Kompetensi \t: " + this.database.getKompetensi()[aktif] + "\n"
-                + "KKM \t: " + this.database.getKKM()[aktif] + "\n"
-                + "Siswa \t: " + this.database.getJmlSiswa()[aktif] + "\n"
-                + "Soal \t: " + this.database.getJmlSoal()[aktif] + "\n"
-                + "Tipe \t: " + (this.database.getTipeSoal()[aktif].equals("4") ? "A,B,C,D" : "A,B,C,D,E") + "\n",
+                + "Kompetensi \t: " + this.database.getCompetency()[aktif] + "\n"
+                + "KKM \t: " + this.database.getMinimumPassValue()[aktif] + "\n"
+                + "Siswa \t: " + this.database.getStudentsCount()[aktif] + "\n"
+                + "Soal \t: " + this.database.getItemCount()[aktif] + "\n"
+                + "Tipe \t: " + (this.database.getItemType()[aktif].equals("4") ? "A,B,C,D" : "A,B,C,D,E") + "\n",
                 "Peringatan", JOptionPane.OK_OPTION);
 
-        if (result == 0 && database.getJumlahBerkas() > 1) {
-            int jumlahBerkas = database.getJumlahBerkas() - 1;
-            String[][] kunci = database.getKunci().clone();
-            String[][][] soal = database.getSoal().clone();
-            String[] kompetensi = database.getKompetensi().clone();
-            String[] KKM = database.getKKM().clone();
-            String[] jmlSiswa = database.getJmlSiswa().clone();
-            String[] jmlSoal = database.getJmlSoal().clone();
-            String[] tipeSoal = database.getTipeSoal().clone();
+        if (result == 0 && database.getFileCount() > 1) {
+            int jumlahBerkas = database.getFileCount() - 1;
+            String[][] kunci = database.getKey().clone();
+            String[][][] soal = database.getStudentsAnswer().clone();
+            String[] kompetensi = database.getCompetency().clone();
+            String[] KKM = database.getMinimumPassValue().clone();
+            String[] jmlSiswa = database.getStudentsCount().clone();
+            String[] jmlSoal = database.getItemCount().clone();
+            String[] tipeSoal = database.getItemType().clone();
 
             initVar(jumlahBerkas);
 
             int j = 0;
             for (int i = 0; i <= jumlahBerkas; i++) {
                 if (i != aktif) {
-                    database.getKompetensi()[j] = kompetensi[i];
-                    database.getKKM()[j] = KKM[i];
-                    database.getJmlSiswa()[j] = jmlSiswa[i];
-                    database.getJmlSoal()[j] = jmlSoal[i];
-                    database.getTipeSoal()[j] = tipeSoal[i];
-                    database.getKunci()[j] = kunci[i];
-                    database.getSoal()[j] = soal[i];
+                    database.getCompetency()[j] = kompetensi[i];
+                    database.getMinimumPassValue()[j] = KKM[i];
+                    database.getStudentsCount()[j] = jmlSiswa[i];
+                    database.getItemCount()[j] = jmlSoal[i];
+                    database.getItemType()[j] = tipeSoal[i];
+                    database.getKey()[j] = kunci[i];
+                    database.getStudentsAnswer()[j] = soal[i];
                     j++;
                 } else {
 
                 }
 
             }
-            database.setBerkasAktif(0);
+            database.setCurrentlySelectedItem(0);
             controllerUtama.openingConfigurationPanel();
 
-        } else if (result == 0 && database.getJumlahBerkas() <= 1) {
+        } else if (result == 0 && database.getFileCount() <= 1) {
 
         }
     }
 
     public void initVar(int jumlahBerkas) {
-        database.setKunci(new String[jumlahBerkas][]);
-        database.setSoal(new String[jumlahBerkas][][]);
-        database.setKompetensi(new String[jumlahBerkas]);
-        database.setKKM(new String[jumlahBerkas]);
-        database.setJmlSiswa(new String[jumlahBerkas]);
-        database.setJmlSoal(new String[jumlahBerkas]);
-        database.setTipeSoal(new String[jumlahBerkas]);
-        database.setJumlahBerkas(jumlahBerkas);
+        database.setKey(new String[jumlahBerkas][]);
+        database.setStudentsAnswer(new String[jumlahBerkas][][]);
+        database.setCompetency(new String[jumlahBerkas]);
+        database.setMinimumPassValue(new String[jumlahBerkas]);
+        database.setStudentsCount(new String[jumlahBerkas]);
+        database.setItemCount(new String[jumlahBerkas]);
+        database.setItemType(new String[jumlahBerkas]);
+        database.setFileCount(jumlahBerkas);
     }
 
 }

@@ -34,9 +34,9 @@ public class FindingResult {
     int aktif;
 
     public void initComponent() {
-        aktif = database.getBerkasAktif();
-        col = Integer.parseInt(database.getJmlSiswa()[aktif]);
-        row = Integer.parseInt(database.getJmlSoal()[aktif]);
+        aktif = database.getCurrentlySelectedItem();
+        col = Integer.parseInt(database.getStudentsCount()[aktif]);
+        row = Integer.parseInt(database.getItemCount()[aktif]);
         setLetter(new String[col][row + 1]);
         setNumber(new String[col][row + 3]);
         setNRaW(new int[col][2]);
@@ -48,8 +48,8 @@ public class FindingResult {
         setEp(new String[row]);
         setCorrelation(new String[row]);
         setCorrelationNumber(new double[row]);
-        setLetter(database.getSoal()[aktif]);
-        setAnswerKey(database.getKunci()[aktif]);
+        setLetter(database.getStudentsAnswer()[aktif]);
+        setAnswerKey(database.getKey()[aktif]);
     }
 
     /**
@@ -59,9 +59,9 @@ public class FindingResult {
     public void correcting() {
         for (int i = 0; i < col; i++) {
             for (int j = 0; j < row; j++) {
-                if (!database.getSoal()[aktif][i][j + 1].equals(database.getKunci()[aktif][j])
-                        || database.getSoal()[aktif][i][j + 1].equals("")
-                        || database.getSoal()[aktif][i][j + 1].equals("?")) {
+                if (!database.getStudentsAnswer()[aktif][i][j + 1].equals(database.getKey()[aktif][j])
+                        || database.getStudentsAnswer()[aktif][i][j + 1].equals("")
+                        || database.getStudentsAnswer()[aktif][i][j + 1].equals("?")) {
                     getNumber()[i][j + 1] = "0";
                 } else {
                     getNumber()[i][j + 1] = "1";
@@ -146,37 +146,38 @@ public class FindingResult {
         setSortedNumber(angkaCopy.clone());
 
         // Dua variable BA dan BB, untuk menampung siswa dalam batas atas dan bawah.
-        String[][] BA = new String[col][row + 2];
-        String[][] BB = new String[col][row + 2];
+        String[][] BA = new String[(int) (col * 0.27)][row + 2];
+        String[][] BB = new String[(int) (col * 0.27)][row + 2];
 
         //Menempatkan siswa dalam batas atas kedalam BA
-        for (int i = 0; i < (int) (col * 0.33); i++) {
+        for (int i = 0; i < (int) (col * 0.27); i++) {
             BA[i] = angkaCopy[i];
 
         }
 
         //Menempatkan siswa dalam batas bawah kedalam BB
-        for (int i = (col - ((int) (col * 0.33))); i < col; i++) {
-            BB[i - (col - ((int) (col * 0.33)))] = angkaCopy[i];
+        for (int i = (col - ((int) (col * 0.27))); i < col; i++) {
+            BB[i - (col - ((int) (col * 0.27)))] = angkaCopy[i];
 
         }
 
         //Layer digunakan untuk menampung jumlah dari masing masing hasil olahan BA dan BB
-        float[] layer = new float[col * row];
-        for (int i = 1; i <= row; i++) {
-            for (int j = 0; j < (int) (col * 0.33); j++) {
-                layer[i - 1] += Float.parseFloat(BA[j][i]);
+        float[] layer = new float[row * 2];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < BA.length; j++) {
+                layer[i] += Float.parseFloat(BA[j][i + 1]);
             }
         }
-        for (int i = row + 1; i <= (row * 2); i++) {
-            for (int j = 0; j < (int) (col * 0.33); j++) {
-                layer[i - 1] += Float.parseFloat(BB[j][i - (row)]);
+        for (int i = row; i < layer.length; i++) {
+            for (int j = 0; j < BB.length; j++) {
+                layer[i] += Float.parseFloat(BB[j][(i - row) + 1]);
             }
         }
+        int a = 0;
         //Perhitungan daya beda
         for (int i = 0; i < row; i++) {
-            getDb()[i] = (layer[i] / ((int) (row * 0.33))) - (layer[i + row] / ((int) (row * 0.33)));
-            if(String.valueOf(getDb()[i]).equals("NaN")){
+            getDb()[i] = (layer[i] - layer[i + row]) / (float) BA.length;
+            if (String.valueOf(getDb()[i]).equals("NaN")) {
                 getDb()[i] = 0;
             }
         }
@@ -185,7 +186,7 @@ public class FindingResult {
     public void ep() {
         int z = col;
 
-        String[] pola = new String[Integer.parseInt(database.getTipeSoal()[aktif])];
+        String[] pola = new String[Integer.parseInt(database.getItemType()[aktif])];
         if (pola.length == 3) {
             pola[0] = "A"; //damn to make it simple
             pola[1] = "B";
@@ -226,18 +227,18 @@ public class FindingResult {
             } else {
                 getEp()[i - 1] = "Tidak Efektif";
             }
-            for (int l = 0; l < Integer.parseInt(database.getTipeSoal()[aktif]); l++) {
+            for (int l = 0; l < Integer.parseInt(database.getItemType()[aktif]); l++) {
                 dump[l] = 0;
             }
         }
         //----End Of Checking Zero Chooser---//
 
         //--Begin of checking score of options--//
-        setIPc(new String[Integer.parseInt(database.getTipeSoal()[aktif])][row]);
-        setnPc(new int[Integer.parseInt(database.getTipeSoal()[aktif])][row]);
+        setIPc(new String[Integer.parseInt(database.getItemType()[aktif])][row]);
+        setnPc(new int[Integer.parseInt(database.getItemType()[aktif])][row]);
         setnB(new int[row]);
         int a = 0;
-        double[][] IPcopy = new double[Integer.parseInt(database.getTipeSoal()[aktif])][row];
+        double[][] IPcopy = new double[Integer.parseInt(database.getItemType()[aktif])][row];
         for (int i = 0; i < pola.length; i++) {
             for (int j = 1; j <= row; j++) {
                 getnPc()[i][j - 1] = 0;
@@ -366,12 +367,12 @@ public class FindingResult {
             setPearson(new Pearson(col, validity_cek[i], validity_cek[row]));
             validity[i] = getPearson().getHasil();
         }
-        
+
         for (int i = 0; i < row; i++) {
             getCorrelation()[i] = String.valueOf(df.format(validity[i]));
             getCorrelationNumber()[i] = Double.parseDouble(df.format(validity[i]).replace(",", "."));
         }
-        
+
     }
 
     /**
@@ -422,7 +423,7 @@ public class FindingResult {
         int lulus = 0;
         int tlulus = 0;
         for (int i = 0; i < col; i++) {
-            if (((float) getNRaW()[i][0] / row) * 100 >= Float.parseFloat(database.getKKM()[aktif])) {
+            if (((float) getNRaW()[i][0] / row) * 100 >= Float.parseFloat(database.getMinimumPassValue()[aktif])) {
                 lulus += 1;
             } else {
                 tlulus += 1;

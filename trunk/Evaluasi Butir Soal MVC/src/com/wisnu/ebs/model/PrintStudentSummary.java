@@ -9,11 +9,35 @@ package com.wisnu.ebs.model;
  *
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
-public class PrintDataPengecoh {
+public class PrintStudentSummary {
 
-    String a, b, c, d, e;
-    String kefektifan, keterangan;
-    String kompetensi, soal, siswa, reabilitas;
+    String nama,benar, salah, nilai, keterangan;
+    String kompetensi, soal, siswa, reabilitas,KKM,nilaiRata;
+
+    public String getNilaiRata() {
+        return nilaiRata;
+    }
+
+    public void setNilaiRata(String nilaiRata) {
+        this.nilaiRata = nilaiRata;
+    }
+
+    
+    public String getKKM() {
+        return KKM;
+    }
+
+    public void setKKM(String KKM) {
+        this.KKM = KKM;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
 
     public String getKompetensi() {
         return kompetensi;
@@ -46,53 +70,30 @@ public class PrintDataPengecoh {
     public void setReabilitas(String reabilitas) {
         this.reabilitas = reabilitas;
     }
+
     
-    public String getA() {
-        return a;
+    public String getBenar() {
+        return benar;
     }
 
-    public void setA(String a) {
-        this.a = a;
+    public void setBenar(String benar) {
+        this.benar = benar;
     }
 
-    public String getB() {
-        return b;
+    public String getSalah() {
+        return salah;
     }
 
-    public void setB(String b) {
-        this.b = b;
+    public void setSalah(String salah) {
+        this.salah = salah;
     }
 
-    public String getC() {
-        return c;
+    public String getNilai() {
+        return nilai;
     }
 
-    public void setC(String c) {
-        this.c = c;
-    }
-
-    public String getD() {
-        return d;
-    }
-
-    public void setD(String d) {
-        this.d = d;
-    }
-
-    public String getE() {
-        return e;
-    }
-
-    public void setE(String e) {
-        this.e = e;
-    }
-
-    public String getKefektifan() {
-        return kefektifan;
-    }
-
-    public void setKefektifan(String kefektifan) {
-        this.kefektifan = kefektifan;
+    public void setNilai(String nilai) {
+        this.nilai = nilai;
     }
 
     public String getKeterangan() {
@@ -102,6 +103,5 @@ public class PrintDataPengecoh {
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
     }
-    
-    
+
 }
