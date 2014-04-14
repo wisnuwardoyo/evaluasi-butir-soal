@@ -22,11 +22,15 @@ import com.wisnu.ebs.xml.HelpStaxParser;
 import com.wisnu.ebs.xml.Item;
 import com.wisnu.ebs.xml.ItemStaXParser;
 import com.wisnu.ebs.xml.WriteXMLFile;
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.xml.stream.XMLStreamException;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -142,14 +146,18 @@ public class MainController implements MainListener {
             dataTable[i][2] = this.database.getMinimumPassValue()[i];
             dataTable[i][3] = this.database.getStudentsCount()[i];
             dataTable[i][4] = this.database.getItemCount()[i];
-            if (this.database.getItemType()[i].equals("3")) {
-                dataTable[i][5] = "A, B, C";
-            } else if (this.database.getItemType()[i].equals("4")) {
-                dataTable[i][5] = "A, B, C, D";
-            } else {
-                dataTable[i][5] = "A, B, C, D, E";
+            switch (this.database.getItemType()[i]) {
+                case "3":
+                    dataTable[i][5] = "A, B, C";
+                    break;
+                case "4":
+                    dataTable[i][5] = "A, B, C, D";
+                    break;
+                default:
+                    dataTable[i][5] = "A, B, C, D, E";
+                    break;
             }
-            dataTable[i][6] = i == aktif ? true : false;
+            dataTable[i][6] = i == aktif;
         }
         return dataTable;
     }
@@ -193,7 +201,12 @@ public class MainController implements MainListener {
 
     protected void openingFile(String path) {
         configReader.setModel(database);
-        configReader.readConfig(path);
+        try {
+            configReader.readConfig(path);
+        } catch (FileNotFoundException | XMLStreamException ex) {
+            fireErrorMessage(0, 99, "Dokument Tidak Valid");
+                return;
+        }
         int fileCount = database.getFileCount();
         if (fileCount > 0) {
             database.setCompetency(new String[fileCount]);
@@ -204,8 +217,13 @@ public class MainController implements MainListener {
             database.setKey(new String[fileCount][]);
             database.setStudentsAnswer(new String[fileCount][][]);
 
-            List<Item> readConfig = itemReader.readConfig(path);
-
+            List<Item> readConfig = null;
+            try {
+                readConfig = itemReader.readConfig(path);
+            } catch (FileNotFoundException | XMLStreamException ex) {
+                fireErrorMessage(0, 99, "Dokument Tidak Valid");
+                return;
+            }
             for (Item item : readConfig) {
                 int id = Integer.parseInt(item.getId());
                 database.getCompetency()[id] = item.getKompetensi();
@@ -321,7 +339,7 @@ public class MainController implements MainListener {
         findingResult.rightAndWrong2();
         findingResult.meanOfValue();
         findingResult.sumPassGrade();
-     
+
     }
 
     protected void settingResultPanelDataTable() {
@@ -369,11 +387,11 @@ public class MainController implements MainListener {
                     dataTable[0][i][j] = String.valueOf(new DecimalFormat("#.##").format(findingResult.getDb()[i] * 100)) + "%";
                 }
                 if (j == 3) {
-                    if (findingResult.getDb()[i] <= 0.20) {
+                    if (findingResult.getDb()[i] < 0.20) {
                         dataTable[0][i][j] = "Buruk";
-                    } else if (findingResult.getDb()[i] > 0.20 && findingResult.getDb()[i] <= 0.40) {
+                    } else if (findingResult.getDb()[i] >= 0.20 && findingResult.getDb()[i] < 0.40) {
                         dataTable[0][i][j] = "Cukup";
-                    } else if (findingResult.getDb()[i] > 0.40 && findingResult.getDb()[i] <= 0.70) {
+                    } else if (findingResult.getDb()[i] >= 0.40 && findingResult.getDb()[i] < 0.70) {
                         dataTable[0][i][j] = "Baik";
                     } else {
                         dataTable[0][i][j] = "Baik Sekali";
@@ -447,16 +465,16 @@ public class MainController implements MainListener {
             rowHeader[3][i] = String.valueOf("Soal " + (i + 1));
             for (int j = 0; j < 5; j++) {
                 if (j == 0) {
-                    if ((float) findingResult.getTk()[i] / row <= 0.30) {
+                    if ((float) findingResult.getTk()[i] / col <= 0.30) {
                         dataTable[3][i][j] = "Sukar";
-                        if ((float) findingResult.getTk()[i] / row <= 0.15) {
+                        if ((float) findingResult.getTk()[i] / col <= 0.15) {
                             dataTable[3][i][j] = "Sangat Sukar";
                         }
-                    } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
+                    } else if ((float) findingResult.getTk()[i] / col > 0.30 && (float) findingResult.getTk()[i] / col <= 0.70) {
                         dataTable[3][i][j] = "Sedang";
                     } else {
                         dataTable[3][i][j] = "Mudah";
-                        if ((float) findingResult.getTk()[i] / row >= 0.86) {
+                        if ((float) findingResult.getTk()[i] / col >= 0.86) {
                             dataTable[3][i][j] = "Sangat Mudah";
                         }
                     }
