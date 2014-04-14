@@ -4,6 +4,7 @@
  */
 package com.wisnu.ebs.view;
 
+import com.wisnu.ebs.add.ExcelAdapter;
 import com.wisnu.ebs.add.TableCellListener;
 import com.wisnu.ebs.add.RowTable;
 import java.awt.Color;
@@ -33,6 +34,7 @@ public class KeyPanel extends javax.swing.JPanel {
         table = new JTable(tableModel);
         table.setRowHeight(20);
         table.getColumnModel().getColumn(0).setCellRenderer(new TableCellListener(type));        
+        ExcelAdapter excelAdapter = new ExcelAdapter(table);
         Scroll = new JScrollPane(table);
         //scroll.setPreferredSize(new Dimension(400, 200));
     }
@@ -154,7 +156,7 @@ public class KeyPanel extends javax.swing.JPanel {
         jTextArea1.setForeground(new java.awt.Color(0, 51, 51));
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPastikan mengisi semua kunci jawaban yang ada, dengan menekan tombol TAB atau ENTER atau ARAH PANAH setelah selesai mengetik.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa, dan lakukan hal yang sama pada saat mengisikan kunci jawaban.\n\nKLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut.");
+        jTextArea1.setText("SELAMAT DATANG DI PROGRAM ANALISIS BUTIR SOAL\n\nIsikan data-data yang merupakan kunci jawaban dari masing-masing soal pada tabel disamping. \n\nPastikan mengisi semua kunci jawaban yang ada, dengan menekan tombol TAB atau ENTER atau ARAH PANAH setelah selesai mengetik.\n\nTekan tombol NEXT untuk melanjutkan, ke bagian pengisian hasil pekerjaan siswa, dan lakukan hal yang sama pada saat mengisikan kunci jawaban.\n\nKLIK HELP atau TEKAN F1 untuk bantuan lebih lanjut.\n\nTIP : Gunakan CTRL + C untuk Copy dan CTRL + V untuk Paste");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setOpaque(false);
         jScrollPane2.setViewportView(jTextArea1);

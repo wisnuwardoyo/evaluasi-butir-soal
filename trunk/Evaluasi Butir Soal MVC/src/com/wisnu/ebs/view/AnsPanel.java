@@ -4,6 +4,7 @@
  */
 package com.wisnu.ebs.view;
 
+import com.wisnu.ebs.add.ExcelAdapter;
 import com.wisnu.ebs.add.TableCellListener;
 import com.wisnu.ebs.add.RowTable;
 import java.awt.Color;
@@ -50,6 +51,7 @@ public class AnsPanel extends javax.swing.JPanel {
             table.getColumnModel().getColumn(i).setCellRenderer(new TableCellListener(type));
         }
         setAllColumnWidth();
+        ExcelAdapter excelAdapter = new ExcelAdapter(table);
         scroll = new JScrollPane(table);
         //scroll.setPreferredSize(new Dimension(400, 200));
     }
@@ -119,7 +121,7 @@ public class AnsPanel extends javax.swing.JPanel {
         setBackground(new Color(225, 225, 225, 20));
 
         jPanel1.setBackground(new Color(225, 225, 225, 20));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabel Pekerjaan Siswa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabel Pekerjaan Siswa (Tip : Gunakan CTRL + C untuk Copy dan CTRL + V untuk Paste)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
         scroll.setForeground(new java.awt.Color(153, 255, 153));
         scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -127,8 +129,7 @@ public class AnsPanel extends javax.swing.JPanel {
 
         table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         table.setCellSelectionEnabled(true);
-        table.setDoubleBuffered(true);
-        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scroll.setViewportView(table);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

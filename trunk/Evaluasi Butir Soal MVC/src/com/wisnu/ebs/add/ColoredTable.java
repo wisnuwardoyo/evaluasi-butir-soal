@@ -6,6 +6,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class ColoredTable extends JTable {
 
     public ColoredTable(DefaultTableModel model) {

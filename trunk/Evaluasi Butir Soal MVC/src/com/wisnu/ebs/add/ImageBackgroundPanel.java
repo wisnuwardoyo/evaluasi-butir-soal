@@ -2,9 +2,12 @@ package com.wisnu.ebs.add;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class ImageBackgroundPanel extends JPanel {
 
     Image image;

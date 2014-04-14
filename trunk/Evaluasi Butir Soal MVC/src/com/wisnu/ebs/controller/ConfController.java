@@ -10,6 +10,10 @@ import com.wisnu.ebs.view.ConfPanel;
 import com.wisnu.ebs.view.NewFilePanel;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class ConfController {
 
     private Database database;
@@ -168,7 +172,7 @@ public class ConfController {
                     } else {
                         for (int k = 0; k <= soalBaru; k++) {
                             if (k == 0) {
-                                dataSoal[i][k] = "Siswa" + String.valueOf(i+1);
+                                dataSoal[i][k] = "Siswa" + String.valueOf(i + 1);
                             } else {
                                 dataSoal[i][k] = "";
                             }

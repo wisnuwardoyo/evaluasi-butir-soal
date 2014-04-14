@@ -5,6 +5,10 @@
  */
 package com.wisnu.ebs.add;
 
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class CorrelationTableValue {
 
     public double[] CorrelationTableValue(int n) {
@@ -228,7 +232,7 @@ public class CorrelationTableValue {
                 value[0] = 0.195;
                 value[1] = 0.254;
                 break;
-                
+
         }
 
         return value;

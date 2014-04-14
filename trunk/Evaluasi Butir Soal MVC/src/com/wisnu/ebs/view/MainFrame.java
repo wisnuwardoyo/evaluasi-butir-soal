@@ -115,7 +115,6 @@ public class MainFrame extends javax.swing.JFrame {
                     }
                 } else {
                     path = path.contains(".rmd") ? path.replace(".rmd", "") : path;
-                    System.out.println(path);
                     controllerUtama.saveDocumentAction(path);
                     this.repaint();
                 }
@@ -283,7 +282,7 @@ public class MainFrame extends javax.swing.JFrame {
         saveDialog.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("AnisSo v.1.5.1");
+        setTitle("AnisSo V.2.0.1");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

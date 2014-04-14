@@ -21,16 +21,17 @@ public class LockedMain {
     private MainController controllerUtama;
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Date now, limit;
-    private Thread folderGenerator = new GenerateFolder();
-    
+    private final Thread folderGenerator = new GenerateFolder();
 
     public LockedMain() {
         try {
             now = sdf.parse(sdf.format(new Date()));
-            limit = sdf.parse("2014-4-30");
+            limit = sdf.parse("2014-5-13");
 
             if (now.after(limit)) {
-                JOptionPane.showConfirmDialog(null, "This Program has expired", "Warning", JOptionPane.CLOSED_OPTION);
+                JOptionPane.showMessageDialog(null, new Object[]{
+                    "This Program has expired",
+                    "Please contact Wisnu Wardoyo for renewal"}, "WARNING!", JOptionPane.WARNING_MESSAGE);
             } else if (now.before(limit) || now.equals(limit)) {
                 folderGenerator.start();
                 controllerUtama = new MainController();

@@ -69,6 +69,7 @@ public class FindingResult {
 
             }
         }
+
         for (int i = 0; i < col; i++) {
             /**
              * Menempatkan Nama Siswa kedalam variable number paling depan.
@@ -94,6 +95,7 @@ public class FindingResult {
                 getTk()[i - 1] += Integer.parseInt(getNumber()[j][i]);
             }
         }
+
     }
 
     /**
@@ -173,7 +175,7 @@ public class FindingResult {
                 layer[i] += Float.parseFloat(BB[j][(i - row) + 1]);
             }
         }
-        int a = 0;
+
         //Perhitungan daya beda
         for (int i = 0; i < row; i++) {
             getDb()[i] = (layer[i] - layer[i + row]) / (float) BA.length;
