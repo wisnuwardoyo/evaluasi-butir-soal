@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Wisnu Citra
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class Statistics {
 

@@ -4,11 +4,9 @@
  */
 package com.wisnu.ebs.add;
 
-import static java.lang.Double.NaN;
-
 /**
  *
- * @author Wisnu Citra
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class Pearson {
 

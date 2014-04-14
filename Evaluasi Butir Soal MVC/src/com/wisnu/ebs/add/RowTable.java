@@ -1,14 +1,17 @@
 package com.wisnu.ebs.add;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 
 public class RowTable extends DefaultTableCellRenderer implements ListCellRenderer {
 

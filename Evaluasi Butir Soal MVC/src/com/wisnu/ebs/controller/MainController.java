@@ -80,7 +80,7 @@ public class MainController implements MainListener {
                 openingConfigurationPanel();
                 openingKeyPanel();
                 mainFrame.isNewDocument(true);
-                 mainFrame.isFromFile(false);
+                mainFrame.isFromFile(false);
                 mainFrame.itemCheck(true);
             } else {
                 fireErrorMessage(4, newDocumentPanel.itemCheck(), "");
@@ -179,7 +179,7 @@ public class MainController implements MainListener {
         database.setCurrentlySelectedItem(0);
         openingConfigurationPanel();
         openingKeyPanel();
-        mainFrame.setTitle("AnisSo V.1.5.1 " + path);
+        mainFrame.setTitle("AnisSo V.2.0.1 " + path);
     }
 
     public void openDocumentAction(String path, int fileSelected) {
@@ -188,7 +188,7 @@ public class MainController implements MainListener {
         database.setCurrentlySelectedItem(fileSelected);
         openingConfigurationPanel();
         openingKeyPanel();
-        mainFrame.setTitle("AnisSo V.1.5.1 " + path);
+        mainFrame.setTitle("AnisSo V.2.0.1 " + path);
     }
 
     protected void openingFile(String path) {
@@ -321,6 +321,7 @@ public class MainController implements MainListener {
         findingResult.rightAndWrong2();
         findingResult.meanOfValue();
         findingResult.sumPassGrade();
+     
     }
 
     protected void settingResultPanelDataTable() {
@@ -347,19 +348,19 @@ public class MainController implements MainListener {
             rowHeader[0][i] = String.valueOf("Soal " + (i + 1));
             for (int j = 0; j < 6; j++) {
                 if (j == 0) {
-                    dataTable[0][i][j] = new DecimalFormat("#").format(((float) findingResult.getTk()[i] / row) * 100) + " %";
+                    dataTable[0][i][j] = new DecimalFormat("#").format(((float) findingResult.getTk()[i] / col) * 100) + " %";
                 }
                 if (j == 1) {
-                    if ((float) findingResult.getTk()[i] / row <= 0.30) {
+                    if ((float) findingResult.getTk()[i] / col <= 0.30) {
                         dataTable[0][i][j] = "Sukar";
-                        if ((float) findingResult.getTk()[i] / row <= 0.15) {
+                        if ((float) findingResult.getTk()[i] / col <= 0.15) {
                             dataTable[0][i][j] = "Sangat Sukar";
                         }
-                    } else if ((float) findingResult.getTk()[i] / row > 0.30 && (float) findingResult.getTk()[i] / row <= 0.70) {
+                    } else if ((float) findingResult.getTk()[i] / col > 0.30 && (float) findingResult.getTk()[i] / col <= 0.70) {
                         dataTable[0][i][j] = "Sedang";
                     } else {
                         dataTable[0][i][j] = "Mudah";
-                        if ((float) findingResult.getTk()[i] / row >= 0.86) {
+                        if ((float) findingResult.getTk()[i] / col >= 0.86) {
                             dataTable[0][i][j] = "Sangat Mudah";
                         }
                     }
@@ -539,7 +540,7 @@ public class MainController implements MainListener {
                 + add, "ERROR..!",
                 JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void print(int selection) {
         switch (selection) {
             case 0:

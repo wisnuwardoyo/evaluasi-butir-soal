@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 
 /**
  *
- * @author Wisnu Wardoyo
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class CreateAnisSoFolder {
 

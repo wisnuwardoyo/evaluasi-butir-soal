@@ -1,7 +1,10 @@
 package com.wisnu.ebs.add;
 
 import javax.swing.JTable;
-
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class TableCheckBox extends JTable {
 
     @Override

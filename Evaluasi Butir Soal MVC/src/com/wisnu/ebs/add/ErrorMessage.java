@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package com.wisnu.ebs.add;
-
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class ErrorMessage {
 
     public final String[] message = new String[15];

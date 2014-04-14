@@ -1,12 +1,14 @@
 package com.wisnu.ebs.add;
 
 import java.awt.Component;
-import java.awt.event.InputMethodListener;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+/**
+ *
+ * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
+ */
 public class TableCellListener extends DefaultTableCellRenderer {
 
     int type = 0;
