@@ -1,5 +1,6 @@
 package com.wisnu.ebs.model;
 
+import com.wisnu.ebs.add.OddReability;
 import com.wisnu.ebs.add.Pearson;
 import com.wisnu.ebs.add.Statistics;
 import java.text.DecimalFormat;
@@ -13,6 +14,7 @@ public class FindingResult {
     Database database;
     private Pearson pearson;
     private Statistics statistics;
+    private OddReability oddReliability;
     private String[][] letter;
     private String[][] number;
     private String[][] sortedNumber;
@@ -106,7 +108,7 @@ public class FindingResult {
      * dan batas bawah masing2 hanya diambil 27% dari total siswa)
      */
     public void db() {
-        String[][] angkaCopy = new String[col][row + 2];
+        String[][] angkaCopy ;//= new String[col][row + 2];
         // Mengakumulasikan score masing masing siswa.
         for (int i = 0; i < col; i++) {
             for (int j = 1; j <= row; j++) {
@@ -166,13 +168,13 @@ public class FindingResult {
         //Layer digunakan untuk menampung jumlah dari masing masing hasil olahan BA dan BB
         float[] layer = new float[row * 2];
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j < BA.length; j++) {
-                layer[i] += Float.parseFloat(BA[j][i + 1]);
+            for (String[] BA1 : BA) {
+                layer[i] += Float.parseFloat(BA1[i + 1]);
             }
         }
         for (int i = row; i < layer.length; i++) {
-            for (int j = 0; j < BB.length; j++) {
-                layer[i] += Float.parseFloat(BB[j][(i - row) + 1]);
+            for (String[] BB1 : BB) {
+                layer[i] += Float.parseFloat(BB1[(i - row) + 1]);
             }
         }
 
@@ -317,6 +319,14 @@ public class FindingResult {
     }
 
     public void reliability() {
+        if(row % 2 == 0){
+            evenReliability();
+        }else{
+            oddReliability();
+        }
+    }
+    
+    public void evenReliability(){
         double[] jawab = new double[col];
         for (int i = 0; i < col; i++) {
             jawab[i] = converter(getNumber()[i][row + 1]);
@@ -343,9 +353,29 @@ public class FindingResult {
         getTempData()[1] = String.valueOf(new DecimalFormat("#.##").format(getStatistics().getStdDev()));
         getTempData()[2] = String.valueOf(new DecimalFormat("#.##").format(rxy));
         getTempData()[3] = String.valueOf(new DecimalFormat("#.##").format(rtt));
-
     }
-
+    
+    public void oddReliability(){
+        double[] jawab = new double[col];
+        
+        for (int i = 0; i < col; i++) {
+            jawab[i] = converter(getNumber()[i][row + 1]);
+        }
+        double[][] numberForOdd = new double[col][row + 1];
+        for(int i = 0; i < col; i++){
+            for(int j = 0; j < row+1; j++){
+                numberForOdd[i][j] = converter(getNumber()[i][j+1]);
+            }
+        }
+        
+        oddReliability = new OddReability((double)row, numberForOdd);
+        setStatistics(new Statistics(jawab));
+        getTempData()[0] = String.valueOf(new DecimalFormat("#.##").format(getStatistics().getMean()));
+        getTempData()[1] = String.valueOf(new DecimalFormat("#.##").format(getStatistics().getStdDev()));
+        getTempData()[2] = "Tidak tersedia(Soal ganjil)";
+        getTempData()[3] = String.valueOf(new DecimalFormat("#.##").format(oddReliability.getReability()));
+    }
+    
     public double converter(String a) {
         double temp = 0;
         temp = Double.parseDouble(a);
@@ -587,4 +617,6 @@ public class FindingResult {
     public void setNRaW2(int[][] NRaW2) {
         this.NRaW2 = NRaW2;
     }
+    
+    
 }

@@ -206,6 +206,8 @@ public class ConfController {
             //-------------Setting UP-----------//
             this.database.getStudentsAnswer()[aktif] = new String[siswaBaru][soalBaru + 1];
             this.database.getStudentsAnswer()[aktif] = dataSoal;
+            this.database.getKey()[aktif] = new String[soalBaru];
+            this.database.getKey()[aktif] = dataKunci;
             this.database.getStudentsCount()[aktif] = panel.getLabJumlahSiswa().getText();
             this.database.getItemCount()[aktif] = panel.getLabSoal().getText();
 
