@@ -6,7 +6,7 @@ package com.wisnu.ebs.view;
 
 import com.wisnu.ebs.add.TableCheckBox;
 import com.wisnu.ebs.controller.ConfController;
-import com.wisnu.ebs.model.Database;
+import com.wisnu.ebs.model.impl.DatabaseImpl;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
