@@ -5,14 +5,13 @@
 package com.wisnu.ebs.xml;
 
 import com.wisnu.ebs.model.Database;
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class WriteXMLFile {
-
-    private int jumlahTest;
 
     private Database database;
 
@@ -81,18 +80,17 @@ public class WriteXMLFile {
                 printer.write(database.getMinimumPassValue()[i]);
                 printer.write("</kkm>");
                 printer.newLine();
-
-                for (int j = 0; j < database.getKey()[i].length; j++) {
+                
+                for (String key : database.getKey()[i]) {
                     printer.write("<kunci>");
-                    printer.write(database.getKey()[i][j].equals("") ? "?" : database.getKey()[i][j]);
+                    printer.write(key.equals("") ? "?" : key);
                     printer.write("</kunci>");
                     printer.newLine();
                 }
-
-                for (int k = 0; k < database.getStudentsAnswer()[i].length; k++) {
-                    for (int l = 0; l < database.getStudentsAnswer()[i][k].length; l++) {
+                for (String[] students : database.getStudentsAnswer()[i]) {
+                    for (String studentsAnswer : students) {
                         printer.write("<soal>");
-                        printer.write(database.getStudentsAnswer()[i][k][l].equals("") ? "?" : database.getStudentsAnswer()[i][k][l]);
+                        printer.write(studentsAnswer.equals("") ? "?" : studentsAnswer);
                         printer.write("</soal>");
                         printer.newLine();
                     }

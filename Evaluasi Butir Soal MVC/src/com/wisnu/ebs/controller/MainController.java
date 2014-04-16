@@ -5,10 +5,12 @@ import com.wisnu.ebs.add.DateChecker;
 import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
-import com.wisnu.ebs.model.FindingResult;
+import com.wisnu.ebs.model.impl.DatabaseImpl;
+import com.wisnu.ebs.model.impl.FindingResultImpl;
 import com.wisnu.ebs.model.PrintResult;
 import com.wisnu.ebs.model.PrintDistractor;
 import com.wisnu.ebs.model.PrintStudentSummary;
+import com.wisnu.ebs.util.Utilities;
 import com.wisnu.ebs.view.AnsPanel;
 import com.wisnu.ebs.view.ConfPanel;
 import com.wisnu.ebs.view.HelpPanel;
@@ -28,8 +30,6 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.stream.XMLStreamException;
 import net.sf.jasperreports.engine.JRException;
@@ -48,25 +48,33 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class MainController implements MainListener {
 
-    private final Database database = new Database();
-    private final MainFrame mainFrame = new MainFrame();
+    private final Database database;
+    private final MainFrame mainFrame;
     private AnsPanel ansPanel;
     private KeyPanel keyPanel;
     private ResultPanel resultPanel;
     private ConfPanel configPanel;
-    private FindingResult findingResult;
+    private FindingResultImpl findingResult;
     private HelpPanel helpPanel;
     private ToolPanel toolPanel;
-    private final ConfigStaxParser configReader = new ConfigStaxParser();
-    private final ItemStaXParser itemReader = new ItemStaXParser();
-    private final HelpStaxParser helpReader = new HelpStaxParser();
-    private final WriteXMLFile saveFile = new WriteXMLFile();
-    private final ConfController confController = new ConfController();
-    private final ErrorMessage errorMessage = new ErrorMessage();
+    private final ConfigStaxParser configReader;
+    private final ItemStaXParser itemReader;
+    private final HelpStaxParser helpReader;
+    private final WriteXMLFile saveFile;
+    private final ConfController confController;
+    private final ErrorMessage errorMessage;
     private NewDocumentPanel newDocumentPanel;
     private String path;
 
     public MainController() {
+        this.database = Utilities.getDatabase();
+        this.errorMessage = new ErrorMessage();
+        this.confController = new ConfController();
+        this.saveFile = new WriteXMLFile();
+        this.helpReader = new HelpStaxParser();
+        this.itemReader = new ItemStaXParser();
+        this.configReader = new ConfigStaxParser();
+        this.mainFrame = new MainFrame();
         if (DateChecker.isOutOfDate()) {
             System.exit(0);
         } else {
@@ -331,7 +339,7 @@ public class MainController implements MainListener {
     }
 
     protected void findingResult() {
-        findingResult = new FindingResult();
+        findingResult = new FindingResultImpl();
         findingResult.setDatabase(database);
         findingResult.initComponent();
         findingResult.correcting();
