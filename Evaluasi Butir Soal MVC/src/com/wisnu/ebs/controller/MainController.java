@@ -1,6 +1,7 @@
 package com.wisnu.ebs.controller;
 
 import com.wisnu.ebs.add.CorrelationTableValue;
+import com.wisnu.ebs.add.DateChecker;
 import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
@@ -66,11 +67,15 @@ public class MainController implements MainListener {
     private String path;
 
     public MainController() {
-        mainFrame.setVisible(true);
-        mainFrame.setController(this);
-        confController.setDatabase(database);
-        confController.setControllerUtama(this);
-        //openDocumentAction("example.rmd");
+        if (DateChecker.isOutOfDate()) {
+            System.exit(0);
+        } else {
+            mainFrame.setVisible(true);
+            mainFrame.setController(this);
+            confController.setDatabase(database);
+            confController.setControllerUtama(this);
+            //openDocumentAction("example.rmd");
+        }
     }
 
     //New Document 
@@ -205,7 +210,7 @@ public class MainController implements MainListener {
             configReader.readConfig(path);
         } catch (FileNotFoundException | XMLStreamException ex) {
             fireErrorMessage(0, 99, "Dokument Tidak Valid");
-                return;
+            return;
         }
         int fileCount = database.getFileCount();
         if (fileCount > 0) {
@@ -573,7 +578,7 @@ public class MainController implements MainListener {
                     JasperViewer.viewReport(jasperPrint, false);
 
                 } catch (JRException e) {
-                    fireErrorMessage(5, 99, e.toString());
+                    fireErrorMessage(5, 99, e.getMessage());
 
                 }
                 break;
@@ -589,7 +594,7 @@ public class MainController implements MainListener {
                     JasperViewer.viewReport(jasperPrint, false);
 
                 } catch (JRException e) {
-                    fireErrorMessage(5, 99, e.toString());
+                    fireErrorMessage(5, 99, e.getMessage());
 
                 }
                 break;
@@ -605,7 +610,7 @@ public class MainController implements MainListener {
                     JasperViewer.viewReport(jasperPrint, false);
 
                 } catch (JRException e) {
-                    fireErrorMessage(5, 99, e.toString());
+                    fireErrorMessage(5, 99, e.getMessage());
 
                 }
                 break;
