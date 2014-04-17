@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.datatransfer.*;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * ExcelAdapter enables Copy-Paste Clipboard functionality on JTables. The
@@ -116,8 +118,10 @@ public class ExcelAdapter implements ActionListener {
                         }
                     }
                 }
-            } catch (UnsupportedFlavorException | IOException ex) {
-                ex.printStackTrace();
+            } catch (IOException ex) {
+               
+            } catch (UnsupportedFlavorException ex) {
+               
             }
         }
     }

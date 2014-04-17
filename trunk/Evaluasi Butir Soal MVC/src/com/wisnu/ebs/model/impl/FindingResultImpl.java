@@ -33,9 +33,9 @@ public class FindingResultImpl implements FindingResult {
     private int[] score;
     private float[] db;
     private double[] correlationNumber;
-    int col;
-    int row;
-    int aktif;
+    private int col;
+    private int row;
+    private int aktif;
 
     @Override
     public void initComponent() {

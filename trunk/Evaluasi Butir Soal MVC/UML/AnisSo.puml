@@ -1,0 +1,408 @@
+@startuml
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+class com.wisnu.ebs.add.Button
+class com.wisnu.ebs.add.ColoredTable
+class com.wisnu.ebs.add.CorrelationTableValue
+class com.wisnu.ebs.add.CreateAnisSoFolder
+class com.wisnu.ebs.add.DateChecker
+class com.wisnu.ebs.add.ErrorMessage
+class com.wisnu.ebs.add.ExcelAdapter
+class com.wisnu.ebs.add.ImageBackgroundPanel
+class com.wisnu.ebs.add.OddReability
+class com.wisnu.ebs.add.Pearson
+class com.wisnu.ebs.add.RowTable
+class com.wisnu.ebs.add.Statistics
+class com.wisnu.ebs.add.TableCellChangeListener
+class com.wisnu.ebs.add.TableCellListener
+class com.wisnu.ebs.add.TableCheckBox
+class com.wisnu.ebs.add.TransparentTextArea
+class com.wisnu.ebs.controller.ConfController
+class com.wisnu.ebs.controller.MainController
+class com.wisnu.ebs.controller.thread.GenerateFolder
+class com.wisnu.ebs.main.LockedMain
+class com.wisnu.ebs.main.Main
+class com.wisnu.ebs.model.PrintDistractor
+class com.wisnu.ebs.model.PrintResult
+class com.wisnu.ebs.model.PrintStudentSummary
+class com.wisnu.ebs.model.impl.DatabaseImpl
+class com.wisnu.ebs.model.impl.FindingResultImpl
+class com.wisnu.ebs.util.Utilities
+class com.wisnu.ebs.view.AboutPanel
+class com.wisnu.ebs.view.AnsPanel
+class com.wisnu.ebs.view.ConfPanel
+class com.wisnu.ebs.view.HelpPanel
+class com.wisnu.ebs.view.KeyPanel
+class com.wisnu.ebs.view.MainFrame
+class com.wisnu.ebs.view.NewDocumentPanel
+class com.wisnu.ebs.view.NewFilePanel
+class com.wisnu.ebs.view.PrintPanel
+class com.wisnu.ebs.view.ResultPanel
+class com.wisnu.ebs.view.ToolPanel
+class com.wisnu.ebs.view.menuControll
+class com.wisnu.ebs.xml.ConfigStaxParser
+class com.wisnu.ebs.xml.Help
+class com.wisnu.ebs.xml.HelpStaxParser
+class com.wisnu.ebs.xml.Item
+class com.wisnu.ebs.xml.ItemStaXParser
+class com.wisnu.ebs.xml.WriteXMLFile
+class java.awt.Color
+class java.awt.Component
+class java.awt.Cursor
+class java.awt.Dimension
+class java.awt.Graphics
+class java.awt.Graphics2D
+class java.awt.Image
+class java.awt.Insets
+class java.awt.Point
+class java.awt.geom.RoundRectangle2D
+class java.io.BufferedWriter
+class java.io.File
+class java.io.FileInputStream
+class java.io.FileNotFoundException
+class java.io.FileWriter
+class java.io.IOException
+class java.io.InputStream
+class java.lang.Thread
+class java.text.DecimalFormat
+class java.text.ParseException
+class java.text.SimpleDateFormat
+class java.util.ArrayList
+class java.util.Arrays
+class java.util.Date
+class java.util.HashMap
+class java.util.Iterator
+class java.util.LinkedList
+class java.util.List
+class javax.swing.ImageIcon
+class javax.swing.JButton
+class javax.swing.JDialog
+class javax.swing.JFileChooser
+class javax.swing.JFrame
+class javax.swing.JLabel
+class javax.swing.JList
+class javax.swing.JOptionPane
+class javax.swing.JPanel
+class javax.swing.JScrollPane
+class javax.swing.JTable
+class javax.swing.JTextArea
+class javax.swing.JTextField
+class javax.swing.event.ChangeEvent
+class javax.swing.filechooser.FileFilter
+class javax.swing.table.DefaultTableCellRenderer
+class javax.swing.table.DefaultTableColumnModel
+class javax.swing.table.DefaultTableModel
+class javax.swing.table.JTableHeader
+class javax.swing.table.TableCellRenderer
+class javax.swing.table.TableColumn
+class javax.swing.text.SimpleAttributeSet
+class javax.swing.text.StyleConstants
+class javax.swing.text.StyledDocument
+class javax.xml.stream.XMLEventReader
+class javax.xml.stream.XMLInputFactory
+class javax.xml.stream.XMLStreamException
+class javax.xml.stream.events.Attribute
+class javax.xml.stream.events.EndElement
+class javax.xml.stream.events.StartElement
+class javax.xml.stream.events.XMLEvent
+class net.sf.jasperreports.engine.JRException
+class net.sf.jasperreports.engine.JasperCompileManager
+class net.sf.jasperreports.engine.JasperFillManager
+class net.sf.jasperreports.engine.JasperPrint
+class net.sf.jasperreports.engine.JasperReport
+class net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+class net.sf.jasperreports.engine.design.JasperDesign
+class net.sf.jasperreports.engine.xml.JRXmlLoader
+class net.sf.jasperreports.view.JasperViewer
+class org.netbeans.lib.awtextra.AbsoluteConstraints
+class org.netbeans.lib.awtextra.AbsoluteLayout
+interface com.wisnu.ebs.add.ActionListener
+interface com.wisnu.ebs.event.MainListener
+interface com.wisnu.ebs.model.Database
+interface com.wisnu.ebs.model.FindingResult
+interface java.io.Serializable
+interface javax.swing.ListCellRenderer
+interface javax.swing.event.CellEditorListener
+interface org.netbeans.lib.awtextra.LayoutManager2
+com.wisnu.ebs.add.Button ..> java.lang.SuppressWarnings
+com.wisnu.ebs.add.Button --|> javax.swing.JButton
+com.wisnu.ebs.add.ColoredTable ..> java.lang.Override
+com.wisnu.ebs.add.ColoredTable ..> java.awt.Color
+com.wisnu.ebs.add.ColoredTable ..> java.awt.Component
+com.wisnu.ebs.add.ColoredTable --|> javax.swing.JTable
+com.wisnu.ebs.add.ColoredTable ..> javax.swing.table.DefaultTableModel
+com.wisnu.ebs.add.ColoredTable ..> javax.swing.table.TableCellRenderer
+com.wisnu.ebs.add.CreateAnisSoFolder ..> java.io.File
+com.wisnu.ebs.add.CreateAnisSoFolder ..> javax.swing.JFileChooser
+com.wisnu.ebs.add.DateChecker ..> java.text.ParseException
+com.wisnu.ebs.add.DateChecker ..> java.text.SimpleDateFormat
+com.wisnu.ebs.add.DateChecker ..> java.util.Date
+com.wisnu.ebs.add.ExcelAdapter ..> java.lang.Override
+com.wisnu.ebs.add.ExcelAdapter ..> java.io.IOException
+com.wisnu.ebs.add.ExcelAdapter --|> com.wisnu.ebs.add.ActionListener
+com.wisnu.ebs.add.ImageBackgroundPanel ..> java.lang.Override
+com.wisnu.ebs.add.ImageBackgroundPanel ..> java.awt.Graphics
+com.wisnu.ebs.add.ImageBackgroundPanel ..> java.awt.Image
+com.wisnu.ebs.add.ImageBackgroundPanel --|> javax.swing.JPanel
+com.wisnu.ebs.add.RowTable ..> java.lang.Override
+com.wisnu.ebs.add.RowTable ..> java.awt.Component
+com.wisnu.ebs.add.RowTable ..> javax.swing.JLabel
+com.wisnu.ebs.add.RowTable ..> javax.swing.JList
+com.wisnu.ebs.add.RowTable ..> javax.swing.JTable
+com.wisnu.ebs.add.RowTable --|> javax.swing.table.DefaultTableCellRenderer
+com.wisnu.ebs.add.RowTable ..> javax.swing.table.JTableHeader
+com.wisnu.ebs.add.RowTable --|> javax.swing.ListCellRenderer
+com.wisnu.ebs.add.Statistics ..> java.util.Arrays
+com.wisnu.ebs.add.TableCellChangeListener ..> java.lang.Override
+com.wisnu.ebs.add.TableCellChangeListener ..> javax.swing.event.ChangeEvent
+com.wisnu.ebs.add.TableCellChangeListener --|> javax.swing.event.CellEditorListener
+com.wisnu.ebs.add.TableCellListener ..> java.lang.Override
+com.wisnu.ebs.add.TableCellListener ..> java.awt.Component
+com.wisnu.ebs.add.TableCellListener ..> javax.swing.JOptionPane
+com.wisnu.ebs.add.TableCellListener ..> javax.swing.JTable
+com.wisnu.ebs.add.TableCellListener --|> javax.swing.table.DefaultTableCellRenderer
+com.wisnu.ebs.add.TableCheckBox ..> java.lang.Override
+com.wisnu.ebs.add.TableCheckBox --|> javax.swing.JTable
+com.wisnu.ebs.add.TransparentTextArea ..> java.lang.Override
+com.wisnu.ebs.add.TransparentTextArea ..> java.awt.Color
+com.wisnu.ebs.add.TransparentTextArea ..> java.awt.Graphics
+com.wisnu.ebs.add.TransparentTextArea ..> java.awt.Insets
+com.wisnu.ebs.add.TransparentTextArea --|> javax.swing.JTextArea
+com.wisnu.ebs.controller.ConfController ..> com.wisnu.ebs.view.ConfPanel
+com.wisnu.ebs.controller.ConfController ..> com.wisnu.ebs.view.NewFilePanel
+com.wisnu.ebs.controller.ConfController ..> javax.swing.JOptionPane
+com.wisnu.ebs.controller.ConfController ..> com.wisnu.ebs.model.Database
+com.wisnu.ebs.controller.MainController ..> java.lang.Override
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.add.CorrelationTableValue
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.add.DateChecker
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.add.ErrorMessage
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.model.PrintDistractor
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.model.PrintResult
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.model.PrintStudentSummary
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.util.Utilities
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.AnsPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.ConfPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.HelpPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.KeyPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.MainFrame
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.NewDocumentPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.ResultPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.view.ToolPanel
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.xml.ConfigStaxParser
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.xml.Help
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.xml.HelpStaxParser
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.xml.Item
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.xml.ItemStaXParser
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.xml.WriteXMLFile
+com.wisnu.ebs.controller.MainController ..> java.io.FileNotFoundException
+com.wisnu.ebs.controller.MainController ..> java.text.DecimalFormat
+com.wisnu.ebs.controller.MainController ..> java.util.HashMap
+com.wisnu.ebs.controller.MainController ..> java.util.LinkedList
+com.wisnu.ebs.controller.MainController ..> java.util.List
+com.wisnu.ebs.controller.MainController ..> javax.swing.JOptionPane
+com.wisnu.ebs.controller.MainController ..> javax.xml.stream.XMLStreamException
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.JRException
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.JasperCompileManager
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.JasperFillManager
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.JasperPrint
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.JasperReport
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.design.JasperDesign
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.engine.xml.JRXmlLoader
+com.wisnu.ebs.controller.MainController ..> net.sf.jasperreports.view.JasperViewer
+com.wisnu.ebs.controller.MainController --|> com.wisnu.ebs.event.MainListener
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.model.Database
+com.wisnu.ebs.controller.MainController ..> com.wisnu.ebs.model.FindingResult
+com.wisnu.ebs.controller.thread.GenerateFolder ..> java.lang.Override
+com.wisnu.ebs.controller.thread.GenerateFolder ..> com.wisnu.ebs.add.CreateAnisSoFolder
+com.wisnu.ebs.controller.thread.GenerateFolder --|> java.lang.Thread
+com.wisnu.ebs.main.LockedMain ..> java.lang.Override
+com.wisnu.ebs.main.LockedMain ..> com.wisnu.ebs.add.DateChecker
+com.wisnu.ebs.main.LockedMain ..> com.wisnu.ebs.controller.MainController
+com.wisnu.ebs.main.LockedMain ..> com.wisnu.ebs.controller.thread.GenerateFolder
+com.wisnu.ebs.main.LockedMain ..> javax.swing.JOptionPane
+com.wisnu.ebs.main.Main ..> java.lang.Override
+com.wisnu.ebs.main.Main ..> com.wisnu.ebs.controller.MainController
+com.wisnu.ebs.model.impl.DatabaseImpl ..> java.lang.Override
+com.wisnu.ebs.model.impl.DatabaseImpl ..> com.wisnu.ebs.view.AnsPanel
+com.wisnu.ebs.model.impl.DatabaseImpl ..> com.wisnu.ebs.view.KeyPanel
+com.wisnu.ebs.model.impl.DatabaseImpl ..> com.wisnu.ebs.view.NewDocumentPanel
+com.wisnu.ebs.model.impl.DatabaseImpl ..> javax.swing.JTable
+com.wisnu.ebs.model.impl.DatabaseImpl ..> com.wisnu.ebs.event.MainListener
+com.wisnu.ebs.model.impl.DatabaseImpl --|> com.wisnu.ebs.model.Database
+com.wisnu.ebs.model.impl.FindingResultImpl ..> java.lang.Override
+com.wisnu.ebs.model.impl.FindingResultImpl ..> com.wisnu.ebs.add.OddReability
+com.wisnu.ebs.model.impl.FindingResultImpl ..> com.wisnu.ebs.add.Pearson
+com.wisnu.ebs.model.impl.FindingResultImpl ..> com.wisnu.ebs.add.Statistics
+com.wisnu.ebs.model.impl.FindingResultImpl ..> java.text.DecimalFormat
+com.wisnu.ebs.model.impl.FindingResultImpl ..> com.wisnu.ebs.model.Database
+com.wisnu.ebs.model.impl.FindingResultImpl --|> com.wisnu.ebs.model.FindingResult
+com.wisnu.ebs.util.Utilities ..> com.wisnu.ebs.model.impl.DatabaseImpl
+com.wisnu.ebs.util.Utilities ..> com.wisnu.ebs.model.impl.FindingResultImpl
+com.wisnu.ebs.util.Utilities ..> com.wisnu.ebs.model.Database
+com.wisnu.ebs.util.Utilities ..> com.wisnu.ebs.model.FindingResult
+com.wisnu.ebs.view.AboutPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.AboutPanel ..> java.awt.Color
+com.wisnu.ebs.view.AboutPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.AboutPanel ..> javax.swing.text.SimpleAttributeSet
+com.wisnu.ebs.view.AboutPanel ..> javax.swing.text.StyleConstants
+com.wisnu.ebs.view.AboutPanel ..> javax.swing.text.StyledDocument
+com.wisnu.ebs.view.AnsPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.AnsPanel ..> com.wisnu.ebs.add.ExcelAdapter
+com.wisnu.ebs.view.AnsPanel ..> com.wisnu.ebs.add.RowTable
+com.wisnu.ebs.view.AnsPanel ..> com.wisnu.ebs.add.TableCellListener
+com.wisnu.ebs.view.AnsPanel ..> java.awt.Color
+com.wisnu.ebs.view.AnsPanel ..> java.awt.Component
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.JLabel
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.JList
+com.wisnu.ebs.view.AnsPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.JScrollPane
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.JTable
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.table.DefaultTableCellRenderer
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.table.DefaultTableColumnModel
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.table.DefaultTableModel
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.table.TableCellRenderer
+com.wisnu.ebs.view.AnsPanel ..> javax.swing.table.TableColumn
+com.wisnu.ebs.view.ConfPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.ConfPanel ..> com.wisnu.ebs.add.TableCheckBox
+com.wisnu.ebs.view.ConfPanel ..> com.wisnu.ebs.controller.ConfController
+com.wisnu.ebs.view.ConfPanel ..> com.wisnu.ebs.model.impl.DatabaseImpl
+com.wisnu.ebs.view.ConfPanel ..> java.awt.Color
+com.wisnu.ebs.view.ConfPanel ..> java.awt.Component
+com.wisnu.ebs.view.ConfPanel ..> java.awt.Graphics
+com.wisnu.ebs.view.ConfPanel ..> java.awt.Graphics2D
+com.wisnu.ebs.view.ConfPanel ..> java.awt.geom.RoundRectangle2D
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.ImageIcon
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.JFrame
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.JOptionPane
+com.wisnu.ebs.view.ConfPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.table.DefaultTableColumnModel
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.table.DefaultTableModel
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.table.TableCellRenderer
+com.wisnu.ebs.view.ConfPanel ..> javax.swing.table.TableColumn
+com.wisnu.ebs.view.HelpPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.HelpPanel ..> java.awt.Cursor
+com.wisnu.ebs.view.HelpPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.KeyPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.KeyPanel ..> com.wisnu.ebs.add.ExcelAdapter
+com.wisnu.ebs.view.KeyPanel ..> com.wisnu.ebs.add.RowTable
+com.wisnu.ebs.view.KeyPanel ..> com.wisnu.ebs.add.TableCellListener
+com.wisnu.ebs.view.KeyPanel ..> java.awt.Color
+com.wisnu.ebs.view.KeyPanel ..> javax.swing.JList
+com.wisnu.ebs.view.KeyPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.KeyPanel ..> javax.swing.JScrollPane
+com.wisnu.ebs.view.KeyPanel ..> javax.swing.JTable
+com.wisnu.ebs.view.KeyPanel ..> javax.swing.table.DefaultTableModel
+com.wisnu.ebs.view.MainFrame ..> java.lang.Override
+com.wisnu.ebs.view.MainFrame ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.MainFrame ..> com.wisnu.ebs.add.ImageBackgroundPanel
+com.wisnu.ebs.view.MainFrame ..> com.wisnu.ebs.controller.MainController
+com.wisnu.ebs.view.MainFrame ..> java.awt.Color
+com.wisnu.ebs.view.MainFrame ..> java.awt.Component
+com.wisnu.ebs.view.MainFrame ..> java.awt.Cursor
+com.wisnu.ebs.view.MainFrame ..> java.awt.Image
+com.wisnu.ebs.view.MainFrame ..> java.io.File
+com.wisnu.ebs.view.MainFrame ..> java.io.IOException
+com.wisnu.ebs.view.MainFrame ..> javax.swing.ImageIcon
+com.wisnu.ebs.view.MainFrame ..> javax.swing.JDialog
+com.wisnu.ebs.view.MainFrame ..> javax.swing.JFileChooser
+com.wisnu.ebs.view.MainFrame --|> javax.swing.JFrame
+com.wisnu.ebs.view.MainFrame ..> javax.swing.JOptionPane
+com.wisnu.ebs.view.MainFrame ..> javax.swing.filechooser.FileFilter
+com.wisnu.ebs.view.NewDocumentPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.NewDocumentPanel ..> java.awt.Color
+com.wisnu.ebs.view.NewDocumentPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.NewDocumentPanel ..> javax.swing.JTextField
+com.wisnu.ebs.view.NewFilePanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.NewFilePanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.NewFilePanel ..> javax.swing.JTextField
+com.wisnu.ebs.view.PrintPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.PrintPanel ..> java.awt.Color
+com.wisnu.ebs.view.PrintPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.ResultPanel ..> java.lang.Override
+com.wisnu.ebs.view.ResultPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.ResultPanel ..> com.wisnu.ebs.add.ColoredTable
+com.wisnu.ebs.view.ResultPanel ..> com.wisnu.ebs.add.RowTable
+com.wisnu.ebs.view.ResultPanel ..> com.wisnu.ebs.add.TransparentTextArea
+com.wisnu.ebs.view.ResultPanel ..> java.awt.Color
+com.wisnu.ebs.view.ResultPanel ..> java.awt.Component
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.JFrame
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.JLabel
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.JList
+com.wisnu.ebs.view.ResultPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.JScrollPane
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.JTable
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.table.DefaultTableCellRenderer
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.table.DefaultTableColumnModel
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.table.DefaultTableModel
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.table.JTableHeader
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.table.TableCellRenderer
+com.wisnu.ebs.view.ResultPanel ..> javax.swing.table.TableColumn
+com.wisnu.ebs.view.ToolPanel ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.ToolPanel ..> com.wisnu.ebs.controller.MainController
+com.wisnu.ebs.view.ToolPanel ..> java.awt.Color
+com.wisnu.ebs.view.ToolPanel ..> javax.swing.ImageIcon
+com.wisnu.ebs.view.ToolPanel --|> javax.swing.JPanel
+com.wisnu.ebs.view.menuControll ..> java.lang.Override
+com.wisnu.ebs.view.menuControll ..> java.lang.SuppressWarnings
+com.wisnu.ebs.view.menuControll ..> java.awt.Graphics
+com.wisnu.ebs.view.menuControll ..> java.awt.Image
+com.wisnu.ebs.view.menuControll ..> javax.swing.ImageIcon
+com.wisnu.ebs.view.menuControll --|> javax.swing.JPanel
+com.wisnu.ebs.xml.ConfigStaxParser ..> java.lang.SuppressWarnings
+com.wisnu.ebs.xml.ConfigStaxParser ..> java.io.FileInputStream
+com.wisnu.ebs.xml.ConfigStaxParser ..> java.io.FileNotFoundException
+com.wisnu.ebs.xml.ConfigStaxParser ..> java.io.InputStream
+com.wisnu.ebs.xml.ConfigStaxParser ..> javax.xml.stream.XMLEventReader
+com.wisnu.ebs.xml.ConfigStaxParser ..> javax.xml.stream.XMLInputFactory
+com.wisnu.ebs.xml.ConfigStaxParser ..> javax.xml.stream.XMLStreamException
+com.wisnu.ebs.xml.ConfigStaxParser ..> javax.xml.stream.events.EndElement
+com.wisnu.ebs.xml.ConfigStaxParser ..> javax.xml.stream.events.StartElement
+com.wisnu.ebs.xml.ConfigStaxParser ..> javax.xml.stream.events.XMLEvent
+com.wisnu.ebs.xml.ConfigStaxParser ..> com.wisnu.ebs.model.Database
+com.wisnu.ebs.xml.HelpStaxParser ..> java.lang.SuppressWarnings
+com.wisnu.ebs.xml.HelpStaxParser ..> java.io.FileInputStream
+com.wisnu.ebs.xml.HelpStaxParser ..> java.io.FileNotFoundException
+com.wisnu.ebs.xml.HelpStaxParser ..> java.io.InputStream
+com.wisnu.ebs.xml.HelpStaxParser ..> java.util.ArrayList
+com.wisnu.ebs.xml.HelpStaxParser ..> java.util.Iterator
+com.wisnu.ebs.xml.HelpStaxParser ..> java.util.List
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.XMLEventReader
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.XMLInputFactory
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.XMLStreamException
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.events.Attribute
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.events.EndElement
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.events.StartElement
+com.wisnu.ebs.xml.HelpStaxParser ..> javax.xml.stream.events.XMLEvent
+com.wisnu.ebs.xml.ItemStaXParser ..> java.lang.SuppressWarnings
+com.wisnu.ebs.xml.ItemStaXParser ..> java.io.FileInputStream
+com.wisnu.ebs.xml.ItemStaXParser ..> java.io.FileNotFoundException
+com.wisnu.ebs.xml.ItemStaXParser ..> java.io.InputStream
+com.wisnu.ebs.xml.ItemStaXParser ..> java.util.ArrayList
+com.wisnu.ebs.xml.ItemStaXParser ..> java.util.Iterator
+com.wisnu.ebs.xml.ItemStaXParser ..> java.util.List
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.XMLEventReader
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.XMLInputFactory
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.XMLStreamException
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.events.Attribute
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.events.EndElement
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.events.StartElement
+com.wisnu.ebs.xml.ItemStaXParser ..> javax.xml.stream.events.XMLEvent
+com.wisnu.ebs.xml.WriteXMLFile ..> java.io.BufferedWriter
+com.wisnu.ebs.xml.WriteXMLFile ..> java.io.File
+com.wisnu.ebs.xml.WriteXMLFile ..> java.io.FileWriter
+com.wisnu.ebs.xml.WriteXMLFile ..> java.io.IOException
+com.wisnu.ebs.xml.WriteXMLFile ..> javax.swing.JOptionPane
+com.wisnu.ebs.xml.WriteXMLFile ..> com.wisnu.ebs.model.Database
+org.netbeans.lib.awtextra.AbsoluteConstraints ..> java.awt.Dimension
+org.netbeans.lib.awtextra.AbsoluteConstraints ..> java.awt.Point
+org.netbeans.lib.awtextra.AbsoluteConstraints --|> java.io.Serializable
+org.netbeans.lib.awtextra.AbsoluteLayout --|> java.io.Serializable
+org.netbeans.lib.awtextra.AbsoluteLayout --|> org.netbeans.lib.awtextra.LayoutManager2
+com.wisnu.ebs.model.Database ..> com.wisnu.ebs.view.AnsPanel
+com.wisnu.ebs.model.Database ..> com.wisnu.ebs.view.KeyPanel
+com.wisnu.ebs.model.Database ..> com.wisnu.ebs.view.NewDocumentPanel
+com.wisnu.ebs.model.Database ..> com.wisnu.ebs.event.MainListener
+com.wisnu.ebs.model.FindingResult ..> com.wisnu.ebs.add.Pearson
+com.wisnu.ebs.model.FindingResult ..> com.wisnu.ebs.add.Statistics
+@enduml
