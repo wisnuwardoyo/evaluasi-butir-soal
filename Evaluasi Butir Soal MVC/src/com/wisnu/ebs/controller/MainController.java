@@ -5,8 +5,7 @@ import com.wisnu.ebs.add.DateChecker;
 import com.wisnu.ebs.add.ErrorMessage;
 import com.wisnu.ebs.event.MainListener;
 import com.wisnu.ebs.model.Database;
-import com.wisnu.ebs.model.impl.DatabaseImpl;
-import com.wisnu.ebs.model.impl.FindingResultImpl;
+import com.wisnu.ebs.model.FindingResult;
 import com.wisnu.ebs.model.PrintResult;
 import com.wisnu.ebs.model.PrintDistractor;
 import com.wisnu.ebs.model.PrintStudentSummary;
@@ -30,6 +29,8 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.xml.stream.XMLStreamException;
 import net.sf.jasperreports.engine.JRException;
@@ -49,12 +50,12 @@ import net.sf.jasperreports.view.JasperViewer;
 public class MainController implements MainListener {
 
     private final Database database;
-    private final MainFrame mainFrame;
+    private MainFrame mainFrame;
     private AnsPanel ansPanel;
     private KeyPanel keyPanel;
     private ResultPanel resultPanel;
     private ConfPanel configPanel;
-    private FindingResultImpl findingResult;
+    private FindingResult findingResult;
     private HelpPanel helpPanel;
     private ToolPanel toolPanel;
     private final ConfigStaxParser configReader;
@@ -74,10 +75,11 @@ public class MainController implements MainListener {
         this.helpReader = new HelpStaxParser();
         this.itemReader = new ItemStaXParser();
         this.configReader = new ConfigStaxParser();
-        this.mainFrame = new MainFrame();
+
         if (DateChecker.isOutOfDate()) {
             System.exit(0);
         } else {
+            this.mainFrame = new MainFrame();
             mainFrame.setVisible(true);
             mainFrame.setController(this);
             confController.setDatabase(database);
@@ -216,8 +218,11 @@ public class MainController implements MainListener {
         configReader.setModel(database);
         try {
             configReader.readConfig(path);
-        } catch (FileNotFoundException | XMLStreamException ex) {
+        } catch (XMLStreamException ex) {
             fireErrorMessage(0, 99, "Dokument Tidak Valid");
+            return;
+        } catch (FileNotFoundException ex) {
+            fireErrorMessage(0, 99, "Dokument Tidak ditemukan");
             return;
         }
         int fileCount = database.getFileCount();
@@ -233,8 +238,11 @@ public class MainController implements MainListener {
             List<Item> readConfig = null;
             try {
                 readConfig = itemReader.readConfig(path);
-            } catch (FileNotFoundException | XMLStreamException ex) {
+            } catch (XMLStreamException ex) {
                 fireErrorMessage(0, 99, "Dokument Tidak Valid");
+                return;
+            } catch (FileNotFoundException ex) {
+                fireErrorMessage(0, 99, "Dokument Tidak ditemukan");
                 return;
             }
             for (Item item : readConfig) {
@@ -339,7 +347,7 @@ public class MainController implements MainListener {
     }
 
     protected void findingResult() {
-        findingResult = new FindingResultImpl();
+        findingResult = Utilities.getFindingResult();
         findingResult.setDatabase(database);
         findingResult.initComponent();
         findingResult.correcting();
@@ -360,7 +368,7 @@ public class MainController implements MainListener {
         int col = Integer.parseInt(database.getStudentsCount()[aktif]);
         int row = Integer.parseInt(database.getItemCount()[aktif]);
         int tipe = Integer.parseInt(database.getItemType()[aktif]);
-        double[] value = new CorrelationTableValue().CorrelationTableValue(row);
+        double[] value = CorrelationTableValue.CorrelationTableValue(row);
         String[][][] dataTable = new String[4][][];
         String[][] rowHeader = new String[4][];
         String[] colHeader2 = new String[tipe + 2];
@@ -744,7 +752,16 @@ public class MainController implements MainListener {
 
     public void openingHelp() {
         helpPanel = new HelpPanel();
-        List<Help> readHelp = helpReader.readConfig();
+        List<Help> readHelp;
+        try {
+            readHelp = helpReader.readConfig();
+        } catch (FileNotFoundException ex) {
+            fireErrorMessage(0, 99, "File Help Tidak Ditemukan");
+            return;
+        } catch (XMLStreamException ex) {
+            fireErrorMessage(0, 99, "File Help Telah diUbah format tidak sesuai");
+            return;
+        }
         int i = 0;
         helpPanel.setContents(new String[6][2]);
         for (Help help : readHelp) {

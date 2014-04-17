@@ -23,65 +23,63 @@ public class HelpStaxParser {
     static final String ISI = "isi";
 
     @SuppressWarnings({"unchecked", "null"})
-    public List<Help> readConfig() {
+    public List<Help> readConfig() throws FileNotFoundException, XMLStreamException {
         String configFile = "./src/Resources/Help.xml";
         List<Help> helps = new ArrayList<Help>();
-        try {
-            // First, create a new XMLInputFactory
-            XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-            // Setup a new eventReader
-            InputStream in = new FileInputStream(configFile);
-            XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
-            Help help = null;
 
-            while (eventReader.hasNext()) {
-                XMLEvent event = eventReader.nextEvent();
+        // First, create a new XMLInputFactory
+        XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+        // Setup a new eventReader
+        InputStream in = new FileInputStream(configFile);
+        XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+        Help help = null;
+
+        while (eventReader.hasNext()) {
+            XMLEvent event = eventReader.nextEvent();
+
+            if (event.isStartElement()) {
+                StartElement startElement = event.asStartElement();
+                // If we have an item element, we create a new item
+                if (startElement.getName().getLocalPart().equals(ITEM)) {
+                    help = new Help();
+                    help.setContent(new String[2]);
+                    Iterator<Attribute> attributes = startElement
+                            .getAttributes();
+                    while (attributes.hasNext()) {
+                        Attribute attribute = attributes.next();
+                        if (attribute.getName().toString().equals(ID)) {
+
+                        }
+
+                    }
+                }
 
                 if (event.isStartElement()) {
-                    StartElement startElement = event.asStartElement();
-                    // If we have an item element, we create a new item
-                    if (startElement.getName().getLocalPart().equals(ITEM)) {
-                        help = new Help();
-                        help.setContent(new String[2]);
-                        Iterator<Attribute> attributes = startElement
-                                .getAttributes();
-                        while (attributes.hasNext()) {
-                            Attribute attribute = attributes.next();
-                            if (attribute.getName().toString().equals(ID)) {
-
-                            }
-
-                        }
-                    }
-
-                    if (event.isStartElement()) {
-                        if (event.asStartElement().getName().getLocalPart()
-                                .equals(JUDUL)) {
-                            event = eventReader.nextEvent();
-                            help.getContent()[0] = event.asCharacters().getData();
-                            continue;
-                        }
-                    }
                     if (event.asStartElement().getName().getLocalPart()
-                            .equals(ISI)) {
+                            .equals(JUDUL)) {
                         event = eventReader.nextEvent();
-                        help.getContent()[1] = event.asCharacters().getData().replace("LINE", "<br>");
+                        help.getContent()[0] = event.asCharacters().getData();
                         continue;
                     }
-
                 }
-                // If we reach the end of an item element, we add it to the list
-                if (event.isEndElement()) {
-                    EndElement endElement = event.asEndElement();
-                    if (endElement.getName().getLocalPart().equals(ITEM)) {
-                        helps.add(help);
-                    }
+                if (event.asStartElement().getName().getLocalPart()
+                        .equals(ISI)) {
+                    event = eventReader.nextEvent();
+                    help.getContent()[1] = event.asCharacters().getData().replace("LINE", "<br>");
+                    continue;
                 }
 
             }
-        } catch (FileNotFoundException | XMLStreamException e) {
-            e.printStackTrace();
+            // If we reach the end of an item element, we add it to the list
+            if (event.isEndElement()) {
+                EndElement endElement = event.asEndElement();
+                if (endElement.getName().getLocalPart().equals(ITEM)) {
+                    helps.add(help);
+                }
+            }
+
         }
+
         return helps;
     }
 

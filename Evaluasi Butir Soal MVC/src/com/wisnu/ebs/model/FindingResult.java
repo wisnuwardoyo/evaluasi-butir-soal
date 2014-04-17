@@ -29,9 +29,14 @@ public interface FindingResult {
      * selanjutnya dipisahkan antara siswa yang termasuk dalam urutan atas dan
      * urutan bawah. Selanjutnya di Olah dan dicari perbedaannya. (batas atas
      * dan batas bawah masing2 hanya diambil 27% dari total siswa)
+     * 
+     * Rumus
+     * DP = ((BA - BB) / NA) * 100%
+     * 
+     * Dr. Purwanto M.Pd 2010 102
      */
     void db();
-
+    
     void ep();
 
     void evenReliability();
@@ -135,7 +140,7 @@ public interface FindingResult {
     /**
      * Mencari tingkat kesulitan suatu soal, jumlah benar dalam satu soal di
      * jumlahkan lalu di bagi dengan banyaknya siswa. (proses pembagian
-     * dilakukan didalam view)
+     * dilakukan didalam controller)
      */
     void tk();
 

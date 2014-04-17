@@ -10,8 +10,17 @@ package com.wisnu.ebs.add;
  * @author Wisnu Wardoyo <mas.wisnu99@gmail.com>
  */
 public class CorrelationTableValue {
-
-    public double[] CorrelationTableValue(int n) {
+    
+    /**
+     * Acuan dari lampiran buku Evaluasi Hasil Belajar
+     * Dr. Purwanto M.Pd. 2010 Hal 219
+     * Value[0] = 0,05 = 5%
+     * Value[1] = 0,01 = 1%
+     * @param n
+     * @return 
+     */
+    
+    public static double[] CorrelationTableValue(int n) {
         double[] value = new double[2];
 
         switch (n) {
